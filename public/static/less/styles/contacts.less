@@ -1,0 +1,122 @@
+.contacts {
+	text-align: center;
+	margin-bottom: 80rem / @hfs;
+
+	.contact-map {
+		position: relative;
+		height: 639rem / @hfs;
+		width: 912rem / @hfs;
+		margin: 0 auto;
+		background-image: url(../img/elements/map.png);
+		background-size: 100% auto;
+		background-repeat: no-repeat;
+		margin-bottom: 80rem / @hfs;
+
+		.cm-text {
+			position: absolute;
+			font-style: italic;
+			font-size: 16em / @hfs;
+
+			&.cm-hoff {
+				top: 20%;
+				left: 18%;
+			}
+
+			&.cm-food {
+				top: 20%;
+				left: 46%;
+			}
+
+			&.cm-center {
+				bottom: -4%;
+				left: 43%;
+			}
+		}
+
+		.cm-btext {
+			.spsl_regular;
+			position: absolute;
+			font-size: 18em / @hfs;
+			text-transform: uppercase;
+
+			&.cm-zara {
+				top: 33%;
+				right: 22%;
+			}
+
+			&.cm-kino {
+				top: 45%;
+				left: 5%;
+			}
+
+			&.cm-mexx {
+				top: 69%;
+				left: 17%;
+			}
+		}	
+	}
+
+	.contact-block {
+		font-size: 18em / @hfs;
+		font-style: italic;
+
+		.contact-link {
+			.spsl_wordsman;
+			font-size: 22em / @hfs;
+			border: 0 none;
+			font-style: normal;
+			color: inherit;
+			text-decoration: none;
+
+			&:hover {
+				color: #fff;
+			}
+		}
+
+		.aster {
+			display: inline-block;
+			width: 17rem / @hfs;
+			height: 16rem / @hfs;
+			background-image: url(../img/elements/contacts-aster.png);
+			margin: 0 10rem / @hfs;
+		}
+	}
+
+	.email-block {
+		margin: 30rem / @hfs 0 50rem / @hfs;
+	}
+
+	.cards-block {
+		.title {
+			font-size: 14em / @hfs;
+			margin-bottom: 10rem / @hfs;
+		}
+
+		span {
+			.vaccine_reg;
+			font-size: 18em / @hfs;
+			text-transform: uppercase;
+
+			&:before, &:after {
+				position: relative;
+				display: inline-block;
+				top: -.125em;
+				width: 8px;
+				height: 8px;
+				border-radius: 8px;
+				background: #fff;
+				margin: 0 10em / @hfs;
+			}
+
+			&:before {
+				content: "";
+			}
+
+			&:last-child {
+				&:after {
+					content: "";
+				}
+			}
+		}
+	}
+}

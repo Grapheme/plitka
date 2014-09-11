@@ -1,0 +1,128 @@
+.index-page {
+	.transition(all, .25s);
+	position: absolute;
+	top: 0; left: 0; right: 0; bottom: 0;
+
+	.main-slide {
+		position: relative;
+		height: 100%;
+		background: #000;
+		color: #fff;
+		text-align: center;
+
+		&:before {
+			content: "";
+			position: absolute;
+			top: 0; left: 0; right: 0; bottom: 0;
+			background-size: cover;
+			opacity: .3;
+		}
+
+		&:after {
+			content: "";
+			display: inline-block;
+			vertical-align: middle;
+			width: 0;
+			height: 100%;
+		}
+
+		&.slide-welcome:before {
+			background-image: url(../img/index/slide_1.jpg);
+		}
+
+		&.slide-service:before {
+			background-image: url(../img/index/slide_5.jpg);
+		}
+
+		&.slide-partners:before {
+			background-image: url(../img/index/slide_4.jpg);
+		}
+
+		&.slide-examples:before {
+			background-image: url(../img/index/slide_3.jpg);
+		}
+
+		&.slide-location:before {
+			background-image: url(../img/index/slide_2.jpg);
+		}
+
+		&:first-child {
+			.slide-block {
+				top: 235rem / 3 / @hfs;
+			}
+		}
+
+		&.animate {
+			.slide-block {
+				.transition(opacity, .5s, ease, .5s);
+				opacity: 0;
+			}
+
+			&.active {
+				.slide-block {
+					opacity: 1;
+				}
+			}
+		}
+
+		.slide-block {
+			display: inline-block;
+			vertical-align: middle;
+			position: relative;
+			z-index: 1;
+			width: 95%;
+			max-width: 800rem / @hfs;
+			margin: 0 auto;
+
+			h1 {
+				.spsl_regular;
+				font-size: 60em / @hfs;
+				font-weight: 700;
+				line-height: 62rem / @hfs;
+			}
+
+			p {
+				font-size: 18em / @hfs;
+				font-style: italic;
+				line-height: 25.2rem / @hfs;
+			}
+		}
+
+		.slide-link {
+			position: absolute;
+			left: 50%;
+			bottom: 5%;
+			margin-left: -60rem / 2 / @hfs;
+			display: inline-block;
+			width: 60rem / @hfs;
+			height: 61rem / @hfs;
+
+			&:before, &:after {
+				.transition(opacity, .25s);
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-size: 100%;
+				background-repeat: no-repeat;
+				background-position: center center;
+			}
+
+			&:before { background-image: url(../img/elements/arrow.png); }
+			&:after { background-image: url(../img/elements/arrow-hover.png); opacity: 0; }
+
+			&:hover {
+				&:before { opacity: 0; }
+				&:after { opacity: 1; }
+			}
+		}
+
+		&:last-child {
+			.slide-link {
+				.transform(rotate(180deg));
+			}
+		}
+	}
+}

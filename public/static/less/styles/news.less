@@ -1,0 +1,56 @@
+.year-tabs {
+	.list-unstyled;
+	text-align: center;
+	margin: 20rem / @hfs 0 45rem / @hfs;
+
+	li {
+		.transition;
+		position: relative;
+		display: inline-block;
+		vertical-align: middle;
+		margin: 0 10rem / @hfs;
+		padding: 8rem / @hfs;
+		cursor: pointer;
+		border: 1px solid transparent;
+
+		span {
+			border-bottom: 1px solid #fff;
+		}
+
+		&.active {
+			border: 1px solid #fff;
+
+			span {
+				border-color: transparent;
+			}
+		}
+	}
+}
+
+.news-ul {
+	.list-unstyled;
+	width: 850rem / @hfs;
+	margin: 0 auto 80rem / @hfs;
+
+	li {
+		margin-bottom: 30rem / @hfs;
+
+		& > span {
+			display: inline-block;
+			vertical-align: top;
+
+			&:first-child {
+				width: 20%;
+				margin-right: -.5em;
+				text-align: right;
+				font-style: italic;
+			}
+
+			&:last-child {
+				.box-sizing;
+				padding-left: 35rem / @hfs;
+				width: 80%;
+			}
+		}
+	}
+}

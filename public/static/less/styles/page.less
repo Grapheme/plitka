@@ -1,0 +1,220 @@
+.normal-page {
+	.box-sizing;
+	position: absolute;
+	width: 100%;
+	min-height: 100%;
+	background: url(../img/main/texture.jpeg);
+	color: #fff;
+	padding: 235rem / @hfs 0 85rem / @hfs;
+
+	.page-title {
+		padding-top: 40rem / @hfs;
+		text-align: center;
+
+		.title-img {
+			&:before {
+				content: "";
+				display: inline-block;
+				background-size: 100% auto;
+				background-repeat: no-repeat;
+			}
+		}
+
+		h1 {
+			position: relative;
+			display: inline-block;
+			text-transform: uppercase;
+			text-shadow: 5px 3px 0px rgba(0, 0, 0, 1);
+			margin: 0;
+
+			&:before, &:after {
+				content: "";
+				position: absolute;
+				background-size: 100% auto;
+				background-repeat: no-repeat;
+				top: 50%;
+			}
+
+			&:before { right: 100%; margin-right: 20rem / @hfs; }
+			&:after { left: 100%; margin-left: 20rem / @hfs; }
+		}
+
+		p {
+			margin: 35rem / @hfs 0;
+			font-size: 18em / @hfs;
+			font-style: italic;
+		}
+
+		//ABOUT PAGE TITLE
+		&.about-title {
+			.title-img {
+				&:before {
+					width: 57rem / @hfs;
+					height: 93rem / @hfs;
+					background-image: url(../img/pages/about-title.png);
+				}
+			}
+
+			h1 {
+				&:before, &:after {
+					width: 58rem / @hfs;
+					height: 37rem / @hfs;
+					margin-top: -37rem / 2 / @hfs;
+				}
+
+				&:before { background-image: url(../img/pages/about.before.png); }
+				&:after { background-image: url(../img/pages/about.after.png); }
+			}
+		}
+
+		//EXAMPLES PAGE TITLE
+		&.examples-title {
+			.title-img {
+				margin-bottom: 30rem / @hfs;
+
+				&:before {
+					width: 141rem / @hfs;
+					height: 76rem / @hfs;
+					background-image: url(../img/pages/examples-title.png);
+				}
+			}
+
+			h1 {
+				&:before, &:after {
+					width: 98rem / @hfs;
+					height: 29rem / @hfs;
+					margin-top: -29rem / 2 / @hfs;
+				}
+
+				&:before { background-image: url(../img/pages/examples.before.png); }
+				&:after { background-image: url(../img/pages/examples.after.png); }
+			}
+		}
+
+		//SERVICE PAGE TITLE
+		&.service-title {
+			.title-img {
+
+				&:before {
+					width: 785rem / @hfs;
+					height: 103rem / @hfs;
+					background-image: url(../img/pages/service-title.png);
+				}
+			}
+		}
+
+		//NEWS PAGE TITLE
+		&.news-title {
+			.title-img {
+
+				&:before {
+					width: 44rem / @hfs;
+					height: 100rem / @hfs;
+					background-image: url(../img/pages/news-title.png);
+				}
+			}
+
+			h1 {
+				&:before, &:after {
+					width: 172rem / @hfs;
+					height: 19rem / @hfs;
+					margin-top: -19rem / 2 / @hfs;
+				}
+
+				&:before { background-image: url(../img/pages/news.before.png); }
+				&:after { background-image: url(../img/pages/news.before.png); }
+			}
+		}
+
+		//CONTACTS PAGE TITLE
+		&.contacts-title {
+			.title-img {
+
+				&:before {
+					width: 92rem / @hfs;
+					height: 92rem / @hfs;
+					background-image: url(../img/pages/contacts-title.png);
+				}
+			}
+
+			h1 {
+				&:before, &:after {
+					width: 193rem / @hfs;
+					height: 19rem / @hfs;
+					margin-top: -19rem / 2 / @hfs;
+				}
+
+				&:before { background-image: url(../img/pages/contacts.before.png); }
+				&:after { background-image: url(../img/pages/contacts.before.png); }
+			}
+		}
+	}
+
+	.slider-container {
+		position: relative;
+		margin: 0 20rem / @hfs 80rem / @hfs;
+
+		.slider-border {
+			border: 1px solid rgba(255, 255, 255, .5);
+			padding: 2px;
+
+			.photo-slider {
+				border: 1px solid #fff;
+			}
+		}
+
+		.fotorama-nav {
+			position: absolute;
+			line-height: 42rem / @hfs;
+			width: 112rem / @hfs;
+			height: 42rem / @hfs;
+			margin-left: -112rem / 2 / @hfs;
+			left: 50%;
+			bottom: -42rem / 2 / @hfs;
+			background: url(../img/elements/fotorama-nav.png);
+			background-size: 100% 100%;
+			font-size: 20em / @hfs;
+			font-style: italic;
+			text-align: center;
+		}
+
+		.prev, .next {
+			position: absolute;
+			display: inline-block;
+			width: 60rem / @hfs;
+			height: 60rem / @hfs;
+			background-repeat: no-repeat;
+			background-size: 100%;
+			top: 50%;
+			margin-top: -60rem / 2 / @hfs;
+		}
+
+		.prev {
+			background-image: url(../img/elements/arrow-left.png);
+			left: -30rem / @hfs;
+		}
+
+		.next {
+			background-image: url(../img/elements/arrow-right.png);
+			right: -30rem / @hfs;
+		}
+	}
+
+	.columns {
+		.auto-columns;
+	}
+
+	.desc {
+		margin: 35rem / @hfs 0;
+		font-size: 18em / @hfs;
+		font-style: italic;
+		text-align: center;
+	}
+
+	.page-content {
+
+	    p {
+	    	margin-top: 0;
+	    }
+	}
+}

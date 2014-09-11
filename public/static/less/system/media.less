@@ -1,0 +1,85 @@
+@media screen and (min-width: 1460px) {
+	html {
+		font-size: @hfs + 3px;
+	}
+}
+
+@media screen and (max-width: 1040px) {
+	html {
+		font-size: @hfs - 3px;
+	}
+}
+
+@media screen and (max-width: 860px) {
+	html {
+		font-size: @hfs - 6px;
+	}
+}
+
+@media screen and (max-width: 680px) {
+	html {
+		font-size: ~'@{hfs}px';
+	}
+
+	.main-header {
+		position: fixed;
+		overflow: hidden;
+		background: transparent;
+		padding: 0;
+		height: 70rem / @hfs;
+
+		.mobile-header {
+			display: block;
+		}
+
+		& > .wrapper {
+			display: none;
+		}
+
+		&.index-header {
+			height: 170rem / @hfs;
+		}
+	}
+
+	.normal-page {
+		font-size: 10px;
+		padding-top: 70rem / @hfs;
+
+		.page-title {
+			.title-img {
+				//display: none;
+			}
+
+			h1 {
+				&:before { display: none; }
+				&:after { display: none; }
+			}
+		}
+
+		.columns {
+			.auto-columns(1, 0);
+		}
+
+		.slider-container {
+			margin: 0 0 40rem / @hfs;
+
+			.fotorama-nav, .prev, .next {
+				display: none;
+			}
+
+			.slider-border {
+				border: 0 none;
+
+				.photo-slider {
+					border: 0 none;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 325px) {
+	html {
+		font-size: @hfs - 3px;
+	}
+}

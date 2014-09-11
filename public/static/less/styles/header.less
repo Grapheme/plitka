@@ -1,0 +1,377 @@
+.main-header {
+	.box-sizing;
+	.vaccine_reg;
+	position: absolute;
+	width: 100%;
+	top: 0; left: 0;
+	background: #fff;
+	padding: 0 20rem / @hfs;
+	z-index: 2;
+
+	&.animate {
+		.transition(all, .25s)
+	}
+
+	.wrapper {
+		position: relative;
+		padding: 0;
+
+		&:before {
+			content: "";
+			display: block;
+			height: 10rem / @hfs;
+			background: #272727;
+		}
+	}
+
+	.logo {
+		.transition;
+		position: absolute;
+		display: inline-block;
+		width: 140rem / @hfs;
+		height: 180rem / @hfs;
+		top: 18rem / @hfs;
+		left: 0;
+		background-image: url(../img/header/main-logo.png);
+		background-size: auto 100%;
+	}
+
+	.min-logo {
+		.transition(all, .25s);
+		.transform(translateY(-100%));
+		opacity: 0;
+		position: absolute;
+		display: inline-block;
+		width: 64rem / @hfs;
+		height: 48rem / @hfs;
+		bottom: 1rem;
+		left: 4rem;
+		background-image: url(../img/header/min-logo.jpg);
+		background-size: auto 100%;
+	}
+
+	&.min-header {
+		.logo {
+			.transform(translateY(-100%));
+		}
+		.min-logo {
+			.transform(translateY(0));
+			opacity: 1;
+		}
+	}
+
+	.head-cont {
+		margin-left: 180rem / @hfs;
+
+		.head-title {
+			.spsl_wordsman;
+			position: relative;
+			font-size: 23em / @hfs;
+			text-align: center;
+			padding: 0 15rem / @hfs;
+			margin: 0;
+			height: 70rem / @hfs;
+			line-height: 70rem / @hfs;
+			color: #222222;
+			border-bottom: 1px dotted #000;
+
+			&:before, &:after {
+				content: "";
+				position: absolute;
+				top: 50%;
+				margin-top: -15rem / 2 / @hfs;
+				width: 16rem / @hfs;
+				height: 15rem / @hfs;
+				background: url(../img/header/aster.png) no-repeat 0 0 e('/') 100%;
+			}
+
+			&:after 	{ left: 0; }
+			&:before 	{ right: 0; }
+		}
+	}
+
+	.head-contacts {
+		border-bottom: 1px dotted #000;
+		padding: 20rem / @hfs 0 25rem / @hfs;
+		font-size: 14em / @hfs;
+
+		.left-block {
+			display: inline-block;
+		}
+
+		.right-block {
+			float: right;
+
+			& > ul {
+				.list-unstyled;
+
+				li {
+					display: inline-block;
+					padding: 0 25rem / @hfs 0 20rem / @hfs;
+					margin-left: 20rem / @hfs;
+					border-left: 1px dotted #000;
+				}
+			}
+
+			.head-bold {
+				.spsl_wordsman;
+				font-size: 24em / @hfs;
+				color: #222;
+				text-decoration: none;
+			}
+		}
+	}
+
+	.head-nav {
+		height: 70rem / @hfs;
+		line-height: 70rem / @hfs;
+
+		ul {
+			.list-unstyled;
+
+			li {
+				display: inline-block;
+				margin-right: 2em;
+
+				&:last-child {
+					margin-right: 0;
+				}
+
+				a {
+					.vaccine_bold;
+					.transition(all, .1s);
+					position: relative;
+					display: inline-block;
+					text-decoration: none;
+					line-height: normal;
+					text-transform: uppercase;
+					font-size: 14em / @hfs;
+					color: #000;
+					padding: 5rem / @hfs 0;
+
+					&:after {
+						.transition(all, .25s, ease, 0);
+						.transform(translateY(2px));
+						content: "";
+						position: absolute;
+						bottom: 0;
+						left: 0;
+						width: 100%;
+						height: 3px;
+						background: #000;
+						opacity: 0;
+					}
+
+					&.active, &:hover {
+						color: #b37bb4;
+
+						&:after {
+							.transition(all, .25s, ease, .1s);
+							.transform(translateY(0));
+							background: #b37bb4;
+							opacity: 1;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	/** Mobile Elements **/
+
+	&.index-header {
+
+		.mobile-logo {
+			opacity: 0;
+		}
+
+		.mobile-header {
+
+			header {
+				height: 170rem / @hfs;
+			}
+
+			.logo {
+				display: inline-block;
+				.transition(all, .5s);
+				width: 110rem / @hfs;
+				height: 145rem / @hfs;
+				top: 10rem / @hfs;
+				left: 50%;
+				margin-left: -110rem / 2 / @hfs;
+				opacity: 1;
+				z-index: 2;
+			}
+
+			&.open {
+				header {
+					height: 70rem / @hfs !important;
+				}
+				.logo {
+					top: 10rem / @hfs;
+					left: 15rem / @hfs;
+					height: 50rem / @hfs;
+					width: 50rem / @hfs;
+					margin: 0;
+					opacity: 0;
+				}
+
+				.mobile-logo {
+					opacity: 1;
+				}
+			}
+		}
+	}
+
+	.menu-icon {
+		position: absolute;
+		right: 15rem / @hfs;
+		top: 20px;
+		width: 30rem / @hfs;
+		height: 30rem / @hfs;
+
+		span {
+			.transition(all, .5s, ease, .25s);
+			position: absolute;
+			display: inline-block;
+			top: 50%;
+			left: 0;
+			margin-top: -2px;
+			width: 100%;
+			height: 4px;
+			background: #000;
+
+			&:before, &:after {
+				.transition;
+				content: "";
+				position: absolute;
+				left: 0; top: 0; right: 0; bottom: 0;
+				background: #000;
+			}
+
+			&:before 	{ .transform(translateY(-225%)); }	
+			&:after 	{ .transform(translateY(225%)); }
+		}
+	}
+
+	.mobile-header {
+		display: none;
+		max-height: 300rem / @hfs;
+		max-height: 100vh;
+		overflow: auto;
+
+		header {
+			.transition(height, .5s, ease);
+			height: 70rem / @hfs;
+		}
+
+		.logo {
+			display: none;
+		}
+
+		header {
+			position: relative;
+			background: #fff;
+			padding: 0 15rem / @hfs;
+			z-index: 1;
+		}
+
+		.mobile-menu {
+			.transition(all, .5s);
+			.transform(translateY(-100%));
+			background: #fff;
+			padding: 0 15rem / @hfs;
+		}
+
+		.head-nav {
+			height: auto;
+			line-height: 50rem / @hfs;
+			text-align: center;
+			padding: 15rem / @hfs 0;
+			border-top: 1px dotted #000;
+			border-bottom: 1px dotted #000;
+
+			li {
+				display: block;
+				margin: 0;
+			}
+		}
+
+		.head-contacts {
+			border: 0;
+
+			.left-block {
+				display: block;
+				padding-bottom: 25rem / @hfs;
+				border-bottom: 1px dotted #000;
+			}
+
+			.right-block {
+				padding-top: 20rem / @hfs;
+				float: none;
+
+				li {
+					padding: 0 0 0 10rem / @hfs;
+
+					&:first-child {
+						border: 0;
+						margin: 0;
+						padding: 0;
+					}
+				}
+			}
+		}
+	}
+
+	.mobile-logo {
+		.transition(opacity);
+		position: absolute;
+		left: 15rem / @hfs;
+		top: 50%;
+		margin-top: -49rem / 2 / @hfs;
+		width: 66rem / @hfs;
+		height: 49rem / @hfs;
+		background-image: url(../img/header/mobile-logo.jpg);
+		background-size: 100% auto;
+	}
+
+	&.open {
+		height: auto;
+
+		.mobile-header {
+			.mobile-menu {
+				.transform(translateY(0));
+			}
+
+			.menu-icon {
+				span {
+					.transition(all, .25s);
+					background: transparent;
+
+					&:before 	{ .transform(translateY(0) rotate(45deg)); }
+					&:after 	{ .transform(translateY(0) rotate(-45deg)); }
+				}
+			}
+		}
+
+		&.index-header {
+			.mobile-header {
+				header {
+					height: 70rem / @hfs !important;
+				}
+				.logo {
+					top: 10rem / @hfs;
+					left: 15rem / @hfs;
+					height: 50rem / @hfs;
+					width: 50rem / @hfs;
+					margin: 0;
+					opacity: 0;
+				}
+
+				.mobile-logo {
+					opacity: 1;
+				}
+			}
+		}
+	}
+}
