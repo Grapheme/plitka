@@ -66,12 +66,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-ide-helper.git",
-                "reference": "f2de8d3c656a9b96049b6e62d50bcf9db1402778"
+                "reference": "f94743fda5464422806caad73db38161d94808e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-ide-helper/zipball/f2de8d3c656a9b96049b6e62d50bcf9db1402778",
-                "reference": "f2de8d3c656a9b96049b6e62d50bcf9db1402778",
+                "url": "https://api.github.com/repos/barryvdh/laravel-ide-helper/zipball/f94743fda5464422806caad73db38161d94808e3",
+                "reference": "f94743fda5464422806caad73db38161d94808e3",
                 "shasum": ""
             },
             "require": {
@@ -121,7 +121,7 @@
                 "phpstorm",
                 "sublime"
             ],
-            "time": "2014-09-03 06:57:31"
+            "time": "2014-09-10 07:43:00"
         },
         {
             "name": "classpreloader/classpreloader",
@@ -519,12 +519,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "1f249beeacb9f9154e86967a44e6b299618dc6cc"
+                "reference": "d57b430c2531ca8dc6b75e18ef94003436a731de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/1f249beeacb9f9154e86967a44e6b299618dc6cc",
-                "reference": "1f249beeacb9f9154e86967a44e6b299618dc6cc",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/d57b430c2531ca8dc6b75e18ef94003436a731de",
+                "reference": "d57b430c2531ca8dc6b75e18ef94003436a731de",
                 "shasum": ""
             },
             "require": {
@@ -626,7 +626,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2014-09-09 01:50:16"
+            "time": "2014-09-11 01:18:00"
         },
         {
             "name": "maximebf/debugbar",
@@ -689,12 +689,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "12545cda2f7a0bd82a110f742ef455fe735e60cf"
+                "reference": "b3f039339d7a8173c7b441dbaa572ccacb712b54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/12545cda2f7a0bd82a110f742ef455fe735e60cf",
-                "reference": "12545cda2f7a0bd82a110f742ef455fe735e60cf",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/b3f039339d7a8173c7b441dbaa572ccacb712b54",
+                "reference": "b3f039339d7a8173c7b441dbaa572ccacb712b54",
                 "shasum": ""
             },
             "require": {
@@ -753,20 +753,20 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2014-07-31 22:12:22"
+            "time": "2014-09-10 15:41:01"
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.11.0",
+            "version": "1.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "2b60366be6dcb9f9cd3e244ab25eb98eaea99551"
+                "reference": "cde7a00d1410a17fb6d61b993cb017a78be1137c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/2b60366be6dcb9f9cd3e244ab25eb98eaea99551",
-                "reference": "2b60366be6dcb9f9cd3e244ab25eb98eaea99551",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/cde7a00d1410a17fb6d61b993cb017a78be1137c",
+                "reference": "cde7a00d1410a17fb6d61b993cb017a78be1137c",
                 "shasum": ""
             },
             "require": {
@@ -799,7 +799,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2014-08-26 03:18:44"
+            "time": "2014-09-10 03:26:33"
         },
         {
             "name": "nikic/php-parser",
@@ -957,12 +957,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "f2cab55fd542cf481ef2514c83ef864138edcbd3"
+                "reference": "3f3b9b90fbfc691aa91122c4073f169f1ae7f19f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/f2cab55fd542cf481ef2514c83ef864138edcbd3",
-                "reference": "f2cab55fd542cf481ef2514c83ef864138edcbd3",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/3f3b9b90fbfc691aa91122c4073f169f1ae7f19f",
+                "reference": "3f3b9b90fbfc691aa91122c4073f169f1ae7f19f",
                 "shasum": ""
             },
             "require": {
@@ -1047,7 +1047,7 @@
                 "x.509",
                 "x509"
             ],
-            "time": "2014-09-07 10:43:22"
+            "time": "2014-09-09 14:41:58"
         },
         {
             "name": "predis/predis",

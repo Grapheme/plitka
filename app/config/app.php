@@ -9,7 +9,7 @@ return array(
 	'use_css_local' => FALSE,
 	'use_scripts_local' => FALSE,
 	
-	'default_page_title' => 'Швейная Лавка',
+	'default_page_title' => 'Плитка мира',
 	'template' => 'site',
     'welcome_page_tpl' => 'templates.site.index', #'guests.welcome',
 
