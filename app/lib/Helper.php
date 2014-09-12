@@ -546,5 +546,11 @@ HTML;
         }
         return (Route::currentRouteName() == $route_name && $match) ? $match_text : $mismatch_text;
     }
+
+    public static function mb_ucfirst($str, $encoding = 'UTF-8') {
+        $first = mb_substr($str, 0, 1, $encoding);
+        $rest = mb_substr($str, 1, strlen($str), $encoding);
+        return mb_strtoupper($first, $encoding) . $rest;
+    }
 }
 

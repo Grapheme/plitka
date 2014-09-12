@@ -16,6 +16,12 @@ class Dictionary extends BaseModel {
         'icon_class',
         'hide_slug',
         'name_title',
+        'pagination',
+        'view_access',
+        'sort_by',
+        'sort_order_reverse',
+        'sortable',
+        'order',
     );
 
 	public static $rules = array(
@@ -55,7 +61,12 @@ class Dictionary extends BaseModel {
     }
 
     public static function valuesBySlug($slug) {
-        $return = Dic::where('slug', $slug)->with('values')->first()->values;
+        #Helper::dd($slug);
+        $return = Dic::where('slug', $slug)->with('values')->first();
+        if (is_object($return))
+            $return = $return->values;
+        else
+            $return = Dic::firstOrNew(array('slug' => $slug))->with('values')->first()->values;
         #return self::firstOrNew(array('slug' => $slug))->values;
         return $return;
     }

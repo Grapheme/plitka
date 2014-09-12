@@ -8,7 +8,7 @@
 	@if($count = @count($elements))
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<table class="table table-striped table-bordered min-table">
+			<table class="table table-striped table-bordered min-table white-bg">
 				<thead>
 					<tr>
 						<th class="text-center" style="width:40px">#</th>
@@ -16,9 +16,9 @@
 						<th colspan="2" class="width-250 text-center">Действия</th>
 					</tr>
 				</thead>
-				<tbody class="sortable">
+				<tbody class="dicvals @if($sortable) sortable @endif">
 				@foreach($elements as $e => $element)
-					<tr data-id="{{ $element->id }}">
+					<tr @if($sortable) data-id="{{ $element->id }}" @endif>
 						<td class="text-center">
 						    {{ $e+1 }}
 						</td>
@@ -48,7 +48,9 @@
 		</div>
 	</div>
 
+    @if ($dic->pagination > 0)
     {{ $elements->links() }}
+    @endif
 
 	@else
 	<div class="row">
@@ -89,34 +91,11 @@
 		}
 	</script>
 
+    @if ($sortable)
     <script>
-        $(document).on("mouseover", ".sortable", function(e){
-            // Check flag of sortable activated
-            if ( !$(this).data('sortable') ) {
-                // Activate sortable, if flag is not initialized
-                $(this).sortable({
-                    // On finish of sorting
-                    stop: function() {
-                        // Find all playlists
-                        var pls = $(this).find('tr');
-                        var poss = [];
-                        // Make array with current sorting order
-                        $(pls).each(function(i, item) {
-                            poss.push($(item).data('id'));
-                        });
-                        console.log(poss);
-                        // Send ajax request to server for saving sorting order
-                        $.ajax({
-                            url: "{{ URL::route('dicval.order') }}",
-                            type: "post",
-                            data: {poss: poss},
-                            success: function() {}
-                        });
-                    }
-                });
-            }
-        });
+        init_sortable("{{ URL::route('dicval.order') }}", ".dicvals");
     </script>
+    @endif
 
 @stop
 

@@ -18,6 +18,13 @@
         'title' => 'Добавить',
         'class' => 'btn btn-primary'
     );
+    if (Allow::action($module['group'], 'import')) {
+        $menus[] = array(
+            'link' => action('dic.import', array('dic_id' => $dic_id)),
+            'title' => 'Импорт',
+            'class' => 'btn btn-primary'
+        );
+    }
     if (Allow::action($module['group'], 'edit') && (!$dic->entity || Allow::superuser())) {
         $menus[] = array(
             'link' => action('dic.edit', array('dic_id' => $dic->id)),

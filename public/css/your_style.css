@@ -539,3 +539,12 @@ margin-left: 0;
 nav > ul > li > a > i > em {
     font-family: "Open Sans", sans-serif;
 }
+
+
+.smart-form .input input, .smart-form .select select, .smart-form .textarea textarea {
+    padding: 6px 8px;
+}
+
+.smart-form fieldset {
+    padding-top: 20px;
+}

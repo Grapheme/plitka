@@ -46,7 +46,16 @@ class Allow {
             #Helper::dd(@self::$modules);
             #Helper::d(@self::$modules[$module_name]);
 
-            if (!$check_module_enabled || (isset(self::$modules[$module_name]) && self::$modules[$module_name]->on == 1) || @self::$modules[$module_name]['system']) {
+            if (
+                !$check_module_enabled
+                || (
+                    isset(self::$modules[$module_name]) && self::$modules[$module_name]->on == 1
+                )
+                || @self::$modules[$module_name]['system']
+            ) {
+
+                #if ($module_name == 'undefined_module')
+                #    Helper::d(' = ' . $user_group . ' = ');
 
                 /**
                  * @todo Полные права на действия админа, т.к. новые имена модулей не совпадают со старыми ролями ( news != admin_news ). Нужно во всех модулях поменять valid_action_permission на Action

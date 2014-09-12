@@ -8,7 +8,7 @@
 	@if($count = @count($elements))
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<table class="table table-striped table-bordered min-table">
+			<table class="table table-striped table-bordered min-table white-bg">
 				<thead>
 					<tr>
 						<th class="text-center" style="width:40px">#</th>
@@ -23,10 +23,10 @@
 						    {{ $e+1 }}
 						</td>
 						<td>
-						    {{ $element->name }}
+                            {{ $element->entity ? '<a href="' . URL::route('entity.index', $element->slug) . '" title="Вынесено в отдельную сущность">' . $element->name . '</a>' : $element->name }}
                             <br/>
                             <span style="color:#aaa">
-                                {{ $element->entity ? '<i class="fa fa-angle-double-right"></i> <a href="' . URL::route('entity.index', $element->slug) . '" title="Вынесено в отдельную сущность">' . $element->slug . '</a>' : $element->slug }}
+                                {{  $element->slug }}
                             </span>
 						</td>
 						<td class="text-center" style="white-space:nowrap;">
@@ -59,7 +59,7 @@
 		</div>
 	</div>
 
-    {{ $elements->links() }}
+    {{-- $elements->links() --}}
 
 	@else
 	<div class="row">

@@ -27,6 +27,8 @@ class AdminDicsMenuController extends BaseController {
 
             'dicval' => 'Работа с содержимым словарей',
             'entity' => 'Выносить словари в отдельную сущность',
+            'hidden' => 'Доступ к скрытым словарям',
+            'import' => 'Импорт данных в словари',
         );
     }
 
