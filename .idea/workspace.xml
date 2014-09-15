@@ -2,24 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="265d8b9b-4054-4c55-88b5-a221c3c4a8f2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/database/migrations/2014_07_03_161130_create_dics_tables.php" afterPath="$PROJECT_DIR$/app/database/migrations/2014_07_03_161130_create_dics_tables.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/dictionaries/models/DicVal.model.php" afterPath="$PROJECT_DIR$/app/modules/dictionaries/models/DicVal.model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/dictionaries/models/Dictionary.model.php" afterPath="$PROJECT_DIR$/app/modules/dictionaries/models/Dictionary.model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/lib/Helper.php" afterPath="$PROJECT_DIR$/app/lib/Helper.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/_dicval_meta.blade.php" afterPath="$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/_dicval_meta.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/templates/admin.blade.php" afterPath="$PROJECT_DIR$/app/views/templates/admin.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/dictionaries/admin_dics.controller.php" afterPath="$PROJECT_DIR$/app/modules/dictionaries/admin_dics.controller.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/dictionaries/admin_dicvals.controller.php" afterPath="$PROJECT_DIR$/app/modules/dictionaries/admin_dicvals.controller.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/dic.php" afterPath="$PROJECT_DIR$/app/config/dic.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/dictionaries/views/admin/dics/edit.blade.php" afterPath="$PROJECT_DIR$/app/modules/dictionaries/views/admin/dics/edit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/edit.blade.php" afterPath="$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/edit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/index.blade.php" afterPath="$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/modules_js_cache.dat" afterPath="$PROJECT_DIR$/app/storage/modules_js_cache.dat" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/modules_js_modifications.dat" afterPath="$PROJECT_DIR$/app/storage/modules_js_modifications.dat" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/templates/admin/scripts.blade.php" afterPath="$PROJECT_DIR$/app/views/templates/admin/scripts.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/system/js/system.js" afterPath="$PROJECT_DIR$/app/modules/system/js/system.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/your_style.css" afterPath="$PROJECT_DIR$/public/css/your_style.css" />
     </list>
     <ignored path="plitka.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -90,7 +74,7 @@
       <file leaf-file-name="dic.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/config/dic.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="116" column="18" selection-start="5066" selection-end="5066" vertical-scroll-proportion="0.17468806" vertical-offset="1908" max-vertical-offset="4352">
+            <state line="96" column="17" selection-start="4120" selection-end="4120" vertical-scroll-proportion="0.29590017" vertical-offset="1500" max-vertical-offset="4352">
               <folding>
                 <element signature="e#6#2568#0" expanded="true" />
               </folding>
@@ -256,7 +240,11 @@
       <created>1410534175728</created>
       <updated>1410534175728</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="dicval funcs">
+      <created>1410789818623</created>
+      <updated>1410789818623</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -301,7 +289,8 @@
     </option>
     <MESSAGE value="+" />
     <MESSAGE value="dicval import func" />
-    <option name="LAST_COMMIT_MESSAGE" value="dicval import func" />
+    <MESSAGE value="dicval funcs" />
+    <option name="LAST_COMMIT_MESSAGE" value="dicval funcs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -480,7 +469,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/config/dic.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="116" column="18" selection-start="5066" selection-end="5066" vertical-scroll-proportion="0.17468806" vertical-offset="1908" max-vertical-offset="4352">
+        <state line="96" column="17" selection-start="4120" selection-end="4120" vertical-scroll-proportion="0.29590017" vertical-offset="1500" max-vertical-offset="4352">
           <folding>
             <element signature="e#6#2568#0" expanded="true" />
           </folding>

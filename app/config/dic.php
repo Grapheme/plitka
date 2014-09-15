@@ -94,7 +94,7 @@ return array(
                     'values' => array('Выберите..')+Dic::valuesBySlug('surface')->lists('name', 'id'),
                 ),
 
-                /*
+                #/*
                 'scope_id' => array(
                     'title' => 'Места применения',
                     'type' => 'checkboxes',
@@ -113,7 +113,7 @@ return array(
                             return $return;
                         },
                 ),
-                */
+                #*/
                 /*
                 'scope_id' => array(
                     'title' => 'Места применения',
