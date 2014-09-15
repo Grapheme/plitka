@@ -15,6 +15,7 @@ class Dictionary extends BaseModel {
         'entity',
         'icon_class',
         'hide_slug',
+        'make_slug_from_name',
         'name_title',
         'pagination',
         'view_access',

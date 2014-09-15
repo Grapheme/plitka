@@ -173,6 +173,7 @@ class AdminDicsController extends BaseController {
         */
         $input['entity'] = Input::get('entity') ? 1 : NULL;
         $input['hide_slug'] = Input::get('hide_slug') ? 1 : NULL;
+        $input['make_slug_from_name'] = Input::get('make_slug_from_name') ? 1 : NULL;
         $input['name_title'] = Input::get('name_title') ?: NULL;
 
         $input['view_access'] = Input::get('view_access') ?: NULL;
@@ -188,25 +189,25 @@ class AdminDicsController extends BaseController {
 
             $redirect = false;
 
-            if ($id > 0) {
+            if ($id > 0 && NULL !== ($element = Dictionary::find($id))) {
 
-                if (NULL !== Dictionary::find($id)) {
-    
-        		    #$json_request['responseText'] = "<pre>" . print_r($_POST, 1) . "</pre>";
-        		    #return Response::json($json_request,200);
+                #$json_request['responseText'] = "<pre>" . print_r($_POST, 1) . "</pre>";
+                #return Response::json($json_request,200);
 
-                    Dictionary::find($id)->update($input);
-                    $redirect = false;
-                }
+                $element->update($input);
+                $redirect = false;
 
             } else {
 
-                $dic_id = Dictionary::insertGetId($input);
+                $element = new Dictionary;
+                $element->save();
+                $element->update($input);
+                $dic_id = $element->id;
                 $redirect = action('dicval.index', array('dic_id' => $dic_id));
             }
 
 			$json_request['responseText'] = 'Сохранено';
-            if ($redirect && $redirect)
+            if ($redirect)
 			    $json_request['redirect'] = $redirect;
 			$json_request['status'] = TRUE;
 		} else {

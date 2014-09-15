@@ -222,6 +222,9 @@ class AdminDicvalsController extends BaseController {
         $fields = Helper::withdraw($input, 'fields'); #Input::get('fields');
         $fields_i18n = Input::get('fields_i18n');
 
+        if (!@$input['slug'] && $dic->make_slug_from_name)
+            $input['slug'] = Helper::translit($input['name']);
+
         $json_request['responseText'] = "<pre>" . print_r($_POST, 1) . "</pre>";
         #return Response::json($json_request,200);
 
@@ -255,14 +258,28 @@ class AdminDicvalsController extends BaseController {
                 $redirect = true;
             }
 
+            $element_fields = Config::get('dic.fields.' . $dic->slug);
+            #Helper::d($element_fields);
+
             ## FIELDS
-            if (@is_array($fields) && count($fields)) {
+            if (@is_array($element_fields['general']) && count($element_fields['general'])) {
+
                 #Helper::d($fields);
-                foreach ($fields as $key => $value) {
+                foreach ($element_fields['general'] as $key => $_value) {
+
+                    if (is_numeric($key))
+                        continue;
+
+                    #Helper::d($key);
+
+                    $value = @$fields[$key];
+
+                    #Helper::d($value);
+                    #continue;
 
                     ## If handler of field is defined
                     if (is_callable($handler = Config::get('dic.fields.' . $dic->slug . '.general.' . $key . '.handler'))) {
-                        #Helper::dd($handler);
+                        #Helper::d($handler);
                         $value = $handler($value, $element);
                     }
 
@@ -279,12 +296,23 @@ class AdminDicvalsController extends BaseController {
             }
 
             ## FIELDS I18N
-            if (@is_array($fields_i18n) && count($fields_i18n)) {
-                #Helper::d($fields_i18n);
-                foreach ($fields_i18n as $locale_sign => $locale_values) {
-                    #Helper::d($locale_values);
-                    foreach ($locale_values as $key => $value) {
+            #if (@is_array($fields_i18n) && count($fields_i18n)) {
+            if (@is_array($element_fields['i18n']) && count($element_fields['i18n'])) {
 
+                #Helper::d($fields_i18n);
+
+                #foreach ($fields_i18n as $locale_sign => $locale_values) {
+                foreach ($element_fields['i18n'] as $locale_sign => $locale_values) {
+                    #Helper::d($locale_values);
+                    foreach ($locale_values as $key => $_value) {
+
+                        if (is_numeric($key))
+                            continue;
+
+                        ##
+                        ## Need to testing!!!
+                        ##
+                        $value = @$fields_i18n[$locale_sign][$key];
                         #Helper::d($value);
 
                         ## If handler of field is defined

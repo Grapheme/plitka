@@ -16,6 +16,7 @@ class CreateDicsTables extends Migration {
     			$table->boolean('entity')->unsigned()->nullable()->index();
                 $table->string('icon_class')->nullable();
     			$table->boolean('hide_slug')->unsigned()->nullable();
+    			$table->boolean('make_slug_from_name')->unsigned()->nullable();
     			$table->string('name_title')->nullable();
 
                 $table->integer('pagination')->unsigned()->default(0);
@@ -82,6 +83,19 @@ ADD `sort_order` ENUM( 'ASC', 'DESC' ) NOT NULL DEFAULT 'ASC' AFTER `sort_by`
             echo('...' . $this->table . PHP_EOL);
         }
 
+        $this->table = "dictionary_values_rel";
+        if (!Schema::hasTable($this->table)) {
+            Schema::create($this->table, function(Blueprint $table) {
+                $table->integer('dicval_parent_id')->unsigned()->nullable()->index();
+                $table->integer('dicval_child_id')->unsigned()->nullable()->index();
+                $table->string('dicval_child_dic', 256)->nullable()->index();
+                $table->primary(array('dicval_parent_id', 'dicval_child_id'));
+            });
+            echo(' + ' . $this->table . PHP_EOL);
+        } else {
+            echo('...' . $this->table . PHP_EOL);
+        }
+
     }
 
 
@@ -98,6 +112,9 @@ ADD `sort_order` ENUM( 'ASC', 'DESC' ) NOT NULL DEFAULT 'ASC' AFTER `sort_by`
 
         Schema::dropIfExists('dictionary_fields_values');
         echo(' - ' . 'dictionary_fields_values' . PHP_EOL);
+
+        Schema::dropIfExists('dictionary_values_rel');
+        echo(' - ' . 'dictionary_values_rel' . PHP_EOL);
 	}
 
 }

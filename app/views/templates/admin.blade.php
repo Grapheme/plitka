@@ -16,5 +16,6 @@
 	</div>
 	@include('templates.admin.scripts')
 	@yield('scripts')
+    {{ HTML::script(URL::route('collectors.js')) }}
 </body>
 </html>

@@ -337,14 +337,17 @@ HTML;
 
     ##
     ## Uses in Dictionaries module (DicVal additional fields)
+    ## $element - current DicVal model
     ##
-    public static function formField($name, $array, $value = false) {
+    public static function formField($name, $array, $value = false, $element = false) {
 
         if (!@$array || !is_array($array) || !@$name)
             return false;
 
         if (isset($array['content']))
             return $array['content'];
+
+        #Helper::d($array);
 
         $return = '';
         #$name = $array['name'];
@@ -355,8 +358,20 @@ HTML;
 
         #Helper::d($value);
 
+        if (is_object($element) && $element->id)
+            $element = $element->extract();
+
+        /*
+        foreach ($element['fields'] as $f => $field) {
+            $element['fields'][$field['key']] = $field;
+            unset($element['fields'][$f]);
+        }
+        */
+
+        #Helper::ta($element);
+
         if (@is_callable($array['value_modifier'])) {
-            $value = $array['value_modifier']($value);
+            $value = $array['value_modifier']($value, $element);
         }
         #Helper::d($value);
 
@@ -401,6 +416,41 @@ HTML;
             case 'select':
                 $values = $array['values'];
                 $return = Form::select($name, $values, $value, $others_array);
+                break;
+            case 'select-multiple':
+                $values = $array['values'];
+                $others_array['class'] = trim(@$others_array['class'] . ' select-multiple select2');
+                $others_array['multiple'] = 'multiple';
+                $return = Form::select($name . '[]', $values, $value, $others_array);
+                break;
+            case 'checkbox':
+                #Helper::d($array);
+                #Helper::ta($element);
+                return '<label class="checkbox">'
+                    . Form::checkbox($name, 1, @$element->$array['_name'], $others_array)
+                    . '<i></i>'
+                    . '<span>' . $array['title'] . '</span>'
+                    . '</label>'
+                ;
+                break;
+            case 'checkboxes':
+                $return = '';
+                $style = '';
+                $col_num = 12;
+                if ($array['columns'] == 2)
+                    $style = ' col col-6';
+                elseif ($array['columns'] == 3)
+                    $style = ' col col-4';
+                foreach ($array['values'] as $key => $val) {
+                    $checked = is_array($value) && isset($value[$key]);
+                    $el = '<label class="checkbox' . $style . '">'
+                        . Form::checkbox($name . '[]', $key, $checked, $others_array)
+                        . '<i></i>'
+                        . '<span>' . $val . '</span>'
+                        . '</label>'
+                    ;
+                    $return .= $el;
+                }
                 break;
         }
         return $return;

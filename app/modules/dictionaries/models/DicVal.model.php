@@ -36,6 +36,11 @@ class DicVal extends BaseModel {
         return $this->hasOne('DicValMeta', 'dicval_id', 'id')->where('language', Config::get('app.locale'));
     }
 
+    ## Relations many-to-many: DicVal-to-DicVal
+    public function relations() {
+        return $this->belongsToMany('DicVal', 'dictionary_values_rel', 'dicval_parent_id', 'dicval_child_id');
+    }
+
     public function allfields() {
         return $this->hasMany('DicFieldVal', 'dicval_id', 'id');
     }

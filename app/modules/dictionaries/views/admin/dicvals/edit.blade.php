@@ -63,13 +63,16 @@
                 <fieldset class="padding-top-10 clearfix">
                     @foreach ($fields['general'] as $field_name => $field)
                     <?
+                    $field['_name'] = $field_name;
                     if (@$field['after_save_js'])
                         $onsuccess_js[] = $field['after_save_js'];
                     ?>
                     <section>
+                        @if (!@$field['no_label'])
                         <label class="label">{{ @$field['title'] }}</label>
+                        @endif
                         <div class="input {{ @$field['type'] }} {{ @$field['label_class'] }}">
-                            {{ Helper::formField('fields[' . @$field_name . ']', @$field, @$element_fields[$field_name]) }}
+                            {{ Helper::formField('fields[' . @$field_name . ']', @$field, @$element_fields[$field_name], $element) }}
                         </div>
                     </section>
                     @endforeach
@@ -198,5 +201,6 @@
     {{ HTML::script('js/system/redactor-config.js') }}
 
     {{ HTML::script('js/modules/gallery.js') }}
+    {{ HTML::script('js/plugin/select2/select2.min.js') }}
 
 @stop

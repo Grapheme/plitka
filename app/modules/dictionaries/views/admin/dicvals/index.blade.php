@@ -7,8 +7,8 @@
 
 	@if($count = @count($elements))
 	<div class="row">
-		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<table class="table table-striped table-bordered min-table white-bg">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pos-rel">
+			<table class="table table-striped table-bordered min-table white-bg pos-rel">
 				<thead>
 					<tr>
 						<th class="text-center" style="width:40px">#</th>

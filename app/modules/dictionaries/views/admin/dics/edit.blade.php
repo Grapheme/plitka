@@ -91,6 +91,12 @@
                             <i></i>
                             Скрыть поле для ввода системного имени (slug)
                         </label>
+
+                        <label class="checkbox">
+                            {{ Form::checkbox('make_slug_from_name', 1) }}
+                            <i></i>
+                            Если не задано Системное имя - <abbr title="Транслит от названия">генерировать автоматически</abbr>
+                        </label>
                     </section>
 
                     <section>
@@ -103,7 +109,7 @@
                     <section>
                         <label class="label">Кто может видеть этот словарь:</label>
                         <label class="radio">
-                            {{ Form::radio('view_access', 0) }}
+                            {{ Form::radio('view_access', 0, $element->id ? NULL : true) }}
                             <i></i> Все, у кого есть доступ к словарям
                         </label>
                         <label class="radio">
@@ -122,7 +128,7 @@
                     <section class="clearfix">
                         <label class="label">Кол-во элементов на страницу (0 - пагинация отключена)</label>
                         <label class="input" style="width:100px">
-                            {{ Form::text('pagination') }}
+                            {{ Form::text('pagination', $element->id ? NULL : 0) }}
                         </label>
                     </section>
 
@@ -132,7 +138,7 @@
                             {{ Form::select('sort_by', array('order' => 'По умолчанию', 'name' => 'Название', 'slug' => 'Системное имя', 'created_at' => 'Время создания', 'updated_at' => 'Время последнего изменения')) }}
                         </label>
                         <label class="radio pull-left margin-right-10">
-                            {{ Form::radio('sort_order_reverse', '0') }}
+                            {{ Form::radio('sort_order_reverse', '0', $element->id ? NULL : true) }}
                             <i></i> По возрастанию
                         </label>
                         <label class="radio pull-left margin-right-10">
@@ -146,7 +152,7 @@
                             Следующая возможность будет работать только если отключена пагинация и сортировка осуществляется по умолчанию (по полю order)
                         </label>
                         <label class="checkbox">
-                            {{ Form::checkbox('sortable', 1) }}
+                            {{ Form::checkbox('sortable', 1, $element->id ? NULL : true) }}
                             <i></i>
                             Возможность менять порядок элементов перетаскиванием
                         </label>

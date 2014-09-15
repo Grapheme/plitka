@@ -32,10 +32,12 @@
  * - gallery (использует ExtForm::gallery() + доп. JS, нужен handler для обработки)
  * - upload
  * - video
+ * - select
+ * - checkboxes (замена select-multiple)
+ * - checkbox
  *
  * Типы полей, запланированных к разработке:
- * - select
- * - checkbox
+ * - select-multiple
  * - radio
  * - upload-group
  * - video-group
@@ -51,232 +53,140 @@ return array(
 
     'fields' => array(
 
-        'quests' => array(
+        'collections' => array(
 
             'general' => array(
 
-                'short' => array(
-                    'title' => 'Краткое описание',
-                    'type' => 'textarea_redactor',
+                'description' => array(
+                    'title' => 'Описание',
+                    'type' => 'textarea',
                 ),
 
-                'date_start' => array(
-                    'title' => 'Дата начала сбора',
-                    'type' => 'date',
-                    'others' => array(
-                        'class' => 'text-center',
-                        'style' => 'width: 221px',
-                        'placeholder' => 'Нажмите для выбора'
-                    ),
-                    'handler' => function($value) {
-                            return $value ? @date('Y-m-d', strtotime($value)) : $value;
-                        },
-                    'value_modifier' => function($value) {
-                            return $value ? @date('d.m.Y', strtotime($value)) : $value;
-                        },
-                ),
-                'date_stop' => array(
-                    'title' => 'Дата окончания сбора',
-                    'type' => 'date',
-                    'others' => array(
-                        'class' => 'text-center',
-                        'style' => 'width: 221px',
-                        'placeholder' => 'Нажмите для выбора'
-                    ),
-                    'handler' => function($value) {
-                            return $value ? @date('Y-m-d', strtotime($value)) : $value;
-                        },
-                    'value_modifier' => function($value) {
-                            return $value ? @date('d.m.Y', strtotime($value)) : $value;
-                        },
-                ),
-                'date_quest' => array(
-                    'title' => 'Дата проведения квеста',
-                    'type' => 'date',
-                    'others' => array(
-                        'class' => 'text-center',
-                        'style' => 'width: 221px',
-                        'placeholder' => 'Нажмите для выбора'
-                    ),
-                    'handler' => function($value) {
-                            return $value ? @date('Y-m-d', strtotime($value)) : $value;
-                        },
-                    'value_modifier' => function($value) {
-                            return $value ? @date('d.m.Y', strtotime($value)) : $value;
-                        },
+                'product_type_id' => array(
+                    'title' => 'Вид продукции',
+                    'type' => 'select',
+                    'values' => array('Выберите..')+Dic::valuesBySlug('product_type')->lists('name', 'id'),
                 ),
 
-                'target_amount' => array(
-                    'title' => 'Целевая сумма сбора',
-                    'type' => 'text',
+                'country_id' => array(
+                    'title' => 'Страна',
+                    'type' => 'select',
+                    'values' => array('Выберите..')+Dic::valuesBySlug('countries')->lists('name', 'id'),
                 ),
-                'current_amount' => array(
-                    'title' => 'Собранно на данный момент',
-                    'type' => 'text',
-                ),
-                'count_members' => array(
-                    'title' => 'Количество участников',
-                    'type' => 'text',
+
+                'factory_id' => array(
+                    'title' => 'Фабрика',
+                    'type' => 'select',
+                    'values' => array('Выберите..')+Dic::valuesBySlug('factory')->lists('name', 'id'),
                 ),
 
                 array('content' => '<hr/>'),
 
-                'link_to_file_print' => array(
-                    'title' => 'Файл принта',
-                    'type' => 'upload',
-                    'accept' => '*', # .exe,image/*,video/*,audio/*
-                    'label_class' => 'input-file',
-                    'handler' => function($value, $element = false) {
-                            if (@is_object($element) && @is_array($value)) {
-                                $value['module'] = 'dicval';
-                                $value['unit_id'] = $element->id;
-                            }
-                            return ExtForm::process('upload', $value);
+                'format_id' => array(
+                    'title' => 'Формат',
+                    'type' => 'select',
+                    'values' => array('Выберите..')+Dic::valuesBySlug('format')->lists('name', 'id'),
+                ),
+
+                'surface_id' => array(
+                    'title' => 'Поверхность',
+                    'type' => 'select',
+                    'values' => array('Выберите..')+Dic::valuesBySlug('surface')->lists('name', 'id'),
+                ),
+
+                /*
+                'scope_id' => array(
+                    'title' => 'Места применения',
+                    'type' => 'checkboxes',
+                    'columns' => 2,
+                    'values' => Dic::valuesBySlug('scope')->lists('name', 'id'),
+                    'handler' => function($value, $element) {
+                            $value = (array)$value;
+                            $element->relations()->sync($value);
+                            return @count($value);
+                        },
+                    'value_modifier' => function($value, $element) {
+                            $return = (is_object($element) && $element->id)
+                                ? $element->relations()->get()->lists('name', 'id')
+                                : $return = array()
+                            ;
+                            return $return;
                         },
                 ),
-
-                array('content' => '<hr/>'),
-
-                'link_to_buy_shirt' => array(
-                    'title' => 'УРЛ для покупки футболки',
-                    'type' => 'text',
-                    'others' => array(
-                        'placeholder' => 'http://'
-                    ),
+                */
+                /*
+                'scope_id' => array(
+                    'title' => 'Места применения',
+                    'type' => 'select-multiple',
+                    'values' => Dic::valuesBySlug('scope')->lists('name', 'id'),
+                    'handler' => function($value, $element) {
+                            $value = (array)$value;
+                            $value = array_flip($value);
+                            foreach ($value as $v => $null)
+                                $value[$v] = array('dicval_child_dic' => 'scope');
+                            $element->relations()->sync($value);
+                            return @count($value);
+                        },
+                    'value_modifier' => function($value, $element) {
+                            $return = (is_object($element) && $element->id)
+                                ? $element->relations()->get()->lists('id')
+                                : $return = array()
+                            ;
+                            return $return;
+                        },
                 ),
-                'photo' => array(
-                    'title' => 'Фото',
+                */
+
+            ),
+        ),
+
+        'products' => array(
+
+            'general' => array(
+
+                'image_id' => array(
+                    'title' => 'Фотография',
                     'type' => 'image',
                 ),
 
-                array('content' => '<hr/>'),
-
-                'video' => array(
-                    'title' => 'Видео',
-                    'type' => 'video',
-                    'handler' => function($value, $element = false) {
-                            if (@is_object($element) && @is_array($value)) {
-                                $value['module'] = 'dicval';
-                                $value['unit_id'] = $element->id;
-                            }
-                            return ExtForm::process('video', $value);
-                        },
-                ),
-
-                array('content' => '<hr/>'),
-
-                'description' => array(
-                    'title' => 'Полное описание',
-                    'type' => 'textarea_redactor',
-                ),
-
-            ),
-        ),
-
-        /*
-        'members' => array(
-
-            'general' => array(
-
-                'fio' => array(
-                    'title' => 'Фамилия Имя',
-                    'type' => 'text',
-                    'others' => array(
-                        #'disabled',
-                    ),
-                ),
-                'payment_date' => array(
-                    'title' => 'Дата платежа',
-                    'type' => 'text',
-                    'others' => array(
-                        'disabled',
-                    ),
-                ),
-                'payment_amount' => array(
-                    'title' => 'Сумма платежа',
-                    'type' => 'text',
-                    'others' => array(
-                        'disabled',
-                    ),
-                ),
-                'payment_method' => array(
-                    'title' => 'Интерфейс платежа',
-                    'type' => 'text',
-                    'others' => array(
-                        'disabled',
-                    ),
-                ),
-            ),
-        ),
-        */
-
-        'transactions' => array(
-
-            'general' => array(
-
-                'quest_id' => array(
-                    'title' => 'Квест',
+                'color_id' => array(
+                    'title' => 'Цвет',
                     'type' => 'select',
-                    'values' => array('Выберите..')+Dic::valuesBySlug('quests')->lists('name', 'id'),
-                    'others' => array(
-                        'disabled',
-                    ),
+                    'values' => array('Выберите..')+Dic::valuesBySlug('colors')->lists('name', 'id'),
                 ),
-                'payment_status' => array(
-                    'title' => 'Статус платежа',
+
+                'surface_id' => array(
+                    'title' => 'Поверхность',
+                    'type' => 'select',
+                    'values' => array('Выберите..')+Dic::valuesBySlug('surface')->lists('name', 'id'),
+                ),
+
+                'price' => array(
+                    'title' => 'Цена',
                     'type' => 'text',
-                    'others' => array(
-                        'disabled',
-                    ),
                 ),
-                'payment_amount' => array(
-                    'title' => 'Сумма платежа',
-                    'type' => 'text',
-                    'others' => array(
-                        'disabled',
-                    ),
+
+                'basic' => array(
+                    'no_label' => true,
+                    'title' => 'Базовая продукция',
+                    'type' => 'checkbox',
+                    'label_class' => 'normal_checkbox',
                 ),
-                'payment_date' => array(
-                    'title' => 'Дата платежа',
-                    'type' => 'text',
-                    'others' => array(
-                        'disabled',
-                    ),
-                ),
-                'payment_method' => array(
-                    'title' => 'Интерфейс платежа',
-                    'type' => 'text',
-                    'others' => array(
-                        'disabled',
-                    ),
-                ),
-                'payment_full' => array(
-                    'title' => 'Техническая информация о платеже',
-                    'type' => 'textarea',
-                    'others' => array(
-                        'disabled',
-                    ),
-                ),
+
             ),
         ),
 
-        /*
-            array(
-                'price' => array(
-                    'title' => 'Текстовое поле',
-                    'type' => 'text',
-                ),
-                'short' => array(
-                    'title' => 'textarea обычная',
-                    'type' => 'textarea',
-                ),
-                'description' => array(
-                    'title' => 'textarea html-разметкой',
-                    'type' => 'textarea_redactor',
-                ),
+        'interiors' => array(
 
-                'gallery' => array(
-                    'title' => 'Галерея',
+            'general' => array(
+
+                'collection_id' => array(
+                    'title' => 'Коллекция',
+                    'type' => 'select',
+                    'values' => array('Выберите..')+Dic::valuesBySlug('collections')->lists('name', 'id'),
+                ),
+                'gallery_id' => array(
+                    'title' => 'Фотографии',
                     'type' => 'gallery',
                     'handler' => function($array, $element) {
                             return ExtForm::process('gallery', array(
@@ -288,8 +198,47 @@ return array(
                         }
                 ),
             ),
+        ),
 
-        */
+        'articles' => array(
+
+            'general' => array(
+
+                'category_id' => array(
+                    'title' => 'Раздел',
+                    'type' => 'select',
+                    'values' => array('Выберите..')+Dic::valuesBySlug('article_categories')->lists('name', 'id'),
+                ),
+                'content' => array(
+                    'title' => 'Содержимое статьи',
+                    'type' => 'textarea_redactor',
+                ),
+            ),
+        ),
+
+        'projects' => array(
+
+            'general' => array(
+
+                'product_id' => array(
+                    'title' => 'Плитка',
+                    'type' => 'select',
+                    'values' => array('Выберите..')+Dic::valuesBySlug('products')->lists('name', 'id'),
+                ),
+                'gallery_id' => array(
+                    'title' => 'Фотографии',
+                    'type' => 'gallery',
+                    'handler' => function($array, $element) {
+                            return ExtForm::process('gallery', array(
+                                'module'  => 'dicval_meta',
+                                'unit_id' => $element->id,
+                                'gallery' => $array,
+                                'single'  => true,
+                            ));
+                        }
+                ),
+            ),
+        ),
 
     ),
 
