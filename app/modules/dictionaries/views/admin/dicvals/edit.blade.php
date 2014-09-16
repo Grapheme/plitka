@@ -56,8 +56,15 @@
 
                 @if (@count($fields['general']))
                 <?
+                #Helper::ta($element);
                 $onsuccess_js = array();
-                $element_fields = @is_object($element->fields) ? $element->fields->lists('value', 'key') : array();
+                if (isset($element->fields) && is_object($element->fields) && count($element->fields)) {
+                    $element_fields = $element->fields->lists('value', 'key');
+                } elseif (isset($element->allfields) && is_object($element->allfields) && count($element->allfields)) {
+                    $element_fields = $element->allfields->lists('value', 'key');
+                } else {
+                    $element_fields = array();
+                }
                 #Helper::d($element_fields);
                 ?>
                 <fieldset class="padding-top-10 clearfix">

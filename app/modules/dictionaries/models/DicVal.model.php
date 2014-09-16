@@ -4,7 +4,7 @@ class DicVal extends BaseModel {
 
 	protected $guarded = array();
 
-	public $table = 'dictionary_values';
+    public $table = 'dictionary_values';
     #public $timestamps = false;
 
 	public static $order_by = "name ASC";
@@ -49,18 +49,40 @@ class DicVal extends BaseModel {
         return $this->hasMany('DicFieldVal', 'dicval_id', 'id')->where('language', Config::get('app.locale'))->orWhere('language', NULL);
     }
 
+
+    public static function extracts($elements, $unset = false) {
+        foreach ($elements as $e => $element) {
+            $elements[$e] = $element->extract($unset);
+        }
+        return $elements;
+    }
+
+
     public function extract($unset = false) {
-        ## Extract fields
-        if (@is_object($this->allfields) && count($this->allfields)) {
+
+        #Helper::ta($this);
+
+        ## Extract allfields (without language & all i18n)
+        if (isset($this->allfields) && @is_object($this->allfields) && count($this->allfields)) {
+
             foreach ($this->allfields as $field) {
                 $this->{$field->key} = $field->value;
             }
             if ($unset)
                 unset($this->allfields);
+
+        } elseif (isset($this->fields) && @is_object($this->fields) && count($this->fields)) {
+
+            ## Extract fields (with NULL language or language = default locale)
+            foreach ($this->fields as $field) {
+                $this->{$field->key} = $field->value;
+            }
+            if ($unset)
+                unset($this->fields);
+
         }
 
-        ## Extract fields_i18n
-        ## ...
+        #Helper::ta($this);
 
         ## Extract metas
         ## ...

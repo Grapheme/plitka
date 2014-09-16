@@ -17,7 +17,10 @@
 					</tr>
 				</thead>
 				<tbody class="dicvals @if($sortable) sortable @endif">
-				@foreach($elements as $e => $element)
+
+                {{ Helper::d(Input::all()) }}
+
+                @foreach($elements as $e => $element)
 					<tr @if($sortable) data-id="{{ $element->id }}" @endif>
 						<td class="text-center">
 						    {{ $e+1 }}
@@ -26,10 +29,18 @@
 						    {{ $element->name }}
                             <br/><span style="color:#aaa">{{ $element->slug }}</span>
 						</td>
-						<td class="text-center" style="white-space:nowrap;">
+
+                        <td class="text-center" style="white-space:nowrap;">
+
+                            <?
+                            $actions = Config::get('dic.actions.' . $dic->slug);
+                            ?>
+                            @if (@is_callable($actions))
+                                {{ $actions($dic, $element) }}
+                            @endif
 
         					@if(Allow::action($module['group'], 'dicval'))
-							<a href="{{ action(is_numeric($dic_id) ? 'dicval.edit' : 'entity.edit', array('dic_id' => $dic_id, 'id' => $element->id)) }}" class="btn btn-success margin-right-10">
+							<a href="{{ action(is_numeric($dic_id) ? 'dicval.edit' : 'entity.edit', array('dic_id' => $dic_id, 'id' => $element->id)) }}" class="btn btn-success">
 								Изменить
 							</a>
 

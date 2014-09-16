@@ -579,3 +579,11 @@ nav ul li a {
 .pos-rel {
     position: relative !important;
 }
+
+.inblock {
+    display: inline-block;
+}
+
+.block {
+    display: block;
+}

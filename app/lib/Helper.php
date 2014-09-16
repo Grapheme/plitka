@@ -414,6 +414,8 @@ HTML;
                 $return = ExtForm::video($name, $value, $others_array);
                 break;
             case 'select':
+                #Helper::d($array);
+                #Helper::dd($value);
                 $values = $array['values'];
                 $return = Form::select($name, $values, $value, $others_array);
                 break;

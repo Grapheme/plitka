@@ -101,7 +101,35 @@ class AdminDicvalsController extends BaseController {
         #Helper::tad($dic);
         #dd($dic);
 
-        $elements = DicVal::where('dic_id', $dic->id);
+        ## Get element
+        $elements = new DicVal;
+        $tbl_dicval = $elements->getTable();
+        $elements = $elements->where('dic_id', $dic->id)->select($tbl_dicval . '.*')->with('fields');
+        #$elements = DB::table('dictionary_values')->where('dic_id', $dic->id)->select('dictionary_values.*');
+
+        if (NULL !== ($filter = Input::get('filter'))) {
+
+            #Helper::d($filter);
+            if (isset($filter['fields']) && is_array($filter) && count($filter)) {
+
+                $tbl_fields = new DicFieldVal();
+                $tbl_fields = $tbl_fields->getTable();
+
+                #Helper::d($filter['fields']);
+                foreach ($filter['fields'] as $key => $value) {
+                    $elements = $elements
+                        ->join($tbl_fields, function ($join) use ($tbl_dicval, $tbl_fields, $key, $value) {
+                            $join
+                                ->on($tbl_fields . '.dicval_id', '=', $tbl_dicval . '.id')
+                                ->where($tbl_fields . '.key', '=', $key)
+                                ->where($tbl_fields . '.value', '=', $value)
+                            ;
+                        })
+                        ->addSelect($tbl_fields . '.value AS ' . $key)
+                    ;
+                }
+            }
+        }
 
         ## Ordering
         $sort_order = $dic->sort_order_reverse ? 'DESC' : 'ASC';
@@ -131,7 +159,8 @@ class AdminDicvalsController extends BaseController {
 
         $sortable = ($dic->sortable && $dic->pagination == 0 && $dic->sort_by == NULL) ? true : false;
 
-        #Helper::dd($elements);
+        DicVal::extracts($elements, true);
+        #Helper::tad($elements);
 
 		return View::make($this->module['tpl'].'index', compact('elements', 'dic', 'dic_id', 'sortable'))->render();
 	}

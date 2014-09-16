@@ -33,11 +33,11 @@
  * - upload
  * - video
  * - select
- * - checkboxes (замена select-multiple)
+ * - select-multiple
  * - checkbox
+ * - checkboxes (замена select-multiple)
  *
  * Типы полей, запланированных к разработке:
- * - select-multiple
  * - radio
  * - upload-group
  * - video-group
@@ -149,6 +149,12 @@ return array(
                     'type' => 'image',
                 ),
 
+                'collection_id' => array(
+                    'title' => 'Коллекция',
+                    'type' => 'select',
+                    'values' => array('Выберите..')+Dic::valuesBySlug('collections')->lists('name', 'id'),
+                ),
+
                 'color_id' => array(
                     'title' => 'Цвет',
                     'type' => 'select',
@@ -241,6 +247,28 @@ return array(
         ),
 
     ),
+
+
+    'menus' => array(
+        'collections' => function($dic, $dicval = false) {
+                return '
+                    123123123
+                ';
+            }
+    ),
+
+
+    'actions' => array(
+        'collections' => function($dic, $dicval) {
+                return '
+                    <span class="block_ margin-bottom-5_">
+                    <a href="' . URL::route('entity.index', array('products', 'filter[fields][collection_id]' => $dicval->id)) . '" class="btn btn-default">Продукция</a>
+                    <a href="' . URL::route('entity.index', array('interiors', 'filter[fields][collection_id]' => $dicval->id)) . '" class="btn btn-default">Интерьеры</a>
+                    </span>
+                ';
+            }
+    ),
+
 
     'seo' => array(
         'number_type' => 0,
