@@ -95,28 +95,28 @@ class Dictionary extends BaseModel {
     public static function makeLists($collection, $listed_key = 'values', $value, $key = '') {
         #Helper::ta($collection);
         $lists = array();
-        if (count($collection))
-            foreach ($collection as $c => $col) {
-                if (!$listed_key) {
+        foreach ($collection as $c => $col) {
+            if (!$listed_key) {
 
-                    if ($key != '')
-                        $lists[$col->$key] = $col->$value;
-                    else
-                        $lists[] = $col->$value;
+                if ($key != '')
+                    $lists[$col->$key] = $col->$value;
+                else
+                    $lists[] = $col->$value;
 
-                } elseif (isset($col->$listed_key) && count($col->$listed_key)) {
+            } else {
 
-                    $list = array();
+                $list = array();
+                if (isset($col->$listed_key) && count($col->$listed_key))
                     foreach ($col->$listed_key as $e => $el) {
                         if ($key != '')
                             $list[$el->$key] = $el->$value;
                         else
                             $list[] = $el->$value;
                     }
-                    $lists[$c] = $list;
-                }
-                #Helper::ta($col);
+                $lists[$c] = $list;
             }
+            #Helper::ta($col);
+        }
         #Helper::dd($lists);
         return $lists;
     }

@@ -37,7 +37,7 @@
         $dic_menu = $dic_settings['menus'];
     #Helper::d($dic_menu);
     if (isset($dic_menu) && is_callable($dic_menu)) {
-        $tmp = $dic_menu($dic, isset($element) && is_object($element) ? $element : NULL);
+        $tmp = (array)$dic_menu($dic, isset($element) && is_object($element) ? $element : NULL);
         $menus = array_merge($menus, $tmp);
     }
 
