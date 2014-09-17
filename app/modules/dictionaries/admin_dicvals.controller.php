@@ -214,9 +214,6 @@ class AdminDicvalsController extends BaseController {
 
         $locales = $this->locales;
 
-        #$fields = Config::get('dic.fields.' . $dic->slug);
-        #Helper::dd($fields);
-
         $dic_settings = Config::get('dic/' . $dic->slug);
         #Helper::dd($dic_settings);
 
@@ -316,14 +313,16 @@ class AdminDicvalsController extends BaseController {
                 $redirect = true;
             }
 
-            $element_fields = Config::get('dic.fields.' . $dic->slug);
-            #Helper::d($element_fields);
+            $element_fields = Config::get('dic/' . $dic->slug . '.fields');
+            if (isset($element_fields) && is_callable($element_fields))
+                $element_fields = $element_fields();
+            #Helper::dd($element_fields);
 
             ## FIELDS
-            if (@is_array($element_fields['general']) && count($element_fields['general'])) {
+            if (@is_array($element_fields) && count($element_fields)) {
 
                 #Helper::d($fields);
-                foreach ($element_fields['general'] as $key => $_value) {
+                foreach ($element_fields as $key => $_value) {
 
                     if (is_numeric($key))
                         continue;
@@ -336,7 +335,7 @@ class AdminDicvalsController extends BaseController {
                     #continue;
 
                     ## If handler of field is defined
-                    if (is_callable($handler = Config::get('dic.fields.' . $dic->slug . '.general.' . $key . '.handler'))) {
+                    if (is_callable($handler = Config::get('dic/' . $dic->slug . '.fields.' . $key . '.handler'))) {
                         #Helper::d($handler);
                         $value = $handler($value, $element);
                     }
@@ -353,14 +352,19 @@ class AdminDicvalsController extends BaseController {
                 }
             }
 
+            $element_fields_i18n = Config::get('dic/' . $dic->slug . '.fields_i18n');
+            if (isset($element_fields_i18n) && is_callable($element_fields_i18n))
+                $element_fields_i18n = $element_fields_i18n();
+            Helper::dd($element_fields_i18n);
+
             ## FIELDS I18N
             #if (@is_array($fields_i18n) && count($fields_i18n)) {
-            if (@is_array($element_fields['i18n']) && count($element_fields['i18n'])) {
+            if (@is_array($element_fields_i18n) && count($element_fields_i18n)) {
 
                 #Helper::d($fields_i18n);
 
                 #foreach ($fields_i18n as $locale_sign => $locale_values) {
-                foreach ($element_fields['i18n'] as $locale_sign => $locale_values) {
+                foreach ($element_fields_i18n as $locale_sign => $locale_values) {
                     #Helper::d($locale_values);
                     foreach ($locale_values as $key => $_value) {
 
@@ -374,7 +378,7 @@ class AdminDicvalsController extends BaseController {
                         #Helper::d($value);
 
                         ## If handler of field is defined
-                        if (is_callable($handler = Config::get('dic.fields.' . $dic->slug . '.i18n.' . $key . '.handler'))) {
+                        if (is_callable($handler = Config::get('dic/' . $dic->slug . '.fields_i18n.' . $key . '.handler'))) {
                             #Helper::dd($handler);
                             $value = $handler($value);
                         }
