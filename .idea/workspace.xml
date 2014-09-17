@@ -43,8 +43,8 @@
       <file leaf-file-name="admin_dicvals.controller.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/admin_dicvals.controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33333334" vertical-offset="119" max-vertical-offset="8789">
-              <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.5151515" vertical-offset="6239" max-vertical-offset="8789">
+              <caret line="383" column="25" selection-start-line="383" selection-start-column="25" selection-end-line="383" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -53,8 +53,8 @@
       <file leaf-file-name="Helper.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/lib/Helper.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.1923075" vertical-offset="11101" max-vertical-offset="14093">
-              <caret line="664" column="23" selection-start-line="664" selection-start-column="23" selection-end-line="664" selection-end-column="23" />
+            <state vertical-scroll-proportion="-9.807693" vertical-offset="11101" max-vertical-offset="14076">
+              <caret line="668" column="85" selection-start-line="668" selection-start-column="85" selection-end-line="668" selection-end-column="85" />
               <folding>
                 <marker date="1410955325019" expanded="true" signature="944:959" placeholder="..." />
                 <marker date="1410955325019" expanded="true" signature="9008:9120" placeholder="..." />
@@ -67,7 +67,7 @@
       <file leaf-file-name="collections.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/config/dic/collections.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.461538" vertical-offset="255" max-vertical-offset="3434">
+            <state vertical-scroll-proportion="-20.26923" vertical-offset="0" max-vertical-offset="3434">
               <caret line="31" column="57" selection-start-line="31" selection-start-column="50" selection-end-line="31" selection-end-column="57" />
               <folding>
                 <marker date="1410955012520" expanded="true" signature="4752:4938" placeholder="..." />
@@ -388,7 +388,13 @@
       <option name="project" value="LOCAL" />
       <updated>1410957392761</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="fix+">
+      <created>1410958827694</created>
+      <option name="number" value="00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1410958827694</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -443,7 +449,8 @@
     <MESSAGE value="dicvals single filter + dicval actions config" />
     <MESSAGE value="global dic module update" />
     <MESSAGE value="global dic module update+" />
-    <option name="LAST_COMMIT_MESSAGE" value="global dic module update+" />
+    <MESSAGE value="fix+" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix+" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -709,18 +716,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/lib/Helper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.1923075" vertical-offset="11101" max-vertical-offset="14093">
-          <caret line="664" column="23" selection-start-line="664" selection-start-column="23" selection-end-line="664" selection-end-column="23" />
-          <folding>
-            <marker date="1410955325019" expanded="true" signature="944:959" placeholder="..." />
-            <marker date="1410955325019" expanded="true" signature="9008:9120" placeholder="..." />
-            <marker date="1410955325019" expanded="true" signature="9066:9120" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/config/dic/interiors.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-15.692307" vertical-offset="459" max-vertical-offset="1513">
@@ -781,17 +776,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/dic/collections.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.461538" vertical-offset="255" max-vertical-offset="3434">
-          <caret line="31" column="57" selection-start-line="31" selection-start-column="50" selection-end-line="31" selection-end-column="57" />
-          <folding>
-            <marker date="1410955012520" expanded="true" signature="4752:4938" placeholder="..." />
-            <marker date="1410955012520" expanded="true" signature="4905:4938" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-18.961538" vertical-offset="0" max-vertical-offset="2040">
@@ -806,10 +790,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/dic/collections.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-20.26923" vertical-offset="0" max-vertical-offset="3434">
+          <caret line="31" column="57" selection-start-line="31" selection-start-column="50" selection-end-line="31" selection-end-column="57" />
+          <folding>
+            <marker date="1410955012520" expanded="true" signature="4752:4938" placeholder="..." />
+            <marker date="1410955012520" expanded="true" signature="4905:4938" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/lib/Helper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.807693" vertical-offset="11101" max-vertical-offset="14076">
+          <caret line="668" column="85" selection-start-line="668" selection-start-column="85" selection-end-line="668" selection-end-column="85" />
+          <folding>
+            <marker date="1410955325019" expanded="true" signature="944:959" placeholder="..." />
+            <marker date="1410955325019" expanded="true" signature="9008:9120" placeholder="..." />
+            <marker date="1410955325019" expanded="true" signature="9066:9120" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/admin_dicvals.controller.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334" vertical-offset="119" max-vertical-offset="8789">
-          <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.5151515" vertical-offset="6239" max-vertical-offset="8789">
+          <caret line="383" column="25" selection-start-line="383" selection-start-column="25" selection-end-line="383" selection-end-column="25" />
           <folding />
         </state>
       </provider>

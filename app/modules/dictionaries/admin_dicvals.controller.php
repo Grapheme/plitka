@@ -319,7 +319,7 @@ class AdminDicvalsController extends BaseController {
             #Helper::dd($element_fields);
 
             ## FIELDS
-            if (@is_array($element_fields) && count($element_fields)) {
+            if (isset($element_fields) && is_array($element_fields) && count($element_fields)) {
 
                 #Helper::d($fields);
                 foreach ($element_fields as $key => $_value) {
@@ -335,7 +335,7 @@ class AdminDicvalsController extends BaseController {
                     #continue;
 
                     ## If handler of field is defined
-                    if (is_callable($handler = Config::get('dic/' . $dic->slug . '.fields.' . $key . '.handler'))) {
+                    if (is_callable($handler = @$element_fields[$key]['handler'])) {
                         #Helper::d($handler);
                         $value = $handler($value, $element);
                     }
@@ -355,11 +355,11 @@ class AdminDicvalsController extends BaseController {
             $element_fields_i18n = Config::get('dic/' . $dic->slug . '.fields_i18n');
             if (isset($element_fields_i18n) && is_callable($element_fields_i18n))
                 $element_fields_i18n = $element_fields_i18n();
-            Helper::dd($element_fields_i18n);
+            #Helper::dd($element_fields_i18n);
 
             ## FIELDS I18N
             #if (@is_array($fields_i18n) && count($fields_i18n)) {
-            if (@is_array($element_fields_i18n) && count($element_fields_i18n)) {
+            if (isset($element_fields_i18n) && is_array($element_fields_i18n) && count($element_fields_i18n)) {
 
                 #Helper::d($fields_i18n);
 
@@ -378,7 +378,7 @@ class AdminDicvalsController extends BaseController {
                         #Helper::d($value);
 
                         ## If handler of field is defined
-                        if (is_callable($handler = Config::get('dic/' . $dic->slug . '.fields_i18n.' . $key . '.handler'))) {
+                        if (is_callable($handler = @$element_fields[$key]['handler'])) {
                             #Helper::dd($handler);
                             $value = $handler($value);
                         }
