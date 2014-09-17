@@ -6,7 +6,7 @@
         'title' => $dic->name,
         'class' => 'btn btn-default'
     );
-    if (@is_object($element) && $element->name) {
+    if (isset($element) && is_object($element) && $element->name) {
         $menus[] = array(
             'link' => action(is_numeric($dic_id) ? 'dicval.edit' : 'entity.edit', array('dic_id' => $dic_id, $element->id)),
             'title' => "&laquo;" . $element->name . "&raquo;",
@@ -32,6 +32,16 @@
             'class' => 'btn btn-success'
         );
     }
+
+    if (isset($dic_settings['menus']))
+        $dic_menu = $dic_settings['menus'];
+    #Helper::d($dic_menu);
+    if (isset($dic_menu) && is_callable($dic_menu)) {
+        $tmp = $dic_menu($dic, isset($element) && is_object($element) ? $element : NULL);
+        $menus = array_merge($menus, $tmp);
+    }
+
+    #Helper::d($menus);
 ?>
     
     <h1>{{ $dic->name }}{{ $dic->entity && is_numeric($dic_id) ? ' <i class="fa fa-angle-double-right"></i> <a href="' . URL::route('entity.index', $dic->slug) . '" title="Вынесено в отдельную сущность">' . $dic->slug . '</a>' : '' }}</h1>

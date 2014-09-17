@@ -55,89 +55,90 @@ return array(
 
         'collections' => array(
 
-            'general' => array(
+            'general' => function () {
 
-                'description' => array(
-                    'title' => 'Описание',
-                    'type' => 'textarea',
-                ),
+                return array(
 
-                'product_type_id' => array(
-                    'title' => 'Вид продукции',
-                    'type' => 'select',
-                    'values' => array('Выберите..')+Dic::valuesBySlug('product_type')->lists('name', 'id'),
-                ),
+                    'description' => array(
+                        'title' => 'Описание',
+                        'type' => 'textarea',
+                    ),
 
-                'country_id' => array(
-                    'title' => 'Страна',
-                    'type' => 'select',
-                    'values' => array('Выберите..')+Dic::valuesBySlug('countries')->lists('name', 'id'),
-                ),
+                    'product_type_id' => array(
+                        'title' => 'Вид продукции',
+                        'type' => 'select',
+                        'values' => array('Выберите..')+Dic::valuesBySlug('product_type')->lists('name', 'id'),
+                    ),
 
-                'factory_id' => array(
-                    'title' => 'Фабрика',
-                    'type' => 'select',
-                    'values' => array('Выберите..')+Dic::valuesBySlug('factory')->lists('name', 'id'),
-                ),
+                    'country_id' => array(
+                        'title' => 'Страна',
+                        'type' => 'select',
+                        'values' => array('Выберите..')+Dic::valuesBySlug('countries')->lists('name', 'id'),
+                    ),
 
-                array('content' => '<hr/>'),
+                    'factory_id' => array(
+                        'title' => 'Фабрика',
+                        'type' => 'select',
+                        'values' => array('Выберите..')+Dic::valuesBySlug('factory')->lists('name', 'id'),
+                    ),
 
-                'format_id' => array(
-                    'title' => 'Формат',
-                    'type' => 'select',
-                    'values' => array('Выберите..')+Dic::valuesBySlug('format')->lists('name', 'id'),
-                ),
+                    array('content' => '<hr/>'),
 
-                'surface_id' => array(
-                    'title' => 'Поверхность',
-                    'type' => 'select',
-                    'values' => array('Выберите..')+Dic::valuesBySlug('surface')->lists('name', 'id'),
-                ),
+                    'format_id' => array(
+                        'title' => 'Формат',
+                        'type' => 'select',
+                        'values' => array('Выберите..')+Dic::valuesBySlug('format')->lists('name', 'id'),
+                    ),
 
-                #/*
-                'scope_id' => array(
-                    'title' => 'Места применения',
-                    'type' => 'checkboxes',
-                    'columns' => 2,
-                    'values' => Dic::valuesBySlug('scope')->lists('name', 'id'),
-                    'handler' => function($value, $element) {
+                    'surface_id' => array(
+                        'title' => 'Поверхность',
+                        'type' => 'select',
+                        'values' => array('Выберите..')+Dic::valuesBySlug('surface')->lists('name', 'id'),
+                    ),
+
+                    'scope_id' => array(
+                        'title' => 'Места применения',
+                        'type' => 'checkboxes',
+                        'columns' => 2,
+                        'values' => Dic::valuesBySlug('scope')->lists('name', 'id'),
+                        'handler' => function($value, $element) {
                             $value = (array)$value;
                             $element->relations()->sync($value);
                             return @count($value);
                         },
-                    'value_modifier' => function($value, $element) {
+                        'value_modifier' => function($value, $element) {
                             $return = (is_object($element) && $element->id)
                                 ? $element->relations()->get()->lists('name', 'id')
                                 : $return = array()
                             ;
                             return $return;
                         },
-                ),
-                #*/
-                /*
-                'scope_id' => array(
-                    'title' => 'Места применения',
-                    'type' => 'select-multiple',
-                    'values' => Dic::valuesBySlug('scope')->lists('name', 'id'),
-                    'handler' => function($value, $element) {
-                            $value = (array)$value;
-                            $value = array_flip($value);
-                            foreach ($value as $v => $null)
-                                $value[$v] = array('dicval_child_dic' => 'scope');
-                            $element->relations()->sync($value);
-                            return @count($value);
-                        },
-                    'value_modifier' => function($value, $element) {
-                            $return = (is_object($element) && $element->id)
-                                ? $element->relations()->get()->lists('id')
-                                : $return = array()
-                            ;
-                            return $return;
-                        },
-                ),
-                */
+                    )
+                    /*
+                    'scope_id' => array(
+                        'title' => 'Места применения',
+                        'type' => 'select-multiple',
+                        'values' => Dic::valuesBySlug('scope')->lists('name', 'id'),
+                        'handler' => function($value, $element) {
+                                $value = (array)$value;
+                                $value = array_flip($value);
+                                foreach ($value as $v => $null)
+                                    $value[$v] = array('dicval_child_dic' => 'scope');
+                                $element->relations()->sync($value);
+                                return @count($value);
+                            },
+                        'value_modifier' => function($value, $element) {
+                                $return = (is_object($element) && $element->id)
+                                    ? $element->relations()->get()->lists('id')
+                                    : $return = array()
+                                ;
+                                return $return;
+                            },
+                    ),
+                    */
+                );
+            },
 
-            ),
         ),
 
         'products' => array(
@@ -250,23 +251,48 @@ return array(
 
 
     'menus' => array(
-        'collections' => function($dic, $dicval = false) {
-                return '
-                    123123123
-                ';
-            }
+        'collections' => function($dic, $dicval = NULL) {
+            $menus = array();
+            $menus[] = array('raw' => '<br/>');
+            /*
+            $menus[] = Helper::getDicValMenuDropdown('product_type_id', 'Все виды продукции', 'product_type', $dic);
+            $menus[] = Helper::getDicValMenuDropdown('country_id', 'Все страны', 'country', $dic);
+            $menus[] = Helper::getDicValMenuDropdown('factory_id', 'Все фабрики', 'factory', $dic);
+            */
+            #$menus[] = Helper::getDicValMenuDropdown('format_id', 'Все форматы', 'format', $dic);
+            return $menus;
+        },
+        'products' => function($dic, $dicval = NULL) {
+            $menus = array();
+            $menus[] = array('raw' => '<br/>');
+            $menus[] = Helper::getDicValMenuDropdown('collection_id', 'Все коллекции', 'collections', $dic);
+            return $menus;
+        },
+        'interiors' => function($dic, $dicval = NULL) {
+            $menus = array();
+            $menus[] = array('raw' => '<br/>');
+            $menus[] = Helper::getDicValMenuDropdown('collection_id', 'Все коллекции', 'collections', $dic);
+            return $menus;
+        }
     ),
 
 
     'actions' => array(
         'collections' => function($dic, $dicval) {
-                return '
-                    <span class="block_ margin-bottom-5_">
-                    <a href="' . URL::route('entity.index', array('products', 'filter[fields][collection_id]' => $dicval->id)) . '" class="btn btn-default">Продукция</a>
-                    <a href="' . URL::route('entity.index', array('interiors', 'filter[fields][collection_id]' => $dicval->id)) . '" class="btn btn-default">Интерьеры</a>
-                    </span>
-                ';
-            }
+            $dic_products = Dic::firstOrNew(array('slug' => 'products'));
+            $dic_interiors = Dic::firstOrNew(array('slug' => 'interiors'));
+            return '';
+            return '
+                <span class="block_ margin-bottom-5_">
+                    <a href="' . URL::route('entity.index', array('products', 'filter[fields][collection_id]' => $dicval->id)) . '" class="btn btn-default">
+                        Продукция (' . DicVal::count_by_fields($dic_products->id, array('collection_id' => $dicval->id)) . ')
+                    </a>
+                    <a href="' . URL::route('entity.index', array('interiors', 'filter[fields][collection_id]' => $dicval->id)) . '" class="btn btn-default">
+                        Интерьеры (' . DicVal::count_by_fields($dic_interiors->id, array('collection_id' => $dicval->id)) . ')
+                    </a>
+                </span>
+            ';
+        }
     ),
 
 

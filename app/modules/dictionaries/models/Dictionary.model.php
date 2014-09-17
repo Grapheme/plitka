@@ -54,11 +54,79 @@ class Dictionary extends BaseModel {
         return self::firstOrNew(array('slug' => $slug))->values;
     }
 
+
+    /**
+     * В функцию передается коллекция объектов, полученная из Eloguent методом ->get(),
+     * а также название поля, значение которого будет установлено в качестве ключа для каждого элемента коллекции.
+     *
+     * @param object $collection - Eloquent Collection
+     * @param string $key
+     * @return object
+     *
+     * @author Alexander Zelensky
+     */
+    public static function modifyKeys($collection, $key = 'slug') {
+        #Helper::tad($collection);
+        foreach ($collection as $c => $col) {
+            if (NULL !== ($current_key = $col->$key)) {
+                $collection[$current_key] = $col;
+                unset($collection[$c]);
+            }
+        }
+        return $collection;
+    }
+
+    /**
+     * В функцию передается коллекция объектов, полученная из Eloguent методом ->get(),
+     * которая имеет в себе некоторую коллекцию прочих объектов, полученную через связь hasMany (с помощью ->with('...')).
+     * Пример: словарь со значениями - Dic::where('slug', 'dicname')->with('values')->get();
+     * Функция возвращает массив, ключами которого являются исходные ключи родительской коллекции, а в значение заносится
+     * массив, генерирующийся по принципу метода ->lists('name', 'id'), но без дополнительных запросов к БД.
+     * Если $listed_key = false, то вместо вложенной коллекции будет перебираться родительская, на предмет поиска соответствий.
+     *
+     * @param object $collection - Eloquent Collection
+     * @param string $listed_key - Key of the child collection, may be false
+     * @param string $value
+     * @param string $key
+     * @return array
+     *
+     * @author Alexander Zelensky
+     */
+    public static function makeLists($collection, $listed_key = 'values', $value, $key = '') {
+        #Helper::ta($collection);
+        $lists = array();
+        if (count($collection))
+            foreach ($collection as $c => $col) {
+                if (!$listed_key) {
+
+                    if ($key != '')
+                        $lists[$col->$key] = $col->$value;
+                    else
+                        $lists[] = $col->$value;
+
+                } elseif (isset($col->$listed_key) && count($col->$listed_key)) {
+
+                    $list = array();
+                    foreach ($col->$listed_key as $e => $el) {
+                        if ($key != '')
+                            $list[$el->$key] = $el->$value;
+                        else
+                            $list[] = $el->$value;
+                    }
+                    $lists[$c] = $list;
+                }
+                #Helper::ta($col);
+            }
+        #Helper::dd($lists);
+        return $lists;
+    }
+
+
     ## Need to check
     public function valueBySlug($slug) {
         return $this->with(array('value' => function($query) use ($slug) {
-                    $query->whereSlug($slug);
-                }))->first()->value;
+                $query->whereSlug($slug);
+            }))->first()->value;
     }
 
     public static function valuesBySlug($slug) {

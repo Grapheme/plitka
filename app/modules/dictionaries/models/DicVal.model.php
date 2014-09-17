@@ -50,6 +50,99 @@ class DicVal extends BaseModel {
     }
 
 
+    /**
+     * Функция принимает в качестве аргументов ID словаря и массив с условиями для выборки из таблицы значений словарей.
+     * Условия представляют собой одномерный массив, у которого:
+     * - ключи: соответствуют столбцу key таблицы dictionary_fields_values
+     * - значения: соответствуют столбцу value таблицы dictionary_fields_values
+     * Функция делает выборку из БД, подсчитывая кол-во подходящих записей "значений словарей" под заданные условия.
+     *
+     * @param integer $dic_id
+     * @param array $array
+     * @return $this|DicFieldVal
+     *
+     * @author Alexander Zelensky
+     */
+    public static function count_by_fields($dic_id, $array) {
+        #SELECT *  FROM `dictionary_fields_values` WHERE `dicval_id` = 162 AND `key` = 'collection_id' AND `value` = 161
+        $tbl_dicval = new DicVal;
+        $tbl_dicval = $tbl_dicval->getTable();
+        $result = new DicFieldVal;
+        $tbl_dicfieldval = $result->getTable();
+        foreach ($array as $key => $value) {
+            $result = $result->where('key', $key)->where('value', $value);
+        }
+        $result = $result
+            ->join($tbl_dicval, $tbl_dicval.'.id', '=', $tbl_dicfieldval.'.dicval_id')
+            ->where($tbl_dicval.'.dic_id', $dic_id)
+        ;
+        $result = $result->select($tbl_dicfieldval.'.*')->count();
+        #Helper::ta($result);
+        return $result;
+    }
+
+    /**
+     * Функция принимает в качестве аргументов массив с ID словарей и массив с условиями для выборки из таблицы значений словарей.
+     * Условия представляют собой одномерный массив, у которого:
+     * - ключи: соответствуют столбцу key таблицы dictionary_fields_values
+     * - значения: соответствуют столбцу value таблицы dictionary_fields_values
+     * Функция делает выборку из БД, подсчитывая кол-во подходящих записей "значений словарей" под заданные условия для каждого словаря.
+     *
+     * @param array $dic_ids
+     * @param array $array
+     * @return $this|DicFieldVal
+     *
+     * @author Alexander Zelensky
+     */
+    public static function counts_by_fields($dic_ids = array(), $array = array()) {
+        $tbl_dicval = new DicVal;
+        $tbl_dicval = $tbl_dicval->getTable();
+        $result = new DicFieldVal;
+        $tbl_dicfieldval = $result->getTable();
+        foreach ($array as $key => $value) {
+            #Helper::dd($value);
+            if (is_array($value))
+                $result = $result->where($tbl_dicfieldval.'.key', $key)->whereIn($tbl_dicfieldval.'.value', $value);
+            else
+                $result = $result->where($tbl_dicfieldval.'.key', $key)->where($tbl_dicfieldval.'.value', $value);
+        }
+        $result = $result
+            ->join($tbl_dicval, $tbl_dicval.'.id', '=', $tbl_dicfieldval.'.dicval_id')
+            ->whereIn($tbl_dicval.'.dic_id', $dic_ids)
+        ;
+
+        ## Делаем выборку всех подходящих записей...
+        $result = $result->select($tbl_dicfieldval.'.*', $tbl_dicval.'.dic_id')->get();
+
+        ## DEBUG
+        $queries = DB::getQueryLog();
+        #Helper::smartQuery(end($queries), 1);
+        #Helper::ta($result);
+        #Helper::smartQueries(1);
+
+        ## Собираем числа в массив и группируем по dicval_id -> dic_id
+        $counts = array();
+        foreach ($result as $r => $record) {
+
+            if (!@is_array($counts[$record->value]))
+                $counts[$record->value] = array();
+
+            if (!@is_array($counts[$record->value][$record->dic_id]))
+                $counts[$record->value][$record->dic_id] = array();
+
+            #@++$counts[$record->dicval_id][$record->dic_id];
+            $counts[$record->value][$record->dic_id][$record->dicval_id] = 1;
+        }
+        foreach ($counts as $dicval_id => $data) {
+            foreach ($data as $dic_id => $elements) {
+                $counts[$dicval_id][$dic_id] = count($elements);
+            }
+        }
+        #Helper::dd($counts);
+
+        return $counts;
+    }
+
     public static function extracts($elements, $unset = false) {
         foreach ($elements as $e => $element) {
             $elements[$e] = $element->extract($unset);

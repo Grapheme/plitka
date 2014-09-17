@@ -318,7 +318,7 @@ class AdminDicsController extends BaseController {
 
         if (!is_object($dic))
             App::abort(404);
-        #Helper::ta($dic);
+        #Helper::tad($dic);
 
         ## Get also exists values
         #$exist_values = $dic->values;
@@ -366,7 +366,7 @@ class AdminDicsController extends BaseController {
                 $arr[$field] = @trim($values[$f][$i]);
             }
 
-            $find = array($find_key => @$arr[$find_key]);
+            $find = array($find_key => @$arr[$find_key], 'dic_id' => $dic->id);
             #unset($arr[$find_key]);
             if (
                 #$find_key != 'slug'
@@ -382,6 +382,8 @@ class AdminDicsController extends BaseController {
             if (@$input['set_ucfirst'] && $arr['name']) {
                 $arr['name'] = Helper::mb_ucfirst($arr['name']);
             }
+
+            #Helper::dd($find);
 
             #/*
             $dicval = DicVal::firstOrCreate($find);
