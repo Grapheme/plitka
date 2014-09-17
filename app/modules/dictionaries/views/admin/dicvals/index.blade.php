@@ -29,8 +29,21 @@
                                 {{ $e+1 }}
                             </td>
                             <td>
-                                {{ $element->name }}
-                                <br/><span style="color:#aaa">{{ $element->slug }}</span>
+                                <?
+                                $line = $element->name;
+                                if (isset($dic_settings['first_line_modifier']) && is_callable($dic_settings['first_line_modifier']))
+                                    $line = $dic_settings['first_line_modifier']($line, $dic, $element);
+                                ?>
+                                {{ $line }}
+                                <br/>
+                                <span class="note dicval_note">
+                                <?
+                                $line = $element->slug;
+                                if (isset($dic_settings['second_line_modifier']) && is_callable($dic_settings['second_line_modifier']))
+                                    $line = $dic_settings['second_line_modifier']($line, $dic, $element);
+                                ?>
+                                    {{ $line }}
+                                </span>
                             </td>
 
                             <td class="text-center" style="white-space:nowrap;">

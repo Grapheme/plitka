@@ -25,7 +25,7 @@
 						<td>
                             {{ $element->entity ? '<a href="' . URL::route('entity.index', $element->slug) . '" title="Вынесено в отдельную сущность">' . $element->name . '</a>' : $element->name }}
                             <br/>
-                            <span style="color:#aaa">
+                            <span class="note dic_note">
                                 {{  $element->slug }}
                             </span>
 						</td>

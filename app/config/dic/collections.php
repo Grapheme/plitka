@@ -192,5 +192,15 @@ return array(
         },
     ),
 
+    'first_line_modifier' => function($line, $dic, $dicval) {
+        #Helper::ta($dicval);
+        return $dicval->name;
+    },
+
+    'second_line_modifier' => function($line, $dic, $dicval) {
+        #Helper::ta($dicval);
+        return $dicval->slug;
+    },
+
     'seo' => false,
 );
