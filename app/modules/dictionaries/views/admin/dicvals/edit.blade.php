@@ -22,7 +22,7 @@
 
     @include($module['tpl'].'/menu')
 
-    {{ Form::model($element, array('url'=>$url, 'class'=>'smart-form', 'id'=>$module['entity'].'-form', 'role'=>'form', 'method'=>$method)) }}
+    {{ Form::model($element, array('url' => $url, 'class' => 'smart-form', 'id' => $module['entity'].'-form', 'role' => 'form', 'method' => $method, 'files' => true)) }}
 
     <!-- Fields -->
 	<div class="row">

@@ -42,7 +42,7 @@
                                 if (isset($dic_settings['second_line_modifier']) && is_callable($dic_settings['second_line_modifier']))
                                     $line = $dic_settings['second_line_modifier']($line, $dic, $element);
                                 ?>
-                                    {{ $line }}
+                                {{ $line }}
                                 </span>
                             </td>
 
