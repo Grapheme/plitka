@@ -13,11 +13,13 @@
             'class' => 'btn btn-default'
         );
     }
-    $menus[] = array(
-        'link' => action(is_numeric($dic_id) ? 'dicval.create' : 'entity.create', array('dic_id' => $dic_id)),
-        'title' => 'Добавить',
-        'class' => 'btn btn-primary'
-    );
+    if  (Allow::action($module['group'], 'dicval_create')) {
+        $menus[] = array(
+            'link' => action(is_numeric($dic_id) ? 'dicval.create' : 'entity.create', array('dic_id' => $dic_id)),
+            'title' => 'Добавить',
+            'class' => 'btn btn-primary'
+        );
+    }
     if (Allow::action($module['group'], 'import')) {
         $menus[] = array(
             'link' => action('dic.import', array('dic_id' => $dic_id)),

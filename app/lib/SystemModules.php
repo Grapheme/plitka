@@ -14,25 +14,30 @@ class SystemModules {
         #Helper::dd($mod_info);
         #Helper::d($mod_menu);
 
-        $entity_dics = Dic::where('entity', '1')->orderBy('order', 'ASC')->get();
-        #Helper::tad($entity_dics);
-        if (count($entity_dics)) {
-            $dic_entities = array();
-            foreach ($entity_dics as $entity_dic) {
-                $dic_entities[$entity_dic->slug] = array(array(
-                    'title' => $entity_dic->name,
-                    #'link' => Helper::clearModuleLink(URL::route('dicval.index', $entity_dic->id)),
-                    'link' => Helper::clearModuleLink(URL::route('entity.index', $entity_dic->slug)),
-                    'class' => $entity_dic->icon_class,
-                    'module' => 'dictionaries',
-                    'permit' => 'dicval',
-                ));
-            }
-            ##$dic_entities += $mod_menu;
-            ##$mod_menu = $dic_entities;
+        $dic_entities = array();
+        if (class_exists('AdminDicvalsController')) {
+            $entity_dics = Dic::where('entity', '1')->orderBy('order', 'ASC')->get();
+            #Helper::tad($entity_dics);
+            if (count($entity_dics)) {
+                $controller = new AdminDicvalsController;
+                foreach ($entity_dics as $entity_dic) {
+                    if (!$controller->is_available($entity_dic))
+                        continue;
+                    $dic_entities[$entity_dic->slug] = array(array(
+                        'title' => $entity_dic->name,
+                        #'link' => Helper::clearModuleLink(URL::route('dicval.index', $entity_dic->id)),
+                        'link' => Helper::clearModuleLink(URL::route('entity.index', $entity_dic->slug)),
+                        'class' => $entity_dic->icon_class,
+                        'module' => 'dictionaries',
+                        'permit' => 'dicval_entity_view',
+                    ));
+                }
+                ##$dic_entities += $mod_menu;
+                ##$mod_menu = $dic_entities;
 
-            #Helper::d($dic_entities);
-            #Helper::dd($mod_menu);
+                #Helper::d($dic_entities);
+                #Helper::dd($mod_menu);
+            }
         }
 
         ## If exists menu elements...
@@ -40,7 +45,7 @@ class SystemModules {
             #foreach( $mod_menu as $mod_name => $menu_elements ) {
             foreach( (array)@$dic_entities+Allow::modules() as $mod_name => $module ) {
 
-                #Helper::d($mod_menu);
+                #Helper::d($mod_name);
 
                 ## Hardcode...
                 $menu_elements = @is_object($module) && @is_array($mod_menu[$mod_name]) ? $mod_menu[$mod_name] : $module;
@@ -59,7 +64,7 @@ class SystemModules {
                         $module = @$menu_element['module'] ?: $mod_name;
                         $permit = $rules ? Allow::action($module, $rules, true, true) : true;
 
-                        #Helper::d($module . " :: " . $permit);
+                        #Helper::d($module . " :: " . $permit . " :: " . $rules);
                         #Helper::d( $menu_element['title'] . " - " . (int)$permit );
 
                         if ($permit)

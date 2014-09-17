@@ -61,7 +61,7 @@
     	</section>
 
 
-        @if (Allow::action($module['group'], 'entity'))
+        @if (Allow::action($module['group'], 'settings'))
         <section class="col col-6">
             <div class="well">
                 <header>Настройки словаря</header>

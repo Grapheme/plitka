@@ -32,13 +32,13 @@
 						<td class="text-center" style="white-space:nowrap;">
 
         					@if(Allow::action($module['group'], 'edit'))
-                            <a href="{{ action('dic.edit', array('id' => $element->id)) }}" class="btn btn-success margin-right-10">
+                            <a href="{{ action('dic.edit', array('id' => $element->id)) }}" class="btn btn-success">
                                 Изменить
                             </a>
                     		@endif
 
-        					@if(Allow::action($module['group'], 'dicval'))
-                            <a href="{{ action('dicval.index', array('dic_id' => $element->id)) }}" class="btn btn-warning margin-right-10">
+        					@if(Allow::action($module['group'], 'dicval_view'))
+                            <a href="{{ action('dicval.index', array('dic_id' => $element->id)) }}" class="btn btn-warning">
                                 Содержимое ({{ $element->values_count() }})
                             </a>
                     		@endif

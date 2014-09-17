@@ -94,7 +94,7 @@ class AdminDicsController extends BaseController {
         #Helper::dd(Allow::action($this->module['group'], 'edit'));
 
         ## Hide dics, which are entities
-        if (!Allow::superuser() && !Allow::action($this->module['group'], 'edit'))
+        if (!Allow::superuser() && !Allow::action($this->module['group'], 'hidden'))
             $elements = $elements->where('entity', NULL);
 
         #$elements = $elements->paginate(30);
@@ -133,7 +133,6 @@ class AdminDicsController extends BaseController {
 	public function store() {
 
         Allow::permission($this->module['group'], 'create');
-
 		return $this->postSave();
 	}
 
@@ -141,7 +140,6 @@ class AdminDicsController extends BaseController {
 	public function update($id) {
 
         Allow::permission($this->module['group'], 'edit');
-
 		return $this->postSave($id);
 	}
 
@@ -156,29 +154,21 @@ class AdminDicsController extends BaseController {
             Allow::permission($this->module['group'], 'create');
 
 		if(!Request::ajax())
-            return App::abort(404);
+            App::abort(404);
 
         #$id = Input::get('id');
                 
         $input = Input::all();
-        /*
-        $input = array(
-            'slug' => Input::get('slug'),
-            'name' => Input::get('name'),
-            'entity' => Input::get('entity') ? 1 : NULL,
-            'icon_class' => Input::get('icon_class'),
-            'hide_slug' => Input::get('hide_slug') ? 1 : NULL,
-            'name_title' => Input::get('name_title') ?: NULL,
-        );
-        */
-        $input['entity'] = Input::get('entity') ? 1 : NULL;
-        $input['hide_slug'] = Input::get('hide_slug') ? 1 : NULL;
-        $input['make_slug_from_name'] = Input::get('make_slug_from_name') ? 1 : NULL;
-        $input['name_title'] = Input::get('name_title') ?: NULL;
 
-        $input['view_access'] = Input::get('view_access') ?: NULL;
-        $input['sortable'] = Input::get('sortable') ? 1 : 0;
-        $input['sort_by'] = Input::get('sort_by') != 'order' ? Input::get('sort_by') : NULL;
+        if (Allow::action($this->module['group'], 'settings')) {
+            $input['entity'] = Input::get('entity') ? 1 : NULL;
+            $input['hide_slug'] = Input::get('hide_slug') ? 1 : NULL;
+            $input['make_slug_from_name'] = Input::get('make_slug_from_name') ? 1 : NULL;
+            $input['name_title'] = Input::get('name_title') ?: NULL;
+            $input['view_access'] = Input::get('view_access') ?: NULL;
+            $input['sortable'] = Input::get('sortable') ? 1 : 0;
+            $input['sort_by'] = Input::get('sort_by') != 'order' ? Input::get('sort_by') : NULL;
+        }
 
         $json_request['responseText'] = "<pre>" . print_r($_POST, 1) . "</pre>";
         #return Response::json($json_request,200);

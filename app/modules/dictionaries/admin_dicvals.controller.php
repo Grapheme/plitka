@@ -90,7 +90,7 @@ class AdminDicvalsController extends BaseController {
 	#public function getIndex(){
 	public function index($dic_id){
 
-        Allow::permission($this->module['group'], 'dicval');
+        Allow::permission($this->module['group'], 'dicval_view');
 
         #Helper::dd($dic_id);
 
@@ -98,9 +98,7 @@ class AdminDicvalsController extends BaseController {
         if (!$this->checkDicPermission($dic))
             App::abort(404);
 
-        #Helper::tad($dic);
-        #dd($dic);
-
+        $this->checkDicUrl($dic, $dic_id);
         $this->callHook('before_all', $dic);
         $this->callHook('before_index', $dic);
 
@@ -180,21 +178,19 @@ class AdminDicvalsController extends BaseController {
 	#public function getCreate($entity){
 	public function create($dic_id){
 
-        Allow::permission($this->module['group'], 'dicval');
+        Allow::permission($this->module['group'], 'dicval_create');
 
         $dic = Dictionary::where(is_numeric($dic_id) ? 'id' : 'slug', $dic_id)->first();
         if (!$this->checkDicPermission($dic))
             App::abort(404);
 
+        $this->checkDicUrl($dic, $dic_id);
         $this->callHook('before_all', $dic);
         $this->callHook('before_create_edit', $dic);
         $this->callHook('before_create', $dic);
 
         $locales = $this->locales;
-        #Helper::dd($dic);
-
         $dic_settings = Config::get('dic/' . $dic->slug);
-        #Helper::dd($dic_settings);
 
         $element = new Dictionary;
 
@@ -205,17 +201,17 @@ class AdminDicvalsController extends BaseController {
 	#public function getEdit($entity, $id){
 	public function edit($dic_id, $id){
 
-        Allow::permission($this->module['group'], 'dicval');
+        Allow::permission($this->module['group'], 'dicval_edit');
 
         $dic = Dictionary::where(is_numeric($dic_id) ? 'id' : 'slug', $dic_id)->first();
         if (!$this->checkDicPermission($dic))
             App::abort(404);
         #Helper::tad($dic);
 
-        $locales = $this->locales;
+        $this->checkDicUrl($dic, $dic_id);
 
+        $locales = $this->locales;
         $dic_settings = Config::get('dic/' . $dic->slug);
-        #Helper::dd($dic_settings);
 
         $element = DicVal::where('id', $id)
             ->with('metas')
@@ -240,21 +236,24 @@ class AdminDicvalsController extends BaseController {
 
 	public function store($dic_id) {
 
-		return $this->postSave($dic_id);
+        Allow::permission($this->module['group'], 'dicval_create');
+        return $this->postSave($dic_id);
 	}
 
 
 	public function update($dic_id, $id) {
 
-		return $this->postSave($dic_id, $id);
+        Allow::permission($this->module['group'], 'dicval_edit');
+        return $this->postSave($dic_id, $id);
 	}
 
 
 	public function postSave($dic_id, $id = false){
 
-        #Helper::dd($entity);
-
-        Allow::permission($this->module['group'], 'dicval');
+        if (@$id)
+            Allow::permission($this->module['group'], 'dicval_edit');
+        else
+            Allow::permission($this->module['group'], 'dicval_create');
 
 		if(!Request::ajax())
             App::abort(404);
@@ -424,7 +423,7 @@ class AdminDicvalsController extends BaseController {
 	#public function deleteDestroy($entity, $id){
 	public function destroy($dic_id, $id){
 
-        Allow::permission($this->module['group'], 'dicval');
+        Allow::permission($this->module['group'], 'dicval_delete');
 
 		if(!Request::ajax())
             App::abort(404);
@@ -477,6 +476,10 @@ class AdminDicvalsController extends BaseController {
         return Response::make('1');
     }
 
+    public function is_available($dic) {
+        return self::checkDicPermission($dic);
+    }
+
     private function checkDicPermission($dic) {
 
         if (!is_object($dic))
@@ -503,6 +506,13 @@ class AdminDicvalsController extends BaseController {
         if (@$hook && @is_callable($hook))
             $hook($dic, $dicval);
 
+    }
+
+    private function checkDicUrl($dic, $dic_id) {
+        if ($dic->entity && is_numeric($dic_id))
+            Redirect('entity.index', $dic->slug);
+        elseif (!$dic->entity && !is_numeric($dic_id))
+            Redirect('dicval.index', $dic->id);
     }
 
 }
