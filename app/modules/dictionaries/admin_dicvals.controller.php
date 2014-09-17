@@ -292,7 +292,7 @@ class AdminDicvalsController extends BaseController {
 
             if ($id > 0 && NULL !== ($element = DicVal::find($id))) {
 
-                $this->callHook('before_update', $dic, $dicval);
+                $this->callHook('before_update', $dic, $element);
 
                 ## UPDATE DICVAL
                 $element->update($input);
