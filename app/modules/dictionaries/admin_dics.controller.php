@@ -79,6 +79,7 @@ class AdminDicsController extends BaseController {
         Allow::permission($this->module['group'], 'view');
 
         $elements = new Dictionary;
+        $tbl_dic = $elements->getTable();
 
         ## Ordering
         $elements = $elements->orderBy('order', 'ASC')->orderBy('name', 'ASC');
@@ -97,10 +98,17 @@ class AdminDicsController extends BaseController {
         if (!Allow::superuser() && !Allow::action($this->module['group'], 'hidden'))
             $elements = $elements->where('entity', NULL);
 
-        #$elements = $elements->paginate(30);
-        $elements = $elements->get();
+        $tbl_dicval = new DicVal;
+        $tbl_dicval = $tbl_dicval->getTable();
 
-        #Helper::dd($elements);
+        #$elements = $elements->paginate(30);
+        $elements = $elements
+            ->select($tbl_dic.'.*', DB::raw('COUNT(`' . $tbl_dicval . '`.`id`) AS count'))
+            ->leftJoin($tbl_dicval, $tbl_dicval.'.dic_id', '=', $tbl_dic.'.id')
+            ->groupBy($tbl_dic.'.id')
+            ->get();
+
+        #Helper::tad($elements);
 
         return View::make($this->module['tpl'].'index', compact('elements'));
 	}

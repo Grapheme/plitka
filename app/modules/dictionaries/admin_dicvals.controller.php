@@ -286,7 +286,11 @@ class AdminDicvalsController extends BaseController {
 
             #Helper::d($id);
 
+            $mode = '';
+
             if ($id > 0 && NULL !== ($element = DicVal::find($id))) {
+
+                $mode = 'update';
 
                 $this->callHook('before_update', $dic, $element);
 
@@ -294,6 +298,8 @@ class AdminDicvalsController extends BaseController {
                 $element->update($input);
 
             } else {
+
+                $mode = 'store';
 
                 $this->callHook('before_store', $dic);
 
@@ -407,6 +413,11 @@ class AdminDicvalsController extends BaseController {
                 }
             }
 
+            if ($mode == 'update')
+                $this->callHook('after_update', $dic, $element);
+            elseif ($mode == 'store')
+                $this->callHook('after_store', $dic, $element);
+
 			$json_request['responseText'] = 'Сохранено';
             if ($redirect && Input::get('redirect'))
 			    $json_request['redirect'] = Input::get('redirect');
@@ -454,7 +465,9 @@ class AdminDicvalsController extends BaseController {
             $element->delete();
         }
 
-		$json_request['responseText'] = 'Удалено';
+        $this->callHook('after_destroy', $dic, $element);
+
+        $json_request['responseText'] = 'Удалено';
 		$json_request['status'] = TRUE;
 		return Response::json($json_request,200);
 	}
@@ -509,10 +522,13 @@ class AdminDicvalsController extends BaseController {
     }
 
     private function checkDicUrl($dic, $dic_id) {
+        $qs = Request::getQueryString();
+        if ($qs != '')
+            $qs = '?' . $qs;
         if ($dic->entity && is_numeric($dic_id))
-            Redirect('entity.index', $dic->slug);
+            Redirect(URL::route('entity.index', $dic->slug).$qs);
         elseif (!$dic->entity && !is_numeric($dic_id))
-            Redirect('dicval.index', $dic->id);
+            Redirect(URL::route('dicval.index', $dic->id).$qs);
     }
 
 }

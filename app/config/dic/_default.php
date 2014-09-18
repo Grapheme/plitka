@@ -63,7 +63,10 @@ return array(
      */
     'fields' => function () {
 
-        ## Предзагружаем нужные словари с данными, по системному имени словаря, для дальнейшего использования.
+        /**
+         * Предзагружаем нужные словари с данными, по системному имени словаря, для дальнейшего использования.
+         * Делается это одним SQL-запросом, для снижения нагрузки на сервер БД.
+         */
         $dics_slugs = array(
             'product_type',
             'countries',
@@ -78,51 +81,124 @@ return array(
         $lists = Dic::makeLists($dics, 'values', 'name', 'id');
         #Helper::dd($lists);
 
-        ## Возвращаем набор полей
+        /**
+         * Возвращаем набор полей
+         */
         return array(
 
+            'input_text' => array(
+                'title' => 'Обычное однострочное поле ввода текста',
+                'type' => 'text',
+            ),
+
             'description' => array(
-                'title' => 'Описание',
+                'title' => 'Поле textarea',
                 'type' => 'textarea',
             ),
 
+            'content' => array(
+                'title' => 'Визуальный текстовый редактор',
+                'type' => 'textarea_redactor',
+            ),
+
+            'date_start' => array(
+                'title' => 'Поле выбора даты',
+                'type' => 'date',
+                'others' => array(
+                    'class' => 'text-center',
+                    'style' => 'width: 221px',
+                    'placeholder' => 'Нажмите для выбора'
+                ),
+                'handler' => function($value) {
+                    return $value ? @date('Y-m-d', strtotime($value)) : $value;
+                },
+                'value_modifier' => function($value) {
+                    return $value ? @date('d.m.Y', strtotime($value)) : $value;
+                },
+            ),
+
+            'photo' => array(
+                'title' => 'Поле для загрузки изображения',
+                'type' => 'image',
+            ),
+
+            'gallery' => array(
+                'title' => 'Галерея изображений',
+                'type' => 'gallery',
+                'handler' => function($array, $element) {
+                    return ExtForm::process('gallery', array(
+                        'module'  => 'dicval_meta',
+                        'unit_id' => $element->id,
+                        'gallery' => $array,
+                        'single'  => true,
+                    ));
+                }
+            ),
+
+            'link_to_file' => array(
+                'title' => 'Поле для загрузки файла',
+                'type' => 'upload',
+                'accept' => '*', # .exe,image/*,video/*,audio/*
+                'label_class' => 'input-file',
+                'handler' => function($value, $element = false) {
+                    if (@is_object($element) && @is_array($value)) {
+                        $value['module'] = 'dicval';
+                        $value['unit_id'] = $element->id;
+                    }
+                    return ExtForm::process('upload', $value);
+                },
+            ),
+
+            'video' => array(
+                'title' => 'Поле для вставки EMBED-кода видео + картинка для предпросмотра',
+                'type' => 'video',
+                'handler' => function($value, $element = false) {
+                    if (@is_object($element) && @is_array($value)) {
+                        $value['module'] = 'dicval';
+                        $value['unit_id'] = $element->id;
+                    }
+                    return ExtForm::process('video', $value);
+                },
+            ),
+
             'product_type_id' => array(
-                'title' => 'Вид продукции',
+                'title' => 'Выпадающий список для выбора одного значения',
                 'type' => 'select',
-                #'values' => [],
-                'values' => array('Выберите..') + $lists['product_type'],
-            ),
-
-            'country_id' => array(
-                'title' => 'Страна',
-                'type' => 'select',
-                'values' => array('Выберите..') + $lists['countries'],
-            ),
-
-            'factory_id' => array(
-                'title' => 'Фабрика',
-                'type' => 'select',
-                'values' => array('Выберите..') + $lists['factory'],
-            ),
-
-            array('content' => '<hr/>'),
-
-            'format_id' => array(
-                'title' => 'Формат',
-                'type' => 'select',
-                'values' => array('Выберите..') + $lists['format'],
-            ),
-
-            'surface_id' => array(
-                'title' => 'Поверхность',
-                'type' => 'select',
-                'values' => array('Выберите..') + $lists['surface'],
+                'values' => array('Выберите..') + $lists['product_type'], ## Используется предзагруженный словарь
             ),
 
             'scope_id' => array(
-                'title' => 'Места применения',
+                'title' => 'Выпадающий список со множественным выбором',
+                'type' => 'select-multiple',
+                'values' => $lists['scope'],
+                'handler' => function($value, $element) {
+                    $value = (array)$value;
+                    $value = array_flip($value);
+                    foreach ($value as $v => $null)
+                        $value[$v] = array('dicval_child_dic' => 'scope');
+                    $element->relations()->sync($value);
+                    return @count($value);
+                },
+                'value_modifier' => function($value, $element) {
+                    $return = (is_object($element) && $element->id)
+                        ? $element->relations()->get()->lists('id')
+                        : $return = array()
+                    ;
+                    return $return;
+                },
+            ),
+
+            'basic' => array(
+                'no_label' => true,
+                'title' => 'Чекбокс обычный',
+                'type' => 'checkbox',
+                'label_class' => 'normal_checkbox',
+            ),
+
+            'scope_id' => array(
+                'title' => 'Группа чекбоксов',
                 'type' => 'checkboxes',
-                'columns' => 2,
+                'columns' => 2, ## Количество колонок
                 'values' => $lists['scope'],
                 'handler' => function ($value, $element) {
                     $value = (array)$value;
@@ -136,28 +212,7 @@ return array(
                     return $return;
                 },
             )
-            /*
-            'scope_id' => array(
-                'title' => 'Места применения',
-                'type' => 'select-multiple',
-                'values' => Dic::valuesBySlug('scope')->lists('name', 'id'),
-                'handler' => function($value, $element) {
-                        $value = (array)$value;
-                        $value = array_flip($value);
-                        foreach ($value as $v => $null)
-                            $value[$v] = array('dicval_child_dic' => 'scope');
-                        $element->relations()->sync($value);
-                        return @count($value);
-                    },
-                'value_modifier' => function($value, $element) {
-                        $return = (is_object($element) && $element->id)
-                            ? $element->relations()->get()->lists('id')
-                            : $return = array()
-                        ;
-                        return $return;
-                    },
-            ),
-            */
+
         );
 
     },
@@ -169,7 +224,9 @@ return array(
         $menus = array();
         $menus[] = array('raw' => '<br/>');
 
-        ## Предзагружаем словари для дальнейшего использования
+        /**
+         * Предзагружаем словари для дальнейшего использования, одним SQL-запросом
+         */
         $dics_slugs = array(
             'product_type',
             'countries',
@@ -180,11 +237,13 @@ return array(
         $lists = Dic::makeLists($dics, 'values', 'name', 'id');
         #Helper::tad($lists);
 
-        ## Добавляем доп. элементы в меню, в данном случае: выпадающие поля для организации фильтрации записей по их свойствам
+        /**
+         * Добавляем доп. элементы в меню, в данном случае: выпадающие поля для организации фильтрации записей по их свойствам
+         */
         $menus[] = Helper::getDicValMenuDropdown('product_type_id', 'Все виды продукции', $lists['product_type'], $dic);
         $menus[] = Helper::getDicValMenuDropdown('country_id', 'Все страны', $lists['countries'], $dic);
         $menus[] = Helper::getDicValMenuDropdown('factory_id', 'Все фабрики', $lists['factory'], $dic);
-        #$menus[] = Helper::getDicValMenuDropdown('format_id', 'Все форматы', 'format', $dic);
+        #$menus[] = Helper::getDicValMenuDropdown('format_id', 'Все форматы', $lists['format'], $dic);
         return $menus;
     },
 
@@ -196,13 +255,17 @@ return array(
      */
     'actions' => function($dic, $dicval) {
 
-        ## Получаем данные, которые были созданы с помощью хука before_index_view (описание ниже).
+        /**
+         * Получаем данные, которые были созданы с помощью хука before_index_view (описание ниже).
+         */
         $dics = Config::get('temp.index_dics');
         $dic_products = $dics['products'];
         $dic_interiors = $dics['interiors'];
         $counts = Config::get('temp.index_counts');
 
-        ## Возвращаем доп. элементы в столбец "Действия".
+        /**
+         * Возвращаем доп. элементы в столбец "Действия": кнопки со ссылками и счетчиками, индивидуальны для каждой записи
+         */
         return '
             <span class="block_ margin-bottom-5_">
                 <a href="' . URL::route('entity.index', array('products', 'filter[fields][collection_id]' => $dicval->id)) . '" class="btn btn-default">
@@ -294,21 +357,39 @@ return array(
         },
 
         /**
-         * Вызывается в начале метода store, сразу после хука before_store_update
+         * Вызывается в начале метода postStore, сразу после хука before_store_update
          */
         'before_store' => function ($dic) {
         },
 
         /**
-         * Вызывается в начале метода update, сразу после хука before_store_update
+         * Вызывается в метода postStore, после создания записи
+         */
+        'after_store' => function ($dic, $dicval) {
+        },
+
+        /**
+         * Вызывается в начале метода postStore, сразу после хука before_store_update
          */
         'before_update' => function ($dic, $dicval) {
+        },
+
+        /**
+         * Вызывается в метода postStore, после обновления записи
+         */
+        'after_update' => function ($dic, $dicval) {
         },
 
         /**
          * Вызывается в начале метода destroy
          */
         'before_destroy' => function ($dic, $dicval) {
+        },
+
+        /**
+         * Вызывается в конце метода destroy, после удаления записи словаря
+         */
+        'after_destroy' => function ($dic, $dicval) {
         },
     ),
 

@@ -46,6 +46,10 @@ class Dictionary extends BaseModel {
         return DicVal::where('dic_id', $this->id)->count();
     }
 
+    public function values_count2() {
+        return $this->hasMany('DicVal', 'dic_id', 'id'); #->select(DB::raw('COUNT(*) as count'));
+    }
+
     public function value() {
         return $this->hasOne('DicVal', 'dic_id', 'id');
     }
