@@ -392,6 +392,24 @@ return array(
         'after_destroy' => function ($dic, $dicval) {
         },
 
+
+        /**
+         * Если данная функция объявлена, то ее вывод заменит первую строку в списке записей словаря
+         */
+        'first_line_modifier' => function($line, $dic, $dicval) {
+            #Helper::ta($dicval);
+            return $dicval->name;
+        },
+
+
+        /**
+         * Если данная функция объявлена, то ее вывод заменит вторую строку в списке записей словаря
+         */
+        'second_line_modifier' => function($line, $dic, $dicval) {
+            #Helper::ta($dicval);
+            return $dicval->slug;
+        },
+
     ),
 
     'seo' => false,
