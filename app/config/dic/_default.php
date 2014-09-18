@@ -391,6 +391,7 @@ return array(
          */
         'after_destroy' => function ($dic, $dicval) {
         },
+
     ),
 
     'seo' => false,
