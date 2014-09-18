@@ -7,7 +7,7 @@ return array(
         $dics_slugs = array(
             'collections',
             'colors',
-            'surface',
+            'surface_type',
         );
         $dics = Dic::whereIn('slug', $dics_slugs)->with('values')->get();
         $dics = Dic::modifyKeys($dics, 'slug');
@@ -35,14 +35,18 @@ return array(
             ),
 
             'surface_id' => array(
-                'title' => 'Поверхность',
+                'title' => 'Тип поверхности',
                 'type' => 'select',
-                'values' => array('Выберите..') + $lists['surface'],
+                'values' => array('Выберите..') + $lists['surface_type'],
             ),
 
             'price' => array(
                 'title' => 'Цена',
                 'type' => 'text',
+                'others' => array(
+                    'maxlength' => 5,
+                    'onkeyup' => "this.value = this.value.replace (/\D/, '')", ## ONLY DIGITS
+                ),
             ),
 
             'basic' => array(

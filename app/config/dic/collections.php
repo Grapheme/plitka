@@ -28,20 +28,22 @@ return array(
             'product_type_id' => array(
                 'title' => 'Вид продукции',
                 'type' => 'select',
-                #'values' => [],
                 'values' => array('Выберите..') + $lists['product_type'],
+                'default' => Input::get('filter.fields.product_type_id'),
             ),
 
             'country_id' => array(
                 'title' => 'Страна',
                 'type' => 'select',
                 'values' => array('Выберите..') + $lists['countries'],
+                'default' => Input::get('filter.fields.country_id'),
             ),
 
             'factory_id' => array(
                 'title' => 'Фабрика',
                 'type' => 'select',
                 'values' => array('Выберите..') + $lists['factory'],
+                'default' => Input::get('filter.fields.factory_id'),
             ),
 
             array('content' => '<hr/>'),

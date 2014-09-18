@@ -149,7 +149,7 @@
 
     @if(@$element->id)
     @else
-    {{ Form::hidden('redirect', action(is_numeric($dic_id) ? 'dicval.index' : 'entity.index', array('dic_id' => $dic_id))) }}
+    {{ Form::hidden('redirect', action(is_numeric($dic_id) ? 'dicval.index' : 'entity.index', array('dic_id' => $dic_id)) . (Request::getQueryString() ? '?' . Request::getQueryString() : '')) }}
     @endif
 
     {{ Form::close() }}

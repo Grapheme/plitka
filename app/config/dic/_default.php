@@ -89,6 +89,10 @@ return array(
             'input_text' => array(
                 'title' => 'Обычное однострочное поле ввода текста',
                 'type' => 'text',
+                'others' => array(
+                    'maxlength' => 5,
+                    'onkeyup' => "this.value = this.value.replace (/\D/, '')", ## ONLY DIGITS
+                ),
             ),
 
             'description' => array(
@@ -100,6 +104,11 @@ return array(
                 'title' => 'Визуальный текстовый редактор',
                 'type' => 'textarea_redactor',
             ),
+
+            /**
+             * Визуальный разделитель
+             */
+            array('content' => '<hr/>'),
 
             'date_start' => array(
                 'title' => 'Поле выбора даты',
@@ -392,25 +401,43 @@ return array(
         'after_destroy' => function ($dic, $dicval) {
         },
 
-
-        /**
-         * Если данная функция объявлена, то ее вывод заменит первую строку в списке записей словаря
-         */
-        'first_line_modifier' => function($line, $dic, $dicval) {
-            #Helper::ta($dicval);
-            return $dicval->name;
-        },
-
-
-        /**
-         * Если данная функция объявлена, то ее вывод заменит вторую строку в списке записей словаря
-         */
-        'second_line_modifier' => function($line, $dic, $dicval) {
-            #Helper::ta($dicval);
-            return $dicval->slug;
-        },
-
     ),
+
+
+    /**
+     * Если данная функция объявлена, то ее вывод заменит первую строку в списке записей словаря
+     */
+    'first_line_modifier' => function($line, $dic, $dicval) {
+        #Helper::ta($dicval);
+        return $dicval->name;
+    },
+
+    /**
+     * Если данная функция объявлена, то ее вывод заменит вторую строку в списке записей словаря
+     */
+    'second_line_modifier' => function($line, $dic, $dicval) {
+        #Helper::ta($dicval);
+        return $dicval->slug;
+    },
+
+    /**
+     * Данная секция перезаписывает права определенных групп пользователей к действиям с текущим словарем
+     */
+    'group_actions' => array(
+
+        /**
+         * Переопределить права доступа для группы Модераторы
+         */
+        'moderator' => function() {
+            return array(
+                'dicval_view'   => 1,
+                'dicval_create' => 0,
+                'dicval_edit'   => 1,
+                'dicval_delete' => 0,
+            );
+        }
+    ),
+
 
     'seo' => false,
 );

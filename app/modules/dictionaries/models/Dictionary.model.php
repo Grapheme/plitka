@@ -71,13 +71,13 @@ class Dictionary extends BaseModel {
      */
     public static function modifyKeys($collection, $key = 'slug') {
         #Helper::tad($collection);
+        $array = array();
         foreach ($collection as $c => $col) {
             if (NULL !== ($current_key = $col->$key)) {
-                $collection[$current_key] = $col;
-                unset($collection[$c]);
+                $array[$current_key] = $col;
             }
         }
-        return $collection;
+        return $array;
     }
 
     /**
