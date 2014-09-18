@@ -53,7 +53,7 @@
                                 @endif
 
                                 @if(Allow::action($module['group'], 'dicval_edit'))
-                                <a href="{{ action(is_numeric($dic_id) ? 'dicval.edit' : 'entity.edit', array('dic_id' => $dic_id, 'id' => $element->id)) }}" class="btn btn-success">
+                                <a href="{{ action(is_numeric($dic_id) ? 'dicval.edit' : 'entity.edit', array('dic_id' => $dic_id, 'id' => $element->id)) . (Request::getQueryString() ? '?' . Request::getQueryString() : '') }}" class="btn btn-success">
                                     Изменить
                                 </a>
                                 @endif
