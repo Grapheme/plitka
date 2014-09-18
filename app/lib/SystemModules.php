@@ -103,9 +103,9 @@ class SystemModules {
         } else {
 			if(isset($modules['$name'])) {
 				if(is_null($index)) {
-					return $modules['$name'];
-                } elseif(isset($modules['$name'][$index])) {
-					return $modules['$name'][$index];
+					return $modules[$name];
+                } elseif(isset($modules[$name][$index])) {
+					return $modules[$name][$index];
                 }
             } else {
 				return TRUE;

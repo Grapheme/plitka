@@ -111,12 +111,15 @@ class Dictionary extends BaseModel {
 
                 $list = array();
                 if (isset($col->$listed_key) && count($col->$listed_key))
+                    #Helper::ta($col->$listed_key);
                     foreach ($col->$listed_key as $e => $el) {
+                        #Helper::d("$e => $el");
                         if ($key != '')
                             $list[$el->$key] = $el->$value;
                         else
                             $list[] = $el->$value;
                     }
+                    #Helper::dd($list);
                 $lists[$c] = $list;
             }
             #Helper::ta($col);

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="265d8b9b-4054-4c55-88b5-a221c3c4a8f2" name="Default" comment="fix">
+    <list default="true" id="265d8b9b-4054-4c55-88b5-a221c3c4a8f2" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/config/dic/factory.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/dictionaries/models/Dictionary.model.php" afterPath="$PROJECT_DIR$/app/modules/dictionaries/models/Dictionary.model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/dic/_default.php" afterPath="$PROJECT_DIR$/app/config/dic/_default.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/lib/Helper.php" afterPath="$PROJECT_DIR$/app/lib/Helper.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/lib/SystemModules.php" afterPath="$PROJECT_DIR$/app/lib/SystemModules.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/dic/collections.php" afterPath="$PROJECT_DIR$/app/config/dic/collections.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/edit.blade.php" afterPath="$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/edit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/dic/products.php" afterPath="$PROJECT_DIR$/app/config/dic/products.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="plitka.iws" />
@@ -47,7 +47,7 @@
       <file leaf-file-name="admin_dicvals.controller.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/admin_dicvals.controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.8461537" vertical-offset="5661" max-vertical-offset="9231">
+            <state vertical-scroll-proportion="-7.8461537" vertical-offset="5661" max-vertical-offset="9214">
               <caret line="345" column="21" selection-start-line="345" selection-start-column="21" selection-end-line="345" selection-end-column="21" />
               <folding />
             </state>
@@ -57,8 +57,8 @@
       <file leaf-file-name="admin_dics.menu.controller.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/admin_dics.menu.controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.230769" vertical-offset="238" max-vertical-offset="1564">
-              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="35" selection-end-column="62" />
+            <state vertical-scroll-proportion="-4.576923" vertical-offset="238" max-vertical-offset="1564">
+              <caret line="21" column="21" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -67,18 +67,18 @@
       <file leaf-file-name="Dictionary.model.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/models/Dictionary.model.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.461538" vertical-offset="1054" max-vertical-offset="3179">
-              <caret line="78" column="9" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
+            <state vertical-scroll-proportion="-8.5" vertical-offset="1785" max-vertical-offset="3230">
+              <caret line="118" column="28" selection-start-line="118" selection-start-column="28" selection-end-line="118" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_default.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="_default.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/config/dic/_default.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6363636" vertical-offset="7140" max-vertical-offset="7701">
-              <caret line="437" column="9" selection-start-line="437" selection-start-column="9" selection-end-line="437" selection-end-column="9" />
+            <state vertical-scroll-proportion="-13.884615" vertical-offset="5198" max-vertical-offset="7633">
+              <caret line="327" column="0" selection-start-line="327" selection-start-column="0" selection-end-line="328" selection-end-column="0" />
               <folding>
                 <element signature="e#6#2982#0#PHP" expanded="true" />
                 <marker date="1411046782551" expanded="true" signature="11300:11486" placeholder="..." />
@@ -88,14 +88,38 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="collections.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="factory.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/config/dic/factory.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.8846154" vertical-offset="1360" max-vertical-offset="1921">
+              <caret line="89" column="54" selection-start-line="89" selection-start-column="54" selection-end-line="89" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Helper.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/lib/Helper.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-15.038462" vertical-offset="714" max-vertical-offset="14229">
+              <caret line="65" column="10" selection-start-line="65" selection-start-column="10" selection-end-line="65" selection-end-column="10" />
+              <folding>
+                <marker date="1411048896352" expanded="true" signature="944:959" placeholder="..." />
+                <marker date="1411048896352" expanded="true" signature="9244:9356" placeholder="..." />
+                <marker date="1411048896352" expanded="true" signature="9302:9356" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="collections.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/config/dic/collections.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.730769" vertical-offset="289" max-vertical-offset="3672">
-              <caret line="38" column="65" selection-start-line="38" selection-start-column="65" selection-end-line="38" selection-end-column="65" />
+            <state vertical-scroll-proportion="0.54545456" vertical-offset="1513" max-vertical-offset="3502">
+              <caret line="107" column="29" selection-start-line="107" selection-start-column="29" selection-end-line="107" selection-end-column="29" />
               <folding>
-                <marker date="1411046839874" expanded="true" signature="4931:5117" placeholder="..." />
-                <marker date="1411046839874" expanded="true" signature="5084:5117" placeholder="..." />
+                <marker date="1411049739443" expanded="true" signature="4470:4656" placeholder="..." />
+                <marker date="1411049739443" expanded="true" signature="4623:4656" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -155,24 +179,25 @@
         <option value="$PROJECT_DIR$/app/models/BaseModel.php" />
         <option value="$PROJECT_DIR$/app/lib/asdasdasd" />
         <option value="$PROJECT_DIR$/app/config/dic.php" />
-        <option value="$PROJECT_DIR$/app/lib/Helper.php" />
         <option value="$PROJECT_DIR$/app/config/dic/interiors.php" />
         <option value="$PROJECT_DIR$/app/config/dic/projects.php" />
         <option value="$PROJECT_DIR$/app/config/dic/articles.php" />
         <option value="$PROJECT_DIR$/app/modules/dictionaries/views/admin/dics/edit.blade.php" />
         <option value="$PROJECT_DIR$/app/modules/dictionaries/admin_dics.menu.controller.php" />
-        <option value="$PROJECT_DIR$/app/lib/SystemModules.php" />
         <option value="$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/menu.blade.php" />
         <option value="$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/index.blade.php" />
         <option value="$PROJECT_DIR$/app/modules/dictionaries/admin_dics.controller.php" />
         <option value="$PROJECT_DIR$/app/modules/dictionaries/views/admin/dics/index.blade.php" />
         <option value="$PROJECT_DIR$/app/modules/dictionaries/admin_dicvals.controller.php" />
         <option value="$PROJECT_DIR$/app/modules/dictionaries/models/DicVal.model.php" />
-        <option value="$PROJECT_DIR$/app/modules/dictionaries/models/Dictionary.model.php" />
         <option value="$PROJECT_DIR$/app/config/dic/products.php" />
         <option value="$PROJECT_DIR$/app/config/dic/_default.php" />
-        <option value="$PROJECT_DIR$/app/config/dic/collections.php" />
         <option value="$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/edit.blade.php" />
+        <option value="$PROJECT_DIR$/app/config/dic/factory.php" />
+        <option value="$PROJECT_DIR$/app/lib/SystemModules.php" />
+        <option value="$PROJECT_DIR$/app/lib/Helper.php" />
+        <option value="$PROJECT_DIR$/app/modules/dictionaries/models/Dictionary.model.php" />
+        <option value="$PROJECT_DIR$/app/config/dic/collections.php" />
       </list>
     </option>
   </component>
@@ -448,7 +473,13 @@
       <option name="project" value="LOCAL" />
       <updated>1411043228841</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="hot fixes">
+      <created>1411047004352</created>
+      <option name="number" value="00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1411047004352</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -508,7 +539,8 @@
     <MESSAGE value="dic manual" />
     <MESSAGE value="+" />
     <MESSAGE value="fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix" />
+    <MESSAGE value="hot fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="hot fixes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -552,9 +584,9 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="5168" max-vertical-offset="12189">
           <caret line="304" column="99" selection-start-line="304" selection-start-column="99" selection-end-line="304" selection-end-column="99" />
           <folding>
-            <marker date="1410955325019" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1410955325019" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1410955325019" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1411048896352" expanded="true" signature="944:959" placeholder="..." />
+            <marker date="1411048896352" expanded="true" signature="9244:9356" placeholder="..." />
+            <marker date="1411048896352" expanded="true" signature="9302:9356" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -759,26 +791,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/lib/SystemModules.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12592593" vertical-offset="1003" max-vertical-offset="2057">
-          <caret line="63" column="72" selection-start-line="63" selection-start-column="72" selection-end-line="63" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/lib/Helper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2675522" vertical-offset="11555" max-vertical-offset="14076">
-          <caret line="687" column="98" selection-start-line="687" selection-start-column="8" selection-end-line="687" selection-end-column="98" />
-          <folding>
-            <marker date="1410955325019" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1410955325019" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1410955325019" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/menu.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.5" vertical-offset="51" max-vertical-offset="1003">
@@ -819,38 +831,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/admin_dics.menu.controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.230769" vertical-offset="238" max-vertical-offset="1564">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="35" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/models/Dictionary.model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.461538" vertical-offset="1054" max-vertical-offset="3179">
-          <caret line="78" column="9" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/config/dic/products.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7736185" vertical-offset="348" max-vertical-offset="2057">
           <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/dic/collections.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.730769" vertical-offset="289" max-vertical-offset="3672">
-          <caret line="38" column="65" selection-start-line="38" selection-start-column="65" selection-end-line="38" selection-end-column="65" />
-          <folding>
-            <marker date="1411046839874" expanded="true" signature="4931:5117" placeholder="..." />
-            <marker date="1411046839874" expanded="true" signature="5084:5117" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -870,14 +855,69 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/lib/SystemModules.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.54545456" vertical-offset="1496" max-vertical-offset="2057">
+          <caret line="106" column="45" selection-start-line="106" selection-start-column="45" selection-end-line="106" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/admin_dics.menu.controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.576923" vertical-offset="238" max-vertical-offset="1564">
+          <caret line="21" column="21" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/dic/factory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.8846154" vertical-offset="1360" max-vertical-offset="1921">
+          <caret line="89" column="54" selection-start-line="89" selection-start-column="54" selection-end-line="89" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/lib/Helper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.038462" vertical-offset="714" max-vertical-offset="14229">
+          <caret line="65" column="10" selection-start-line="65" selection-start-column="10" selection-end-line="65" selection-end-column="10" />
+          <folding>
+            <marker date="1411048896352" expanded="true" signature="944:959" placeholder="..." />
+            <marker date="1411048896352" expanded="true" signature="9244:9356" placeholder="..." />
+            <marker date="1411048896352" expanded="true" signature="9302:9356" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/config/dic/_default.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6363636" vertical-offset="7140" max-vertical-offset="7701">
-          <caret line="437" column="9" selection-start-line="437" selection-start-column="9" selection-end-line="437" selection-end-column="9" />
+        <state vertical-scroll-proportion="-13.884615" vertical-offset="5198" max-vertical-offset="7633">
+          <caret line="327" column="0" selection-start-line="327" selection-start-column="0" selection-end-line="328" selection-end-column="0" />
           <folding>
             <element signature="e#6#2982#0#PHP" expanded="true" />
             <marker date="1411046782551" expanded="true" signature="11300:11486" placeholder="..." />
             <marker date="1411046782551" expanded="true" signature="11453:11486" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/models/Dictionary.model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.5" vertical-offset="1785" max-vertical-offset="3230">
+          <caret line="118" column="28" selection-start-line="118" selection-start-column="28" selection-end-line="118" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/dic/collections.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.54545456" vertical-offset="1513" max-vertical-offset="3502">
+          <caret line="107" column="29" selection-start-line="107" selection-start-column="29" selection-end-line="107" selection-end-column="29" />
+          <folding>
+            <marker date="1411049739443" expanded="true" signature="4470:4656" placeholder="..." />
+            <marker date="1411049739443" expanded="true" signature="4623:4656" placeholder="..." />
           </folding>
         </state>
       </provider>

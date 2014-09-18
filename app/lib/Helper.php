@@ -48,14 +48,22 @@ class Helper
         return false;
     }
 
-    public static function ta($object)
-    {
-        self::d($object->toArray());
+    public static function ta($object) {
+        $return = $object;
+        if (is_object($object))
+            $return = $object->toArray();
+        elseif (is_array($object)) {
+            foreach ($object as $o => $obj) {
+                $return[$o] = is_object($obj) ? $obj->toArray() : $obj;
+            }
+        }
+        self::d($return);
     }
 
     public static function tad($object)
     {
-        self::dd(is_object($object) ? $object->toArray() : $object);
+        self::ta($object);
+        die;
     }
 
     public static function ta_($array)

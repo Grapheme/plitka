@@ -77,28 +77,6 @@ return array(
                     return $return;
                 },
             )
-            /*
-            'scope_id' => array(
-                'title' => 'Места применения',
-                'type' => 'select-multiple',
-                'values' => Dic::valuesBySlug('scope')->lists('name', 'id'),
-                'handler' => function($value, $element) {
-                        $value = (array)$value;
-                        $value = array_flip($value);
-                        foreach ($value as $v => $null)
-                            $value[$v] = array('dicval_child_dic' => 'scope');
-                        $element->relations()->sync($value);
-                        return @count($value);
-                    },
-                'value_modifier' => function($value, $element) {
-                        $return = (is_object($element) && $element->id)
-                            ? $element->relations()->get()->lists('id')
-                            : $return = array()
-                        ;
-                        return $return;
-                    },
-            ),
-            */
         );
 
     },
@@ -115,13 +93,25 @@ return array(
         );
         $dics = Dic::whereIn('slug', $dics_slugs)->with('values')->get();
         $dics = Dic::modifyKeys($dics, 'slug');
+
+        ## Выбираем только те фабрики, которые соответствуют заданой стране
+        if ($dics['factory']) {
+            $factories = DicVal::extracts($dics['factory']->values, 1);
+            foreach ($factories as $f => $factory) {
+                if ($factory->country_id != Input::get('filter.fields.country_id'))
+                    unset($factories[$f]);
+            }
+            #Helper::ta($factories);
+            $dics['factory']->values = $factories;
+        }
         $lists = Dic::makeLists($dics, 'values', 'name', 'id');
         #Helper::tad($lists);
 
         #/*
         $menus[] = Helper::getDicValMenuDropdown('product_type_id', 'Все виды продукции', $lists['product_type'], $dic);
         $menus[] = Helper::getDicValMenuDropdown('country_id', 'Все страны', $lists['countries'], $dic);
-        $menus[] = Helper::getDicValMenuDropdown('factory_id', 'Все фабрики', $lists['factory'], $dic);
+        if (Input::get('filter.fields.country_id') && count($lists['factory']))
+            $menus[] = Helper::getDicValMenuDropdown('factory_id', 'Все фабрики', $lists['factory'], $dic);
         #*/
         #$menus[] = Helper::getDicValMenuDropdown('format_id', 'Все форматы', 'format', $dic);
         return $menus;
