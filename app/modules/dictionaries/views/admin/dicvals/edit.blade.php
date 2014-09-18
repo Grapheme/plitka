@@ -12,7 +12,7 @@
     $create_title = "Редактировать запись:";
     $edit_title   = "Добавить запись:";
 
-    $url        = 
+    $url =
         @$element->id
         ? action(is_numeric($dic_id) ? 'dicval.update' : 'entity.update', array('dic_id' => $dic_id, 'id' => $element->id))
         : action(is_numeric($dic_id) ? 'dicval.store'  : 'entity.store',  array('dic_id' => $dic_id));
