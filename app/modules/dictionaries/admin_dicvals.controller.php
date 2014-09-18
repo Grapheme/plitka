@@ -275,7 +275,7 @@ class AdminDicvalsController extends BaseController {
         if (!@$input['slug'] && $dic->make_slug_from_name)
             $input['slug'] = Helper::translit($input['name']);
 
-        $json_request['responseText'] = "<pre>" . print_r($_POST, 1) . "</pre>";
+        #$json_request['responseText'] = "<pre>" . print_r($_POST, 1) . "</pre>";
         #return Response::json($json_request,200);
 
         $json_request = array('status' => FALSE, 'responseText' => '', 'responseErrorText' => '', 'redirect' => FALSE);
@@ -306,7 +306,7 @@ class AdminDicvalsController extends BaseController {
                 if (@!$input['dic_id'])
                     $input['dic_id'] = $dic->id;
 
-                $json_request['responseText'] = "<pre>" . print_r($input, 1) . "</pre>";
+                #$json_request['responseText'] = "<pre>" . print_r($input, 1) . "</pre>";
                 #return Response::json($json_request,200);
 
                 ## CREATE DICVAL
