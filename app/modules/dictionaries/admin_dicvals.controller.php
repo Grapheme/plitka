@@ -85,18 +85,16 @@ class AdminDicvalsController extends BaseController {
 
         View::share('module', $this->module);
         View::share('CLASS', __CLASS__);
-	}
+    }
 
 	#public function getIndex(){
 	public function index($dic_id){
 
-        Allow::permission($this->module['group'], 'dicval_view');
-
-        #Helper::dd($dic_id);
-
         $dic = Dictionary::where(is_numeric($dic_id) ? 'id' : 'slug', $dic_id)->first();
         if (!$this->checkDicPermission($dic))
             App::abort(404);
+
+        $this->dicval_permission($dic, 'dicval_view');
 
         $this->checkDicUrl($dic, $dic_id);
         $this->callHook('before_all', $dic);
@@ -529,6 +527,27 @@ class AdminDicvalsController extends BaseController {
             Redirect(URL::route('entity.index', $dic->slug).$qs);
         elseif (!$dic->entity && !is_numeric($dic_id))
             Redirect(URL::route('dicval.index', $dic->id).$qs);
+    }
+
+    private function dicval_permission($dic, $permission = '') {
+
+        /**
+         * Устанавливаем права доступа текущего пользователя к словарю, из конфига
+         */
+        $dic_settings = Config::get('dic/' . $dic->slug);
+        if (@is_object(Auth::user()) && @is_object(Auth::user()->group) && NULL != ($user_group_name = Auth::user()->group->name)) {
+            #Helper::dd($user_group_name);
+            #$user_group_name = 'moderator';
+            $dicval_permissions = @$dic_settings['group_actions'][$user_group_name];
+            #Helper::dd($dicval_permissions);
+            if (isset($dicval_permissions) && @is_callable($dicval_permissions)) {
+                $dicval_permissions = $dicval_permissions();
+                #Helper::dd($dicval_permissions);
+                Allow::set_actions($this->module['group'], $dicval_permissions);
+            }
+        }
+
+        Allow::permission($this->module['group'], $permission);
     }
 
 }
