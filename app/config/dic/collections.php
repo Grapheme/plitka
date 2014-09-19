@@ -194,25 +194,6 @@ return array(
         return $dicval->slug;
     },
 
-    /**
-     * Данная секция перезаписывает права определенных групп пользователей к действиям с текущим словарем
-     */
-    'group_actions' => array(
-
-        /**
-         * Переопределить права доступа для группы Модераторы
-         */
-        /*
-        'moderator' => function() {
-            return array(
-                'dicval_view'   => 1,
-                'dicval_create' => 0,
-                'dicval_edit'   => 1,
-                'dicval_delete' => 0,
-            );
-        }
-        */
-    ),
 
     'seo' => false,
 );

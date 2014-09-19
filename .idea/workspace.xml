@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="265d8b9b-4054-4c55-88b5-a221c3c4a8f2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/lib/Allow.php" afterPath="$PROJECT_DIR$/app/lib/Allow.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/dic/_default.php" afterPath="$PROJECT_DIR$/app/config/dic/_default.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/dictionaries/admin_dicvals.controller.php" afterPath="$PROJECT_DIR$/app/modules/dictionaries/admin_dicvals.controller.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/dic/collections.php" afterPath="$PROJECT_DIR$/app/config/dic/collections.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/uploads/views/admin/index.blade.php" afterPath="$PROJECT_DIR$/app/modules/uploads/views/admin/index.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="plitka.iws" />
@@ -23,6 +21,7 @@
     <ignored path="public/uploads/galleries/1410783249_1741.jpg" />
     <ignored path="public/uploads/galleries/1410783181_1315.jpg" />
     <ignored path=".idea/dataSources.local.xml" />
+    <ignored path="public/uploads/files/1411119215_1767.zip" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,25 +52,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Allow.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/lib/Allow.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.230769" vertical-offset="3349" max-vertical-offset="4216">
-              <caret line="205" column="47" selection-start-line="205" selection-start-column="47" selection-end-line="205" selection-end-column="47" />
-              <folding>
-                <marker date="1411115739558" expanded="true" signature="4302:8216" placeholder="..." />
-                <marker date="1411115739558" expanded="true" signature="5826:8216" placeholder="..." />
-                <marker date="1411115739558" expanded="true" signature="5989:8216" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_default.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="_default.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/config/dic/_default.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6363636" vertical-offset="7225" max-vertical-offset="7803">
-              <caret line="442" column="7" selection-start-line="442" selection-start-column="7" selection-end-line="442" selection-end-column="7" />
+            <state vertical-scroll-proportion="-3.2692308" vertical-offset="7225" max-vertical-offset="7803">
+              <caret line="430" column="11" selection-start-line="430" selection-start-column="11" selection-end-line="430" selection-end-column="11" />
               <folding>
                 <element signature="e#6#2982#0#PHP" expanded="true" />
                 <marker date="1411115811390" expanded="true" signature="11300:11486" placeholder="..." />
@@ -81,38 +66,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="collections.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/config/dic/collections.php">
+      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/modules/uploads/views/admin/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-17.0" vertical-offset="3179" max-vertical-offset="3842">
-              <caret line="213" column="10" selection-start-line="213" selection-start-column="10" selection-end-line="213" selection-end-column="10" />
+            <state vertical-scroll-proportion="1.130194" vertical-offset="1955" max-vertical-offset="2652">
+              <caret line="137" column="29" selection-start-line="137" selection-start-column="29" selection-end-line="137" selection-end-column="29" />
               <folding>
-                <marker date="1411115752149" expanded="true" signature="4470:4656" placeholder="..." />
-                <marker date="1411115752149" expanded="true" signature="4623:4656" placeholder="..." />
+                <element signature="e#2974#3002#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="edit.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/edit.blade.php">
+      <file leaf-file-name="list.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/modules/system/views/admin/locale_editor/list.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.769231" vertical-offset="2261" max-vertical-offset="3723">
-              <caret line="151" column="70" selection-start-line="151" selection-start-column="70" selection-end-line="151" selection-end-column="70" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Helper.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/lib/Helper.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.038462" vertical-offset="714" max-vertical-offset="14212">
-              <caret line="65" column="10" selection-start-line="65" selection-start-column="10" selection-end-line="65" selection-end-column="10" />
+            <state vertical-scroll-proportion="-18.307692" vertical-offset="544" max-vertical-offset="8058">
+              <caret line="60" column="23" selection-start-line="60" selection-start-column="19" selection-end-line="60" selection-end-column="23" />
               <folding>
-                <marker date="1411048896352" expanded="true" signature="944:959" placeholder="..." />
-                <marker date="1411048896352" expanded="true" signature="9244:9356" placeholder="..." />
-                <marker date="1411048896352" expanded="true" signature="9302:9356" placeholder="..." />
+                <marker date="1409758623267" expanded="true" signature="36:217" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -169,8 +141,9 @@
         <option value="$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/index.blade.php" />
         <option value="$PROJECT_DIR$/app/modules/dictionaries/admin_dicvals.controller.php" />
         <option value="$PROJECT_DIR$/app/lib/Allow.php" />
-        <option value="$PROJECT_DIR$/app/config/dic/collections.php" />
         <option value="$PROJECT_DIR$/app/config/dic/_default.php" />
+        <option value="$PROJECT_DIR$/app/config/dic/collections.php" />
+        <option value="$PROJECT_DIR$/app/modules/uploads/views/admin/index.blade.php" />
       </list>
     </option>
   </component>
@@ -470,15 +443,21 @@
       <option name="project" value="LOCAL" />
       <updated>1411050132652</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="dicval permissions via config">
+      <created>1411115840524</created>
+      <option name="number" value="00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1411115840524</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32626426" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32626426" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Regex Tester" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -532,7 +511,8 @@
     <MESSAGE value="hot fixes" />
     <MESSAGE value="factory to country" />
     <MESSAGE value="+" />
-    <option name="LAST_COMMIT_MESSAGE" value="+" />
+    <MESSAGE value="dicval permissions via config" />
+    <option name="LAST_COMMIT_MESSAGE" value="dicval permissions via config" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -578,9 +558,9 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="5168" max-vertical-offset="12189">
           <caret line="304" column="99" selection-start-line="304" selection-start-column="99" selection-end-line="304" selection-end-column="99" />
           <folding>
-            <marker date="1411048896352" expanded="true" signature="944:959" placeholder="..." />
-            <marker date="1411048896352" expanded="true" signature="9244:9356" placeholder="..." />
-            <marker date="1411048896352" expanded="true" signature="9302:9356" placeholder="..." />
+            <marker date="1411048896352" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1411048896352" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1411048896352" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -872,9 +852,9 @@
         <state vertical-scroll-proportion="-15.038462" vertical-offset="714" max-vertical-offset="14229">
           <caret line="65" column="10" selection-start-line="65" selection-start-column="10" selection-end-line="65" selection-end-column="10" />
           <folding>
-            <marker date="1411048896352" expanded="true" signature="944:959" placeholder="..." />
-            <marker date="1411048896352" expanded="true" signature="9244:9356" placeholder="..." />
-            <marker date="1411048896352" expanded="true" signature="9302:9356" placeholder="..." />
+            <marker date="1411048896352" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1411048896352" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1411048896352" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -892,9 +872,9 @@
         <state vertical-scroll-proportion="-5.230769" vertical-offset="3349" max-vertical-offset="4216">
           <caret line="205" column="47" selection-start-line="205" selection-start-column="47" selection-end-line="205" selection-end-column="47" />
           <folding>
-            <marker date="1411115739558" expanded="true" signature="4302:8216" placeholder="..." />
-            <marker date="1411115739558" expanded="true" signature="5826:8216" placeholder="..." />
-            <marker date="1411115739558" expanded="true" signature="5989:8216" placeholder="..." />
+            <marker date="1411115739558" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1411115739558" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1411115739558" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -909,23 +889,43 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/config/dic/collections.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.0" vertical-offset="3179" max-vertical-offset="3842">
-          <caret line="213" column="10" selection-start-line="213" selection-start-column="10" selection-end-line="213" selection-end-column="10" />
+        <state vertical-scroll-proportion="2.5151515" vertical-offset="1938" max-vertical-offset="3519">
+          <caret line="195" column="0" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
           <folding>
-            <marker date="1411115752149" expanded="true" signature="4470:4656" placeholder="..." />
-            <marker date="1411115752149" expanded="true" signature="4623:4656" placeholder="..." />
+            <marker date="1411117091518" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1411117091518" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/config/dic/_default.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6363636" vertical-offset="7225" max-vertical-offset="7803">
-          <caret line="442" column="7" selection-start-line="442" selection-start-column="7" selection-end-line="442" selection-end-column="7" />
+        <state vertical-scroll-proportion="-3.2692308" vertical-offset="7225" max-vertical-offset="7803">
+          <caret line="430" column="11" selection-start-line="430" selection-start-column="11" selection-end-line="430" selection-end-column="11" />
           <folding>
             <element signature="e#6#2982#0#PHP" expanded="true" />
             <marker date="1411115811390" expanded="true" signature="11300:11486" placeholder="..." />
             <marker date="1411115811390" expanded="true" signature="11453:11486" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/system/views/admin/locale_editor/list.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.307692" vertical-offset="544" max-vertical-offset="8058">
+          <caret line="60" column="23" selection-start-line="60" selection-start-column="19" selection-end-line="60" selection-end-column="23" />
+          <folding>
+            <marker date="1409758623267" expanded="true" signature="36:217" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/uploads/views/admin/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.130194" vertical-offset="1955" max-vertical-offset="2652">
+          <caret line="137" column="29" selection-start-line="137" selection-start-column="29" selection-end-line="137" selection-end-column="29" />
+          <folding>
+            <element signature="e#2974#3002#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
