@@ -165,10 +165,20 @@ class AdminDicvalsController extends BaseController {
         $dic_settings = Config::get('dic/' . $dic->slug);
         #Helper::dd($dic_settings);
 
+        $actions_column = false;
+        if (
+            Allow::action($this->module['group'], 'dicval_edit')
+            || Allow::action($this->module['group'], 'dicval_delete')
+            || (
+                isset($dic_settings['actions']) && is_callable($dic_settings['actions'])
+            )
+        )
+            $actions_column = true;
+
         $this->callHook('before_index_view', $dic, $elements);
 
         #return View::make(Helper::acclayout());
-        return View::make($this->module['tpl'].'index', compact('elements', 'dic', 'dic_id', 'sortable', 'dic_settings'));
+        return View::make($this->module['tpl'].'index', compact('elements', 'dic', 'dic_id', 'sortable', 'dic_settings', 'actions_column'));
 	}
 
     /************************************************************************************/
@@ -176,11 +186,11 @@ class AdminDicvalsController extends BaseController {
 	#public function getCreate($entity){
 	public function create($dic_id){
 
-        Allow::permission($this->module['group'], 'dicval_create');
-
         $dic = Dictionary::where(is_numeric($dic_id) ? 'id' : 'slug', $dic_id)->first();
         if (!$this->checkDicPermission($dic))
             App::abort(404);
+
+        $this->dicval_permission($dic, 'dicval_create');
 
         $this->checkDicUrl($dic, $dic_id);
         $this->callHook('before_all', $dic);
@@ -199,12 +209,12 @@ class AdminDicvalsController extends BaseController {
 	#public function getEdit($entity, $id){
 	public function edit($dic_id, $id){
 
-        Allow::permission($this->module['group'], 'dicval_edit');
-
         $dic = Dictionary::where(is_numeric($dic_id) ? 'id' : 'slug', $dic_id)->first();
         if (!$this->checkDicPermission($dic))
             App::abort(404);
         #Helper::tad($dic);
+
+        $this->dicval_permission($dic, 'dicval_edit');
 
         $this->checkDicUrl($dic, $dic_id);
 
@@ -215,6 +225,7 @@ class AdminDicvalsController extends BaseController {
             ->with('metas')
             #->with('meta')
             ->with('allfields')
+            ->with('seos')
             ->first()
             #->extract(1)
         ;
@@ -223,6 +234,7 @@ class AdminDicvalsController extends BaseController {
         $this->callHook('before_create_edit', $dic, $element);
         $this->callHook('before_create', $dic, $element);
 
+        $element->extract(1);
         #Helper::tad($element);
 
 		return View::make($this->module['tpl'].'edit', compact('element', 'dic', 'dic_id', 'locales', 'dic_settings'));
@@ -234,24 +246,17 @@ class AdminDicvalsController extends BaseController {
 
 	public function store($dic_id) {
 
-        Allow::permission($this->module['group'], 'dicval_create');
         return $this->postSave($dic_id);
 	}
 
 
 	public function update($dic_id, $id) {
 
-        Allow::permission($this->module['group'], 'dicval_edit');
         return $this->postSave($dic_id, $id);
 	}
 
 
 	public function postSave($dic_id, $id = false){
-
-        if (@$id)
-            Allow::permission($this->module['group'], 'dicval_edit');
-        else
-            Allow::permission($this->module['group'], 'dicval_create');
 
 		if(!Request::ajax())
             App::abort(404);
@@ -259,6 +264,8 @@ class AdminDicvalsController extends BaseController {
         $dic = Dictionary::where(is_numeric($dic_id) ? 'id' : 'slug', $dic_id)->first();
         if (!$this->checkDicPermission($dic))
             App::abort(404);
+
+        $this->dicval_permission($dic, (@$id ? 'dicval_edit' : 'dicval_create'));
 
         $this->callHook('before_all', $dic);
         $this->callHook('before_store_update', $dic);
@@ -269,11 +276,13 @@ class AdminDicvalsController extends BaseController {
         $locales = Input::get('locales');
         $fields = Helper::withdraw($input, 'fields'); #Input::get('fields');
         $fields_i18n = Input::get('fields_i18n');
+        $seo = Input::get('seo');
 
         if (!@$input['slug'] && $dic->make_slug_from_name)
             $input['slug'] = Helper::translit($input['name']);
 
-        #$json_request['responseText'] = "<pre>" . print_r($_POST, 1) . "</pre>";
+        #$json_request['responseText'] = "<pre>" . print_r(Input::get('seo'), 1) . "</pre>";
+        $json_request['responseText'] = "<pre>" . print_r(Input::all(), 1) . "</pre>";
         #return Response::json($json_request,200);
 
         $json_request = array('status' => FALSE, 'responseText' => '', 'responseErrorText' => '', 'redirect' => FALSE);
@@ -362,26 +371,27 @@ class AdminDicvalsController extends BaseController {
 
             ## FIELDS I18N
             #if (@is_array($fields_i18n) && count($fields_i18n)) {
-            if (isset($element_fields_i18n) && is_array($element_fields_i18n) && count($element_fields_i18n)) {
+            if (
+                isset($element_fields_i18n) && is_array($element_fields_i18n) && count($element_fields_i18n)
+                && is_array($fields_i18n) && count($fields_i18n)
+            ) {
 
-                #Helper::d($fields_i18n);
+                #Helper::d('Перебираем все $element_fields_i18n...');
+                #Helper::dd($fields_i18n);
+                #Helper::dd($element_fields_i18n);
 
-                #foreach ($fields_i18n as $locale_sign => $locale_values) {
-                foreach ($element_fields_i18n as $locale_sign => $locale_values) {
-                    #Helper::d($locale_values);
-                    foreach ($locale_values as $key => $_value) {
+                foreach ($element_fields_i18n as $field_name => $field_params) {
+                    #Helper::d($field_name);
+                    #Helper::d($field_params);
+                    #continue;
+                    foreach ($fields_i18n as $locale_sign => $values) {
 
-                        if (is_numeric($key))
+                        $value = @$values[$field_name];
+                        if (!$value)
                             continue;
 
-                        ##
-                        ## Need to testing!!!
-                        ##
-                        $value = @$fields_i18n[$locale_sign][$key];
-                        #Helper::d($value);
-
                         ## If handler of field is defined
-                        if (is_callable($handler = @$element_fields[$key]['handler'])) {
+                        if (is_callable($handler = @$element_fields_i18n[$field_name]['handler'])) {
                             #Helper::dd($handler);
                             $value = $handler($value);
                         }
@@ -390,7 +400,7 @@ class AdminDicvalsController extends BaseController {
                         if ($value === false)
                             continue;
 
-                        $field = DicFieldVal::firstOrNew(array('dicval_id' => $id, 'key' => $key, 'language' => $locale_sign));
+                        $field = DicFieldVal::firstOrNew(array('dicval_id' => $id, 'key' => $field_name, 'language' => $locale_sign));
                         $field->value = $value;
                         $field->save();
                         #Helper::ta($field);
@@ -401,13 +411,35 @@ class AdminDicvalsController extends BaseController {
 
             ## LOCALES
             if (@is_array($locales) && count($locales)) {
-                #Helper::dd($locales);
                 foreach ($locales as $locale_sign => $array) {
-
                     $element_meta = DicValMeta::firstOrNew(array('dicval_id' => $id, 'language' => $locale_sign));
                     $element_meta->update($array);
                     $element_meta->save();
                     unset($element_meta);
+                }
+            }
+
+
+            ## SEO
+            if (@is_array($seo) && count($seo)) {
+                #Helper::ta($element);
+                #Helper::d($seo);
+                foreach ($seo as $locale_sign => $seo_array) {
+                    ## SEO
+                    if (is_array($seo_array) && count($seo_array)) {
+                        #Helper::d($seo_array);
+                        ###############################
+                        ## Process SEO
+                        ###############################
+                        $seo_result = ExtForm::process('seo', array(
+                            'module'  => 'DicVal',
+                            'unit_id' => $element->id,
+                            'data'    => $seo_array,
+                            'locale'  => $locale_sign,
+                        ));
+                        #Helper::tad($seo_result);
+                        ###############################
+                    }
                 }
             }
 
@@ -432,14 +464,14 @@ class AdminDicvalsController extends BaseController {
 	#public function deleteDestroy($entity, $id){
 	public function destroy($dic_id, $id){
 
-        Allow::permission($this->module['group'], 'dicval_delete');
-
 		if(!Request::ajax())
             App::abort(404);
 
         $dic = Dictionary::where(is_numeric($dic_id) ? 'id' : 'slug', $dic_id)->first();
         if (!$this->checkDicPermission($dic))
             App::abort(404);
+
+        $this->dicval_permission($dic, 'dicval_delete');
 
         $json_request = array('status' => FALSE, 'responseText' => '');
 
@@ -532,7 +564,7 @@ class AdminDicvalsController extends BaseController {
     private function dicval_permission($dic, $permission = '') {
 
         /**
-         * Устанавливаем права доступа текущего пользователя к словарю, из конфига
+         * Устанавливаем права доступа текущего пользователя к словарю, из конфига (если они заданы)
          */
         $dic_settings = Config::get('dic/' . $dic->slug);
         if (@is_object(Auth::user()) && @is_object(Auth::user()->group) && NULL != ($user_group_name = Auth::user()->group->name)) {
@@ -547,6 +579,9 @@ class AdminDicvalsController extends BaseController {
             }
         }
 
+        /**
+         * Проверяем, есть ли у пользователя необходимые права для выполнения действия
+         */
         Allow::permission($this->module['group'], $permission);
     }
 

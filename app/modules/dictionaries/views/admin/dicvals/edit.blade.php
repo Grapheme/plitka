@@ -22,6 +22,8 @@
 
     @include($module['tpl'].'/menu')
 
+    {{ Helper::ta_($element) }}
+
     {{ Form::model($element, array('url' => $url, 'class' => 'smart-form', 'id' => $module['entity'].'-form', 'role' => 'form', 'method' => $method, 'files' => true)) }}
 
     <!-- Fields -->
@@ -87,6 +89,7 @@
                     </fieldset>
                 @endif
 
+
                 @if (count($locales) > 1)
                 <fieldset class="clearfix">
                     <section>
@@ -144,6 +147,54 @@
             {{ ExtForm::seo('seo', $element->seo) }}
         </section>
         @endif
+
+
+        @if (Config::get('dic/' . $dic->slug . '.seo'))
+        <section class="col col-6">
+            <div class="well">
+                <header>Поисковая оптимизация</header>
+                <fieldset class="padding-bottom-15">
+                    <div class="widget-body">
+                        @if (count($locales) > 1)
+                        <ul id="myTab2" class="nav nav-tabs bordered">
+                            <? $i = 0; ?>
+                            @foreach ($locales as $locale_sign => $locale_name)
+                            <li class="{{ !$i++ ? 'active' : '' }}">
+                                <a href="#seo_locale_{{ $locale_sign }}" data-toggle="tab">
+                                    {{ $locale_name }}
+                                </a>
+                            </li>
+                            @endforeach
+                        </ul>
+                        @endif
+
+                        {{ Helper::ta_($element) }}
+
+                        <div id="myTabContent2" class="tab-content @if(count($locales) > 1) padding-10 @endif">
+                            <? $i = 0; ?>
+                            @foreach ($locales as $locale_sign => $locale_name)
+                            <div class="tab-pane fade {{ !$i++ ? 'active in' : '' }} clearfix" id="seo_locale_{{ $locale_sign }}">
+
+                                {{ ExtForm::seo('seo[' . $locale_sign . ']', @$element->seos[$locale_sign]) }}
+
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </fieldset>
+                <footer>
+                	<a class="btn btn-default no-margin regular-10 uppercase pull-left btn-spinner" href="{{ link::previous() }}">
+                		<i class="fa fa-arrow-left hidden"></i> <span class="btn-response-text">Назад</span>
+                	</a>
+                	<button type="submit" autocomplete="off" class="btn btn-success no-margin regular-10 uppercase btn-form-submit">
+                		<i class="fa fa-spinner fa-spin hidden"></i> <span class="btn-response-text">Сохранить</span>
+                	</button>
+                </footer>
+            </div>
+        </section>
+        @endif
+
+
         <!-- /Form -->
    	</div>
 
