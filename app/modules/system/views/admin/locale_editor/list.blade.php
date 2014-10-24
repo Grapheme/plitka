@@ -252,7 +252,7 @@ foreach ($files as $dir => $dir_files) {
             ++i;
             var $this = $(this);
 
-            var text = '{' + '{ trans("' + $($this).parents('table').attr('data-section') + '.' + $($this).text() + ') }' + '}';
+            var text = '{' + '{ trans("' + $($this).parents('table').attr('data-section') + '.' + $($this).text() + '") }' + '}';
             $(this).attr('data-clipboard-text', text);
 
             var client = new ZeroClipboard($this);

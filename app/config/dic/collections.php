@@ -48,12 +48,6 @@ return array(
 
             array('content' => '<hr/>'),
 
-            'format_id' => array(
-                'title' => 'Формат',
-                'type' => 'select',
-                'values' => array('Выберите..') + $lists['format'],
-            ),
-
             'surface_id' => array(
                 'title' => 'Поверхность',
                 'type' => 'select',
@@ -76,7 +70,16 @@ return array(
                         : $return = array();
                     return $return;
                 },
-            )
+            ),
+
+            array('content' => '<div class="clearfix"></div><br/><hr/>'),
+
+            'gallery_id' => array(
+                'title' => 'Интерьеры',
+                'type' => 'gallery',
+            ),
+
+
         );
 
     },

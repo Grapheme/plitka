@@ -15,11 +15,33 @@ return array(
 
         return array(
 
+            'publiched_at' => array(
+                'title' => 'Дата публикации',
+                'type' => 'date',
+                'others' => array(
+                    'class' => 'text-center',
+                    'style' => 'width: 221px',
+                    'placeholder' => 'Нажмите для выбора'
+                ),
+                'handler' => function($value) {
+                    return $value ? @date('Y-m-d', strtotime($value)) : $value;
+                },
+                'value_modifier' => function($value) {
+                    return $value ? date('d.m.Y', strtotime($value)) : date('d.m.Y');
+                },
+            ),
+
+            'image_id' => array(
+                'title' => 'Изображение',
+                'type' => 'image',
+            ),
+
             'category_id' => array(
                 'title' => 'Раздел',
                 'type' => 'select',
                 'values' => array('Выберите..') + $lists['article_categories'],
             ),
+
             'content' => array(
                 'title' => 'Содержимое статьи',
                 'type' => 'textarea_redactor',

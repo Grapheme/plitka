@@ -5,7 +5,7 @@ return array(
     'fields' => function () {
 
         $dics_slugs = array(
-            'products',
+            'collections',
         );
         $dics = Dic::whereIn('slug', $dics_slugs)->with('values')->get();
         $dics = Dic::modifyKeys($dics, 'slug');
@@ -16,9 +16,19 @@ return array(
         return array(
 
             'product_id' => array(
-                'title' => 'Плитка',
+                'title' => 'Коллекция',
                 'type' => 'select',
-                'values' => array('Выберите..') + $lists['products'],
+                'values' => array('Выберите..') + $lists['collections'],
+            ),
+
+            'description' => array(
+                'title' => 'Описание',
+                'type' => 'textarea_redactor',
+            ),
+
+            'image_id' => array(
+                'title' => 'Основное изображение',
+                'type' => 'image',
             ),
 
             'gallery_id' => array(

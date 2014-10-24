@@ -10,6 +10,7 @@ class DicVal extends BaseModel {
 	public static $order_by = "name ASC";
 
     protected $fillable = array(
+        'version_of',
         'dic_id',
         'slug',
         'name',
@@ -25,7 +26,7 @@ class DicVal extends BaseModel {
     #}
 
     public function dic() {
-        return $this->belongsTo('Dictionary', 'dic_id')->orderBy('name');
+        return $this->belongsTo('Dictionary', 'dic_id');
     }
 
     public function metas() {
@@ -36,17 +37,38 @@ class DicVal extends BaseModel {
         return $this->hasOne('DicValMeta', 'dicval_id', 'id')->where('language', Config::get('app.locale'));
     }
 
-    ## Relations many-to-many: DicVal-to-DicVal
-    public function relations() {
+    /**
+     * Связь многие-ко-многим между элементами DicVal, с привязкой к dic_id
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function related_dicvals() {
         return $this->belongsToMany('DicVal', 'dictionary_values_rel', 'dicval_parent_id', 'dicval_child_id');
     }
+
+    /**
+     * relations - алиас для свзяи, желательно использовать related_dicvals()
+     */
+    public function relations() {
+        return $this->related_dicvals();
+    }
+
 
     public function allfields() {
         return $this->hasMany('DicFieldVal', 'dicval_id', 'id');
     }
 
     public function fields() {
-        return $this->hasMany('DicFieldVal', 'dicval_id', 'id')->where('language', Config::get('app.locale'))->orWhere('language', NULL);
+        return $this
+            ->hasMany('DicFieldVal', 'dicval_id', 'id')->where('language', Config::get('app.locale'))->orWhere('language', NULL)
+            ;
+    }
+
+    public function versions() {
+        return $this->hasMany('DicVal', 'version_of', 'id')->orderBy('updated_at', 'DESC');
+    }
+
+    public function original_version() {
+        return $this->hasOne('DicVal', 'id', 'version_of');
     }
 
     /**
@@ -112,6 +134,7 @@ class DicVal extends BaseModel {
         $tbl_dicval = $tbl_dicval->getTable();
         $result = new DicFieldVal;
         $tbl_dicfieldval = $result->getTable();
+        #Helper::d($array);
         foreach ($array as $key => $value) {
             #Helper::dd($value);
             if (is_array($value))
@@ -122,6 +145,7 @@ class DicVal extends BaseModel {
         $result = $result
             ->join($tbl_dicval, $tbl_dicval.'.id', '=', $tbl_dicfieldval.'.dicval_id')
             ->whereIn($tbl_dicval.'.dic_id', $dic_ids)
+            ->where($tbl_dicval.'.version_of', NULL)
         ;
 
         ## Делаем выборку всех подходящих записей...
@@ -129,7 +153,7 @@ class DicVal extends BaseModel {
 
         ## DEBUG
         $queries = DB::getQueryLog();
-        #Helper::smartQuery(end($queries), 1);
+        #Helper::smartQuery(end($queries), 1); die;
         #Helper::ta($result);
         #Helper::smartQueries(1);
 
@@ -156,11 +180,26 @@ class DicVal extends BaseModel {
         return $counts;
     }
 
-    public static function extracts($elements, $unset = false) {
+    /*
+    public static function get_relations(array $dicval_ids, $field) {
+        if (
+            !isset($dicval_ids) || !is_array($dicval_ids) || !count($dicval_ids)
+            || !isset($field) || !$field
+        )
+            return array();
+
+        Helper::d($dicval_ids);
+        ##................
+    }
+    */
+
+    public static function extracts($elements, $unset = false, $extract_ids = true) {
+        $return = new Collection;
+        #Helper::dd($return);
         foreach ($elements as $e => $element) {
-            $elements[$e] = $element->extract($unset);
+            $return[($extract_ids ? $element->id : $e)] = $element->extract($unset);
         }
-        return $elements;
+        return $return;
     }
 
 
@@ -188,12 +227,26 @@ class DicVal extends BaseModel {
 
         }
 
-        ## Extract SEO
+        ## Extract SEOs
         if (isset($this->seos)) {
-            foreach ($this->seos as $s => $seo) {
-                $this->seos[$seo->language] = $seo;
-                if ($s != $seo->language || $s === 0)
-                    unset($this->seos[$s]);
+            #Helper::tad($this->seos);
+            if (count($this->seos) == 1 && count(Config::get('app.locales')) == 1) {
+                $app_locales = Config::get('app.locales');
+                foreach ($app_locales as $locale_sign => $locale_name)
+                    break;
+                foreach ($this->seos as $s => $seo) {
+                    $this->seos[$locale_sign] = $seo;
+                    break;
+                }
+                unset($this->seos[0]);
+                #Helper::tad($this->seos);
+            } else {
+                foreach ($this->seos as $s => $seo) {
+                    $this->seos[$seo->language] = $seo;
+                    #Helper::d($s . " != " . $seo->language);
+                    if ($s != $seo->language || $s === 0)
+                        unset($this->seos[$s]);
+                }
             }
         }
 
@@ -206,11 +259,66 @@ class DicVal extends BaseModel {
             }
         }
 
+        ## Extract meta
+        if (isset($this->meta)) {
+
+            if (
+                is_object($this->meta)
+                && ($this->meta->language == Config::get('app.locale') || $this->meta->language == NULL)
+            ) {
+                if ($this->meta->name != '')
+                    $this->name = $this->meta->name;
+
+            }
+
+            if ($unset)
+                unset($this->meta);
+        }
+
         #Helper::ta($this);
 
-        ## Extract meta
-        ## ...
+        ## Extract versions
+        if (isset($this->versions)) {
+            foreach ($this->versions as $v => $version) {
+                $this->versions[$version->id] = $version;
+                if ($v != $version->id || (int)$v === 0)
+                    unset($this->versions[$v]);
+            }
+        }
 
+        return $this;
+    }
+
+    public static function extracts_related($elements, $dicval_data = false, $extract_ids = true) {
+        $return = new Collection;
+        #Helper::dd($return);
+        foreach ($elements as $e => $element) {
+            $return[($extract_ids ? $element->id : $e)] = $element->extract_related($dicval_data, $extract_ids);
+        }
+        return $return;
+    }
+
+    public function extract_related($dicval_data = false, $extract_ids = true) {
+
+        ## Extract relations
+        if (isset($this->related_dicvals) && count($this->related_dicvals)) {
+            $array = array();
+            #Helper::tad($this->related_dicvals);
+            foreach ($this->related_dicvals as $r => $relation) {
+
+                $key = @$dicval_data[$relation->dic_id] ?: $relation->dic_id;
+                if (!isset($array[$key]) ||!is_array($array[$key]))
+                    $array[$key] = array();
+
+                if ($extract_ids)
+                    $array[$key][$relation->id] = $relation;
+                else
+                    $array[$key][] = $relation;
+            }
+            #Helper::tad($array);
+            unset($this->related_dicvals);
+            $this->related_dicvals = $array;
+        }
         return $this;
     }
 

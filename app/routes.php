@@ -193,3 +193,512 @@ Config::set('mod_new', $mod_new);
     #Route::resource('/admin/videogid/dic', 'AdminVideogidDicsController');
     #Route::controller('', 'PublicVideogidController');
     #Route::controller('', 'PublicVideogidController');
+
+/***********************************************************************/
+
+Route::get('import/plitka', function(){
+
+    /**
+     * Используемые таблицы
+     */
+    $tbl_cat = DB::table('category');
+    $tbl_cat_desc = DB::table('category_description');
+    $tbl_cat_images = DB::table('categ_image');
+
+    $tbl_product = DB::table('product');
+    $tbl_product_desc = DB::table('product_description');
+    $tbl_product_cat = DB::table('product_to_category');
+
+    $tbl_attr = DB::table('attribute');
+    $tbl_attr_desc = DB::table('attribute_description');
+    $tbl_product_attr = DB::table('product_attribute');
+
+    /**
+     * Очищаем словари
+     */
+    Dic::clear('countries');
+    Dic::clear('factory');
+    Dic::clear('collections');
+
+    Dic::clear('products');
+    Dic::clear('colors');
+    Dic::clear('surface_type');
+
+    Dic::clear('interiors');
+    Dic::clear('projects');
+    #die;
+
+    Photo::truncate();
+    Gallery::truncate();
+
+    /**
+     * Подготовка
+     */
+    $cat_oldid_newid = array();
+    $product_type_plitka = Dic::valueBySlugs('product_type', 'plitka');
+
+    /**
+     * Предзагрузка данных категорий
+     */
+    $cats = $tbl_cat->orderBy('category_id', 'ASC')->get();
+    $temp = new Collection();
+    foreach ($cats as $cat)
+        $temp[$cat->category_id] = $cat;
+    $cats = $temp;
+    #Helper::d($cats);
+
+    $cats_desc = $tbl_cat_desc->orderBy('category_id', 'ASC')->get();
+    $temp = new Collection();
+    foreach ($cats_desc as $cat_desc)
+        $temp[$cat_desc->category_id] = $cat_desc;
+    $cats_desc = $temp;
+    #Helper::d($cats_desc);
+
+    $cats_images = $tbl_cat_images->orderBy('category_id', 'ASC')->get();
+    $temp = array();
+    foreach ($cats_images as $cat_image) {
+        if (!isset($temp[$cat_image->category_id]))
+            $temp[$cat_image->category_id] = array();
+        $temp[$cat_image->category_id][] = $cat_image->image;
+    }
+    $cats_images = $temp;
+    #Helper::dd($cats_images);
+
+    /**
+     * Предзагрузка данных продукции
+     */
+    $products = $tbl_product->orderBy('product_id', 'ASC')->get();
+    $temp = new Collection();
+    foreach ($products as $product)
+        $temp[$product->product_id] = $product;
+    $products = $temp;
+    #Helper::tad($products);
+
+    $products_desc = $tbl_product_desc->orderBy('product_id', 'ASC')->get();
+    $temp = new Collection();
+    foreach ($products_desc as $product_desc)
+        $temp[$product_desc->product_id] = $product_desc;
+    $products_desc = $temp;
+    #Helper::tad($products_desc);
+
+    $products_cat = $tbl_product_cat->orderBy('product_id', 'ASC')->get();
+    $temp = new Collection();
+    foreach ($products_cat as $product_cat)
+        $temp[$product_cat->product_id] = $product_cat;
+    $products_cat = $temp;
+    #Helper::tad($products_cat);
+
+    /**
+     * Предзагрузка аттрибутов
+     *
+     */
+    $attributes_desc = $tbl_attr_desc->get();
+    $temp = new Collection();
+    foreach ($attributes_desc as $attribute_desc)
+        $temp[$attribute_desc->attribute_id] = $attribute_desc->name;
+    $attributes_desc = $temp;
+
+    $attributes_info = $tbl_attr->orderBy('attribute_id', 'ASC')->get();
+    $temp = new Collection();
+    foreach ($attributes_info as $attribute)
+        $temp[$attribute->attribute_id] = $attributes_desc[$attribute->attribute_id];
+    $attributes_info = $temp;
+    #Helper::tad($attributes_info);
+    /*
+    [12] => Тип поверхности
+    [13] => Цвет
+    [14] => Упаковка
+    [15] => Размер
+    [16] => Цена
+     */
+
+    $attributes = $tbl_product_attr->get();
+    #Helper::tad($attributes);
+    $temp = array();
+    foreach ($attributes as $attribute) {
+        if (!isset($temp[$attribute->product_id]))
+            $temp[$attribute->product_id] = array();
+
+        $temp[$attribute->product_id][$attribute->attribute_id] = $attribute->text;
+        ksort($temp[$attribute->product_id]);
+    }
+    ksort($temp);
+    $attributes = $temp;
+    #Helper::tad($attributes);
+
+
+
+    /**
+     * Импорт "категорий"
+     * Первый уровень - Страна
+     * Второй уровень - Фабрика
+     * Третий уровень - Коллекция
+     */
+
+    /*
+    foreach ($cats as $c => $cat) {
+        #Helper::d($cat);
+        $level = get_level($cats, $cat->category_id);
+
+        if ($level == 0)
+            continue;
+        elseif ($level == 1)
+            $model = 'country';
+        elseif ($level == 2)
+            $model = 'factory';
+        elseif ($level == 3)
+            $model = 'collection';
+
+        Helper::d($cat);
+        Helper::d($cats_desc[$cat->category_id]);
+        Helper::d($model . ' / level = ' . $level);
+        echo "<hr/>";
+    }
+    die;
+    #*/
+
+    /**
+     * Import countries
+     */
+    foreach ($cats as $c => $cat) {
+        #Helper::d($cat);
+        $level = get_level($cats, $cat->category_id);
+
+        if ($level != 1)
+            continue;
+
+        $name = trim($cats_desc[$cat->category_id]->name);
+        $slug = Helper::translit($name);
+
+        $dicval = DicVal::inject('countries', array(
+            'slug' => $slug,
+            'name' => $name,
+        ));
+
+        $cat_oldid_newid[$cat->category_id] = $dicval->id;
+
+        Helper::d('Import country: ' . $name . ' = ' . $slug . ' / ' . $cat->category_id . ' => ' . $dicval->id);
+        #Helper::ta($dicval);
+    }
+
+    echo "<hr/>";
+
+    /**
+     * Import factories
+     */
+    foreach ($cats as $c => $cat) {
+        #Helper::d($cat);
+        $level = get_level($cats, $cat->category_id);
+
+        if ($level != 2)
+            continue;
+
+        $name = trim($cats_desc[$cat->category_id]->name);
+        $slug = Helper::translit($name);
+        $country_id = $cat_oldid_newid[$cat->parent_id];
+
+        $dicval = DicVal::inject('factory', array(
+            'slug' => $slug,
+            'name' => $name,
+            'fields' => array(
+                'country_id' => $country_id
+            )
+        ));
+
+        $cat_oldid_newid[$cat->category_id] = $dicval->id;
+
+        Helper::d('Import factory: ' . $name . ' = ' . $slug . ' / ' . $cat->category_id . ' => ' . $dicval->id);
+        #Helper::ta($dicval);
+    }
+
+    echo "<hr/>";
+
+    /**
+     * Import collections
+     */
+    foreach ($cats as $c => $cat) {
+        #Helper::d($cat);
+        $level = get_level($cats, $cat->category_id);
+
+        if ($level != 3)
+            continue;
+
+        $parents = get_parents($cats, $cat->category_id);
+        #Helper::d($parents);
+
+        $name = trim($cats_desc[$cat->category_id]->name);
+        $slug = Helper::translit($name);
+        $country_id = $cat_oldid_newid[$parents[1]];
+        $factory_id = $cat_oldid_newid[$parents[0]];
+
+
+        /**
+         * Import "interiors" - images of category (collection)
+         */
+        if (isset($cats_images[$cat->category_id]) && is_array($cats_images[$cat->category_id]) && count($cats_images[$cat->category_id])) {
+
+            $gallery = new Gallery;
+            $gallery->name = 'collection ' . $name;
+            $gallery->save();
+            $gallery_id = $gallery->id;
+            #Helper::tad($gallery);
+
+            foreach ($cats_images[$cat->category_id] as $c => $cat_image) {
+
+                #$full_image_source = $cat_image;
+                #$full_image_source = public_path('uploads/' . $cat_image);
+
+                $temp = explode('.', $cat_image);
+                $ext = array_pop($temp);
+                $full_image_source = public_path('uploads/' . implode('.', $temp) . '-500x500.' . $ext);
+                #echo $full_image_source; die;
+
+                $photo_id = 0;
+                if (file_exists($full_image_source)) {
+                    /**
+                     * Create image
+                     */
+                    $temp = explode('.', $full_image_source);
+                    $ext = array_pop($temp);
+                    $fileName = md5($cat->category_id) . '_' . ($c+1) . '.' . $ext;
+                    copy($full_image_source, public_path('uploads/galleries/' . $fileName));
+                    copy($full_image_source, public_path('uploads/galleries/thumbs/' . $fileName));
+                    $photo = new Photo;
+                    $photo->name = $fileName;
+                    $photo->gallery_id = $gallery_id;
+                    $photo->save();
+                    #$photo_id = $photo->id;
+
+                    #Helper::tad($photo);
+                }
+            }
+        }
+
+
+
+        $dicval = DicVal::inject('collections', array(
+            'slug' => $slug,
+            'name' => $name,
+            'fields' => array(
+                'description' => '',
+                'gallery_id' => $gallery->id,
+                'product_type_id' => $product_type_plitka->id,
+                'country_id' => $country_id,
+                'factory_id' => $factory_id,
+            )
+        ));
+
+        $gallery->name = $gallery->name . ' (' . $dicval->id . ')';
+        $gallery->save();
+        unset($gallery);
+
+        $cat_oldid_newid[$cat->category_id] = $dicval->id;
+
+        Helper::d('Import collection: ' . $name . ' = ' . $slug . ' / ' . $cat->category_id . ' => ' . $dicval->id);
+        #Helper::d($cat);
+        #Helper::ta($dicval);
+    }
+
+    echo "<hr/>";
+
+    #Helper::d($cat_oldid_newid);
+
+
+    /**
+     * Prepare products data
+     */
+    #Helper::ta($attributes);
+    #Helper::tad($products);
+    $surfaces = array();
+    $colors = array();
+    $sizes = array();
+    foreach ($products as $product_id => $product) {
+
+        if (!isset($attributes[$product_id]))
+            continue;
+
+        $attr = $attributes[$product_id];
+        #Helper::dd($attr);
+
+        if (trim($attr[12]))
+            $surface_types[] = trim($attr[12]);
+        if (trim($attr[13]))
+            $colors[] = trim($attr[13]);
+        if (trim($attr[15]))
+            $sizes[] = trim($attr[15]);
+    }
+
+    $surface_types = array_unique($surface_types);
+    $colors = array_unique($colors);
+    #$sizes = array_unique($sizes);
+    #Helper::d($surface_types);
+    #Helper::d($colors);
+    #Helper::dd($sizes);
+
+    /**
+     * Import surface types
+     */
+    $surface_types_ids = array();
+    foreach ($surface_types as $surface_type) {
+
+        $dicval = DicVal::inject('surface_type', array(
+            'slug' => Helper::translit($surface_type),
+            'name' => $surface_type,
+        ));
+        $surface_types_ids[$surface_type] = $dicval->id;
+    }
+
+    /**
+     * Import colors
+     */
+    $colors_ids = array();
+    foreach ($colors as $color) {
+
+        $dicval = DicVal::inject('colors', array(
+            'slug' => Helper::translit($color),
+            'name' => $color,
+        ));
+        $colors_ids[$color] = $dicval->id;
+    }
+
+    /**
+     * Import products
+     */
+    $count = 0;
+    foreach ($products as $product_id => $product) {
+
+        #Helper::d($product);
+        #Helper::d($products_cat[$product_id]);
+        #Helper::d($products_desc[$product_id]);
+        #die;
+
+        # Русская буква Х блеать!
+        $product->image = str_replace('х', 'x', $product->image);
+
+        #$full_image_source = public_path('uploads/' . $product->image);
+        $full_image_source = public_path('uploads/data/plitka/' . $product_id . '-500x500.jpg');
+        if (!file_exists($full_image_source)) {
+            $temp = explode('.', $product->image);
+            $ext = array_pop($temp);
+            $full_image_source = public_path('uploads/' . implode('.', $temp) . '-500x500.' . $ext);
+        }
+        if (!file_exists($full_image_source)) {
+            $temp = explode('.', $product->image);
+            $ext = array_pop($temp);
+            $full_image_source = public_path('uploads/' . implode('.', $temp) . '-228x228.' . $ext);
+        }
+        if (!file_exists($full_image_source)) {
+            $temp = explode('.', $product->image);
+            $ext = array_pop($temp);
+            $full_image_source = public_path('uploads/' . implode('.', $temp) . '-100x100.' . $ext);
+        }
+        #Helper::d($full_image_source . ' - ' . (int)file_exists($full_image_source));
+
+        $photo_id = 0;
+        if (file_exists($full_image_source)) {
+            /**
+             * Create images
+             */
+            $temp = explode('.', $full_image_source);
+            $ext = array_pop($temp);
+            $fileName = md5($product_id) . '.' . $ext;
+            copy($full_image_source, public_path('uploads/galleries/' . $fileName));
+            copy($full_image_source, public_path('uploads/galleries/thumbs/' . $fileName));
+            $photo = new Photo;
+            $photo->name = $fileName;
+            $photo->gallery_id = 0;
+            $photo->save();
+            $photo_id = $photo->id;
+        }
+
+
+        $product_category_id = @$products_cat[$product_id]->category_id;
+
+        #$parents = get_parents($cats, $product_category_id);
+        #Helper::d($parents);
+
+        #$real_product_country_id = $cat_oldid_newid[$parents[1]];
+        #$real_product_factory_id = $cat_oldid_newid[$parents[0]];
+        $real_product_collection_id = @$cat_oldid_newid[$product_category_id];
+
+        #Helper::d('Product country = ' . $real_product_country_id);
+        #Helper::d('Product factory = ' . $real_product_factory_id);
+        #Helper::d('Product collection = ' . $real_product_collection_id);
+        #die;
+
+        $name = @trim($products_desc[$product_id]->name);
+        $slug = Helper::translit($name);
+
+        $dicval = DicVal::inject('products', array(
+            'slug' => $slug,
+            'name' => $name,
+            'fields' => array(
+                'article' => '',
+                'image_id' => $photo_id,
+                'collection_id' => $real_product_collection_id,
+                'format_id' => 0, ## not provided
+
+                'size_text' => @trim($attributes[$product_id][15]),
+                'package_text' => @trim($attributes[$product_id][14]),
+
+                'color_id' => @$colors_ids[$attributes[$product_id][13]],
+                'surface_type_id' => @$surface_types_ids[$attributes[$product_id][12]],
+
+                'price' => @trim($attributes[$product_id][16]),
+                'basic' => 1, ## not provided
+            )
+        ));
+
+        Helper::d('Import product: ' . (++$count) . ' (' . $product_id . ')) ' . $name . ' = ' . $slug); # . ' / ' . $cat->category_id . ' => ' . $dicval->id);
+    }
+
+    die();
+    #return '';
+});
+
+function get_level($elements, $id) {
+    $level = 0;
+
+    #Helper::dd($elements);
+
+    $valid = true;
+    $pid = $id;
+    do {
+        if (!isset($elements[$pid])) {
+            $valid = false;
+            break;
+        }
+
+        $element = $elements[$pid];
+        $pid = $element->parent_id;
+        ++$level;
+    } while($pid > 0);
+
+    return $valid ? $level : 0;
+}
+
+function get_parents($elements, $id) {
+    $level = 0;
+
+    #Helper::dd($elements);
+
+    $return = array();
+
+    $valid = true;
+    $pid = $id;
+    do {
+        if (!isset($elements[$pid])) {
+            $valid = false;
+            break;
+        }
+
+        $element = $elements[$pid];
+        $pid = $element->parent_id;
+        $return[] = $pid;
+
+        #++$level;
+    } while($pid > 0);
+
+    return $valid ? $return : false;
+}
+

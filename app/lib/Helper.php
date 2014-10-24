@@ -1,7 +1,6 @@
 <?php
 
-class Helper
-{
+class Helper {
 
     /*
     | Функция возвращает 2х-мерный массив который формируется из строки.
@@ -9,8 +8,7 @@ class Helper
     | Используется пока для разбора строки сортировки model::orderBy() в ShortCodes
     */
     ## from BaseController
-    public static function stringToArray($string)
-    {
+    public static function stringToArray($string) {
 
         $ordering = array();
         if (!empty($string)):
@@ -27,32 +25,28 @@ class Helper
         return $ordering;
     }
 
-    public static function d($array)
-    {
+    public static function d($array) {
         echo "<pre style='text-align:left'>" . print_r($array, 1) . "</pre>";
     }
 
-    public static function dd($array)
-    {
+    public static function dd($array) {
         self::d($array);
         die;
     }
 
-    public static function d_($array)
-    {
+    public static function d_($array) {
         return false;
     }
 
-    public static function dd_($array)
-    {
+    public static function dd_($array) {
         return false;
     }
 
     public static function ta($object) {
         $return = $object;
-        if (is_object($object))
+        if (is_object($object)) {
             $return = $object->toArray();
-        elseif (is_array($object)) {
+        } elseif (is_array($object)) {
             foreach ($object as $o => $obj) {
                 $return[$o] = is_object($obj) ? $obj->toArray() : $obj;
             }
@@ -60,118 +54,128 @@ class Helper
         self::d($return);
     }
 
-    public static function tad($object)
-    {
-        self::ta($object);
-        die;
+    public static function tad($object) {
+        self::dd(is_object($object) ? $object->toArray() : $object);
     }
 
-    public static function ta_($array)
-    {
+    public static function ta_($array) {
         return false;
     }
 
-    public static function tad_($array)
-    {
+    public static function tad_($array) {
         return false;
     }
 
-    public static function layout($file = '')
-    {
+    public static function layout($file = '') {
         $layout = Config::get('app.template');
         #Helper::dd(Config::get('app'));
-        if (!$layout)
+        if (!$layout) {
             $layout = 'default';
-        if (Request::ajax() && View::exists("templates." . $layout . ".ajax"))
+        }
+        if (Request::ajax() && View::exists("templates." . $layout . ".ajax")) {
             $file = 'ajax';
+        }
         #Helper::dd("templates." . $layout . ($file ? '.'.$file : ''));
         return "templates." . $layout . ($file ? '.' . $file : '');
     }
 
-    public static function acclayout($file = '')
-    {
+    public static function acclayout($file = '') {
         $layout = AuthAccount::getStartPage();
-        if (!$layout)
+        if (!$layout) {
             $layout = 'default';
-        if (Request::ajax() && View::exists("templates." . $layout . ".ajax"))
+        }
+        if (Request::ajax() && View::exists("templates." . $layout . ".ajax")) {
             $file = 'ajax';
+        }
         #Helper::dd( (("templates." . $layout . ".ajax")) );
         return "templates." . $layout . ($file ? '.' . $file : '');
     }
 
-    public static function inclayout($file)
-    {
-        if (!$file)
-            return false;
+    public static function theme_dir($file = '') {
 
         $layout = Config::get('app.template');
-
         if (!$layout)
             $layout = 'default';
 
-        $full = base_path() . "/app/views/templates/" . $layout . '/' . $file;
+        $full = base_path("app/views/templates/" . $layout . ( $file ? '/'.$file : ''));
+        return $full;
+    }
+
+    public static function inclayout($file) {
+
+        $layout = Config::get('app.template');
+
+        if (!$layout) {
+            $layout = 'default';
+        }
+
+        $full = base_path("/app/views/templates/" . $layout . '/' . $file);
+
+        if ($file != '' && !file_exists($full)) {
+            $full .= ".blade.php";
+        }
 
         if (!file_exists($full))
-            $full .= ".blade.php";
-
-        #if (!file_exists($full))
-        #    return false;
+            return false;
 
         return $full;
     }
 
-    public static function rdate($param = "j M Y", $time = 0, $lower = true)
-    {
-        if (!is_int($time) && !is_numeric($time))
+    public static function rdate($param = "j M Y", $time = 0, $lower = true) {
+        if (!is_int($time) && !is_numeric($time)) {
             $time = strtotime($time);
-        if (intval($time) == 0)
+        }
+        if (intval($time) == 0) {
             $time = time();
+        }
         $MonthNames = array("Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря");
-        if (strpos($param, 'M') === false)
+        if (strpos($param, 'M') === false) {
             return date($param, $time);
-        else {
+        } else {
             $month = $MonthNames[date('n', $time) - 1];
-            if ($lower)
+            if ($lower) {
                 $month = mb_strtolower($month);
+            }
             return date(str_replace('M', $month, $param), $time);
         }
     }
 
-    public static function preview($text, $count = 10, $threedots = true)
-    {
+    public static function preview($text, $count = 10, $threedots = true) {
 
         $words = array();
         $temp = explode(" ", strip_tags($text));
 
         foreach ($temp as $t => $tmp) {
             #$tmp = trim($tmp, ".,?!-+/");
-            if (!$tmp)
+            if (!$tmp) {
                 continue;
+            }
             $words[] = $tmp;
-            if (count($words) >= $count)
+            if (count($words) >= $count) {
                 break;
+            }
         }
 
         $preview = trim(implode(" ", $words));
 
-        if (mb_strlen($preview) < mb_strlen(trim(strip_tags($text))) && $threedots)
+        if (mb_strlen($preview) < mb_strlen(trim(strip_tags($text))) && $threedots) {
             $preview .= "...";
+        }
 
         return $preview;
     }
 
-    public static function firstletter($text, $dot = true)
-    {
+    public static function firstletter($text, $dot = true) {
 
         return trim($text) ? mb_substr(trim($text), 0, 1) . ($dot ? '.' : '') : false;
     }
 
 
-    public static function arrayForSelect($object, $key = 'id', $val = 'name')
-    {
+    public static function arrayForSelect($object, $key = 'id', $val = 'name') {
 
-        if (!isset($object) || (!is_object($object) && !is_array($object)))
+        if (!isset($object) || (!is_object($object) && !is_array($object))) {
             return false;
+        }
 
         #Helper::d($object); return false;
 
@@ -186,11 +190,11 @@ class Helper
         return $array;
     }
 
-    public static function valuesFromDic($object, $key = 'id')
-    {
+    public static function valuesFromDic($object, $key = 'id') {
 
-        if (!isset($object) || (!is_object($object) && !is_array($object)))
+        if (!isset($object) || (!is_object($object) && !is_array($object))) {
             return false;
+        }
 
         #Helper::d($object); return false;
 
@@ -210,94 +214,129 @@ class Helper
      * @param $key
      * @return mixed
      */
-    public static function withdraw(&$array, $key)
-    {
+    public static function withdraw(&$array, $key = '') {
         $val = @$array[$key];
         unset($array[$key]);
         return $val;
     }
 
-    public static function classInfo($classname)
-    {
+    public static function withdraws(&$array, $keys = array()) {
+        $vals = array();
+        foreach ($keys as $key) {
+            $vals[$key] = @$array[$key];
+            unset($array[$key]);
+        }
+        return $vals;
+    }
+
+    public static function classInfo($classname) {
         echo "<pre>";
         Reflection::export(new ReflectionClass($classname));
         echo "</pre>";
     }
 
-    public static function nl2br($text)
-    {
+    public static function nl2br($text) {
         $text = preg_replace("~[\r\n]+~is", "\n<br/>\n", $text);
         return $text;
     }
 
     /**************************************************************************************/
 
-    public static function cookie_set($name = false, $value = false, $lifetime = 86400)
-    {
-        if (is_object($value) || is_array($value))
+    public static function cookie_set($name = false, $value = false, $lifetime = 86400) {
+        if (is_object($value) || is_array($value)) {
             $value = json_encode($value);
+        }
 
         #Helper::dd($value);
 
         setcookie($name, $value, time() + $lifetime, "/");
-        if ($lifetime > 0)
+        if ($lifetime > 0) {
             $_COOKIE[$name] = $value;
+        }
     }
 
-    public static function cookie_get($name = false)
-    {
+    public static function cookie_get($name = false) {
         #Helper::dd($_COOKIE);
         $return = @isset($_COOKIE[$name]) ? $_COOKIE[$name] : false;
         $return2 = @json_decode($return, 1);
         #Helper::dd($return2);
-        if (is_array($return2))
+        if (is_array($return2)) {
             $return = $return2;
+        }
         return $return;
     }
 
-    public static function cookie_drop($name = false)
-    {
+    public static function cookie_drop($name = false) {
         self::cookie_set($name, false, 0);
         $_COOKIE[$name] = false;
     }
 
     /**************************************************************************************/
 
-    public static function translit($s)
-    {
+    public static function translit($s, $lower = true, $space = '-') {
         $s = (string)$s; // преобразуем в строковое значение
         $s = strip_tags($s); // убираем HTML-теги
         $s = str_replace(array("\n", "\r"), " ", $s); // убираем перевод каретки
-        $s = preg_replace("/\s+/", ' ', $s); // удаляем повторяющие пробелы
+        $s = preg_replace('/ +/', ' ', $s); // удаляем повторяющие пробелы
         $s = trim($s); // убираем пробелы в начале и конце строки
-        $s = function_exists('mb_strtolower') ? mb_strtolower($s) : strtolower($s); // переводим строку в нижний регистр (иногда надо задать локаль)
+        if ($lower)
+            $s = function_exists('mb_strtolower') ? mb_strtolower($s) : strtolower($s); // переводим строку в нижний регистр (иногда надо задать локаль)
         $s = strtr($s, array(
             'а' => 'a', 'б' => 'b', 'в' => 'v', 'г' => 'g', 'д' => 'd', 'е' => 'e', 'ё' => 'e', 'ж' => 'j', 'з' => 'z',
             'и' => 'i', 'й' => 'y', 'к' => 'k', 'л' => 'l', 'м' => 'm', 'н' => 'n', 'о' => 'o', 'п' => 'p', 'р' => 'r',
             'с' => 's', 'т' => 't', 'у' => 'u', 'ф' => 'f', 'х' => 'h', 'ц' => 'c', 'ч' => 'ch', 'ш' => 'sh', 'щ' => 'sch',
-            'ы' => 'y', 'э' => 'e', 'ю' => 'yu', 'я' => 'ya', 'ъ' => '', 'ь' => ''
+            'ы' => 'y', 'э' => 'e', 'ю' => 'yu', 'я' => 'ya', 'ъ' => '', 'ь' => '',
+
+            'А' => 'A', 'Б' => 'B', 'В' => 'V', 'Г' => 'G', 'Д' => 'D', 'Е' => 'E', 'Ё' => 'E', 'Ж' => 'J', 'З' => 'Z',
+            'И' => 'I', 'Й' => 'Y', 'К' => 'K', 'Л' => 'L', 'М' => 'M', 'Н' => 'N', 'О' => 'O', 'П' => 'P', 'Р' => 'R',
+            'С' => 'S', 'Т' => 'T', 'У' => 'U', 'Ф' => 'F', 'Х' => 'H', 'Ц' => 'C', 'Ч' => 'CH', 'Ш' => 'SH', 'Щ' => 'SCH',
+            'Ы' => 'Y', 'Э' => 'E', 'Ю' => 'YU', 'Я' => 'YA', 'Ъ' => '', 'Ь' => '',
         ));
-        $s = preg_replace("/[^0-9a-z-_ ]/i", "", $s); // очищаем строку от недопустимых символов
-        $s = str_replace(" ", "-", $s); // заменяем пробелы знаком минус
+        $s = preg_replace("/[^0-9A-Za-z-_ ]/i", "", $s); // очищаем строку от недопустимых символов
+        $s = str_replace(" ", $space, $s); // заменяем пробелы знаком минус
         return $s; // возвращаем результат
     }
 
-    public static function hiddenGetValues()
-    {
-        if (@!count($_GET))
+    public static function eng2rus($s, $lower = true, $space = '-') {
+        $s = (string)$s; // преобразуем в строковое значение
+        $s = strip_tags($s); // убираем HTML-теги
+        $s = str_replace(array("\n", "\r"), " ", $s); // убираем перевод каретки
+        $s = preg_replace('/ +/', ' ', $s); // удаляем повторяющие пробелы
+        $s = trim($s); // убираем пробелы в начале и конце строки
+        if ($lower)
+            $s = function_exists('mb_strtolower') ? mb_strtolower($s) : strtolower($s); // переводим строку в нижний регистр (иногда надо задать локаль)
+        $s = $s . ' ';
+        $s = strtr($s, array(
+            'y ' => 'и', 'e ' => 'и', 'ch' => 'ч',
+
+            'a' => 'а', 'b' => 'б', 'c' => 'ц', 'd' => 'д', 'e' => 'е', 'f' => 'ф', 'g' => 'г', 'h' => 'х', 'i' => 'и', 'j' => 'ж',
+            'k' => 'к', 'l' => 'л', 'm' => 'м', 'n' => 'н', 'o' => 'о', 'p' => 'п', 'q' => 'к', 'r' => 'р', 's' => 'с', 't' => 'т',
+            'u' => 'ю', 'v' => 'в', 'w' => 'в', 'x' => 'кс', 'y' => 'и', 'z' => 'з',
+        ));
+        #$s = preg_replace("/[^0-9A-Za-z-_ ]/i", "", $s); // очищаем строку от недопустимых символов
+        $s = trim($s);
+        $s = str_replace(" ", $space, $s); // заменяем пробелы знаком минус
+        return $s; // возвращаем результат
+    }
+
+    /**************************************************************************************/
+
+    public static function hiddenGetValues() {
+        if (@!count($_GET)) {
             return false;
+        }
         $return = '';
         foreach ($_GET as $key => $value) {
-            if (!$key || !$value)
+            if (!$key || !$value) {
                 continue;
+            }
             $return .= "<input type='hidden' name='{$key}' value='{$value}' />";
         }
         return $return;
     }
 
 
-    public static function routes()
-    {
+    public static function routes() {
         $routes = Route::getRoutes();
         foreach ($routes as $route) {
             echo URL::to($route->getPath()) . " <br/>\n";
@@ -305,11 +344,11 @@ class Helper
     }
 
 
-    public static function drawmenu($menus = false)
-    {
+    public static function drawmenu($menus = false) {
 
-        if (!$menus || !is_array($menus) || !count($menus))
+        if (!$menus || !is_array($menus) || !count($menus)) {
             return false;
+        }
 
         $return = '';
         $current_url = (Request::secure() ? 'https://' : 'http://') . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
@@ -325,8 +364,9 @@ HTML;
         foreach ($menus as $menu) {
             $child_exists = (isset($menu['child']) && is_array($menu['child']) && count($menu['child']));
 
-            if ($child_exists)
+            if ($child_exists) {
                 $return .= '<div class="btn-group margin-bottom-5">';
+            }
 
             if (isset($menu['raw']) && $menu['raw'] != '') {
 
@@ -338,7 +378,9 @@ HTML;
 
                 #$return .= "\n<!--\n" . $_SERVER['REQUEST_URI'] . "\n" . $menu['link'] . "\n-->\n";
 
-                $return .= '<a class="' . @$menu['class'] . ($child_exists ? '' : ' margin-bottom-5') . '" href="' . $menu['link'] . '">'
+                $additional = isset($menu['others']) ? self::arrayToAttributes($menu['others']) : '';
+
+                $return .= '<a class="' . @$menu['class'] . ($child_exists ? '' : ' margin-bottom-5') . '" href="' . $menu['link'] . '" ' . $additional . '>'
                         . ($current ? '<i class="fa fa-check"></i> ' : '')
                         . @$menu['title'] . '</a> ';
 
@@ -348,16 +390,18 @@ HTML;
 </a>
 <ul class="dropdown-menu text-left">';
 
-                    foreach ($menu['child'] as $child)
+                    foreach ($menu['child'] as $child) {
                         $return .= '<li><a class="' . @$child['class'] . '" href="' . @$child['link'] . '">' . @$child['title'] . '</a></li> ';
+                    }
 
                     $return .= '</ul> ';
                 }
 
             }
 
-            if ($child_exists)
+            if ($child_exists) {
                 $return .= "</div> ";
+            }
 
         }
 
@@ -371,18 +415,67 @@ HTML;
 
     }
 
+    public static function buildExcerpts($docs = false, $index = '*', $words = false, $opts = false) {
+
+        if (!$docs || !$words)
+            return false;
+
+        $opts_default = array(
+            'before_match' => '<b>',
+            'after_match' => '</b>',
+            'chunk_separator' => '...',
+            'limit' => 256,
+            'around' => 5,
+            'exact_phrase' => FALSE,
+            'single_passage' => FALSE
+        );
+        $opts = (array)$opts + $opts_default;
+        #Helper::dd($opts);
+
+        /**
+         * VENDOR
+         * scalia/sphinxsearch
+         */
+        $host = \Config::get('sphinxsearch::host');
+        $port = \Config::get('sphinxsearch::port');
+        /**
+         * VENDOR
+         * gigablah/sphinxphp
+         */
+        $sphinx = new \Sphinx\SphinxClient;
+        $sphinx->setServer($host, $port);
+        $results = $sphinx->buildExcerpts($docs, $index, $words, $opts);
+        ##Helper::d($results);
+        
+        /**
+         * Костыль-с...
+         */
+        $n = 0;
+        $temp = array();
+        foreach ($docs as $d => $doc)
+            $temp[$d] = $results[$n++];
+        unset($sphinx);
+        return $temp;
+    }
+
+
+    public static function multiSpace($a) {
+        return preg_replace('~\s\s+~is', " ", $a);
+    }
+
     ##
     ## Uses in Dictionaries module (DicVal additional fields)
     ## $element - current DicVal model
     ##
-    public static function formField($name, $array, $value = false, $element = false)
-    {
+    public static function formField($name, $array, $value = false, $element = false) {
 
-        if (!@$array || !is_array($array) || !@$name)
+        if (!@$array || !is_array($array) || !@$name) {
             return false;
+        }
 
-        if (isset($array['content']))
+        if (isset($array['content'])) {
             return $array['content'];
+        }
 
         #Helper::d($array);
 
@@ -391,12 +484,16 @@ HTML;
         #if ($name_group != '')
         #    $name = $name_group . '[' . $name . ']';
 
-        $value = $value ? $value : @$array['default'];
+        #var_dump($value);
 
-        #Helper::d($value);
+        $value = (isset($value) && $value !== NULL) ? $value : @$array['default'];
 
-        if (is_object($element) && $element->id)
+        #echo (int)(isset($value) && $value !== NULL);
+        #var_dump($value);
+
+        if (is_object($element) && $element->id) {
             $element = $element->extract();
+        }
 
         /*
         foreach ($element['fields'] as $f => $field) {
@@ -430,14 +527,14 @@ HTML;
                 $return = Form::textarea($name, $value, $others_array);
                 break;
             case 'textarea_redactor':
-                $others_array['class'] = trim(@$others_array['class'] . ' redactor redactor_450');
+                $others_array['class'] = trim(@$others_array['class'] . ' redactor redactor_150');
                 $return = Form::textarea($name, $value, $others_array);
                 break;
             case 'image':
-                $return = ExtForm::image($name, $value);
+                $return = ExtForm::image($name, $value, @$array['params']);
                 break;
             case 'gallery':
-                $return = ExtForm::gallery($name, $value);
+                $return = ExtForm::gallery($name, $value, @$array['params']);
                 break;
             case 'date':
                 $others_array['class'] = trim(@$others_array['class'] . ' datepicker');
@@ -445,6 +542,7 @@ HTML;
                 break;
             case 'upload':
                 $others_array['class'] = trim(@$others_array['class'] . ' file_upload');
+                #Helper::dd($others_array);
                 $return = ExtForm::upload($name, $value, $others_array);
                 break;
             case 'video':
@@ -475,40 +573,42 @@ HTML;
                 $return = '';
                 $style = '';
                 $col_num = 12;
-                if ($array['columns'] == 2)
+                if ($array['columns'] == 2) {
                     $style = ' col col-6';
-                elseif ($array['columns'] == 3)
+                } elseif ($array['columns'] == 3) {
                     $style = ' col col-4';
+                }
                 foreach ($array['values'] as $key => $val) {
                     $checked = is_array($value) && isset($value[$key]);
-                    $el = '<label class="checkbox' . $style . '">'
-                        . Form::checkbox($name . '[]', $key, $checked, $others_array)
-                        . '<i></i>'
-                        . '<span>' . $val . '</span>'
-                        . '</label>';
+                    $el = '<label class="checkbox' . $style . '">' . "\n"
+                        . Form::checkbox($name . '[]', $key, $checked, $others_array) . "\n"
+                        . '<i></i>' . "\n"
+                        . '<span>' . $val . '</span>' . "\n"
+                        . '</label>' . "\n\n";
                     $return .= $el;
                 }
+                #Helper::d(htmlspecialchars($return));
                 break;
         }
         return $return;
     }
 
-    public static function arrayToAttributes($array)
-    {
-        if (!@is_array($array) || !@count($array))
+    public static function arrayToAttributes($array) {
+        if (!@is_array($array) || !@count($array)) {
             return false;
+        }
 
         $line = '';
         foreach ($array as $key => $value) {
-            if (is_string($key) && (is_string($value) || is_int($value)))
+            if (is_string($key) && (is_string($value) || is_int($value))) {
                 $line = $key . '="' . $value . '" ';
+            }
         }
         $line = trim($line);
         return $line;
     }
 
-    public static function arrayFieldToKey(&$array, $field = 'slug')
-    {
+    public static function arrayFieldToKey(&$array, $field = 'slug') {
         #$return = $this;
         #Helper::tad($array);
         if (@count($array)) {
@@ -529,8 +629,7 @@ HTML;
      * @author Alexander Zelensky
      * @return string HTML-markup menu
      */
-    public static function changeLocaleMenu($view_locale = 'sign', $tpl = false)
-    {
+    public static function changeLocaleMenu($view_locale = 'sign', $tpl = false) {
         $locale = Config::get('app.locale');
         $default_locale = Config::get('app.default_locale');
         $locales = Config::get('app.locales');
@@ -542,15 +641,17 @@ HTML;
             'current' => '<li class="lang-li"><span class="lang-li-current">%locale_sign%</span></li>',
         );
         $tpl = (array)$tpl + $tpl_default;
-        if (!@$tpl['current'])
+        if (!@$tpl['current']) {
             $tpl['current'] = $tpl['link'];
+        }
 
         $url = Request::path();
         #if ($url != '/') {
         preg_match("~^/?([^/]+)(.*?)$~is", $url, $matches);
         #Helper::d($matches);
-        if (@$locales[$matches[1]])
+        if (@$locales[$matches[1]]) {
             $url = $matches[2];
+        }
         #}
         $url = preg_replace("~^/~is", '', $url);
         #Helper::dd($url);
@@ -564,8 +665,9 @@ HTML;
 
         foreach ($locales as $locale_sign => $locale_name) {
 
-            if ($locale_sign == $locale)
+            if ($locale_sign == $locale) {
                 continue;
+            }
 
             $locale_link = URL::to(($url || $locale_sign != $default_locale ? $locale_sign . '/' : '') . $url);
 
@@ -581,14 +683,14 @@ HTML;
         return $return;
     }
 
-    public static function clearModuleLink($path)
-    {
+    public static function clearModuleLink($path) {
 
         $return = $path;
 
         $start = AuthAccount::getStartPage();
-        if (!$start)
+        if (!$start) {
             return $return;
+        }
 
         $auth_acc_pos = @mb_strpos($return, $start, 7);
         if ($auth_acc_pos) {
@@ -601,8 +703,7 @@ HTML;
     }
 
 
-    public static function smartFilesize($number)
-    {
+    public static function smartFilesize($number) {
 
         $len = strlen($number);
         if ($len < 4) {
@@ -617,8 +718,8 @@ HTML;
         return sprintf("%0.2f Gb", $number / 1024 / 1024 / 1024);
     }
 
-    public static function isRoute($route_name = false, $route_params = array(), $match_text = ' class="active"', $mismatch_text = '')
-    {
+
+    public static function isRoute($route_name = false, $route_params = array(), $match_text = ' class="active"', $mismatch_text = '') {
 
         $match = true;
         $route = Route::getCurrentRoute();
@@ -626,37 +727,49 @@ HTML;
         #dd($route->getPath());
 
         if (is_string($route_params)) {
-            preg_match("~\{([^\}]+?)\}~is", $route->getPath(), $matches);
+            preg_match('~\{([^\}]+?)\}~is', $route->getPath(), $matches);
             #Helper::dd($matches);
-            if (@$matches[1] != '')
+            if (@$matches[1] != '') {
                 $route_params = array($matches[1] => $route_params);
-            else
+            } else {
                 $route_params = array();
+            }
         }
+
         #Helper::d($route_params);
 
         if (count($route_params)) {
+
+            #Helper::d($route_params);
+            $route_params = URL::get_modified_parameters($route_name, $route_params);
+            #Helper::dd($route_params);
+
             foreach ($route_params as $key => $value) {
+
+                #Helper::d("[" . $key . "] => " . $route->getParameter($key) . " = " . $value);
+
                 if ($route->getParameter($key) != $value) {
                     $match = false;
                     break;
                 }
             }
         }
+
+        #Helper::d((int)$match);
+
         return (Route::currentRouteName() == $route_name && $match) ? $match_text : $mismatch_text;
     }
 
-    public static function mb_ucfirst($str, $encoding = 'UTF-8')
-    {
+    public static function mb_ucfirst($str, $encoding = 'UTF-8') {
         $first = mb_substr($str, 0, 1, $encoding);
         $rest = mb_substr($str, 1, strlen($str), $encoding);
         return mb_strtoupper($first, $encoding) . $rest;
     }
 
-    public static function multiArrayToAttributes($array, $name)
-    {
-        if (!is_array($array) || !count($array))
+    public static function multiArrayToAttributes($array, $name) {
+        if (!is_array($array) || !count($array)) {
             return array();
+        }
         $return = array();
         foreach ($array as $key => $val) {
             #Helper::d($name);
@@ -741,8 +854,9 @@ HTML;
         }
         foreach ($filter_dic_elements as $element_id => $element_name) {
 
-            if ($element_id == @$filter[$filter_name])
+            if ($element_id == @$filter[$filter_name]) {
                 continue;
+            }
 
             ## Get all current link attributes & modify for next url generation
             $array = $current_link_attributes;
@@ -820,11 +934,221 @@ HTML;
 
         $query = strtr($query, $changes);
 
-        if ($force)
+        if ($force) {
             Helper::d($query);
-        else
+        } else {
             Log::info($query);
+        }
     }
 
+    public static function getMenu($menu_name = '') {
+
+        $menus = Config::get('menu', array());
+        if (!isset($menus[$menu_name]) || !is_callable($menus[$menu_name])) {
+            return false;
+        }
+
+        $menu = $menus[$menu_name]();
+
+        if (!@$menu['tpl']['container'] || !@$menu['tpl']['element_container'] || !@$menu['tpl']['element'] || !@is_array($menu['elements']) || !@count($menu['elements'])
+        ) {
+            return false;
+        }
+
+        /**
+         * Menu template
+         */
+        $tpl_container = $menu['tpl']['container'];
+        $tpl_element_container = $menu['tpl']['element_container'];
+        $tpl_element = $menu['tpl']['element'];
+        $active_class = $menu['active_class'];
+
+        $fake_attributes = array('_href', '_route', '_params', '_raw', '_text');
+
+        /**
+         * Process all menu element
+         */
+        $links = array();
+        foreach ($menu['elements'] as $e => $element) {
+
+            /**
+             * RAW - plain text of the element
+             */
+            if (isset($element['_raw'])) {
+
+                $link = $element['_raw'];
+
+            } else {
+
+                $url = '#';
+                if (isset($element['_href'])) {
+                    $url = @$element['_href'];
+                } elseif (isset($element['_route'])) {
+                    $url = URL::route($element['_route'], @$element['_params']);
+                } elseif (isset($element['_action'])) {
+                    $url = URL::action($element['_action'], @$element['_params']);
+                }
+
+                $attr = $element;
+                self::withdraws($attr, $fake_attributes);
+                #Helper::d($attr);
+
+                /**
+                 * Check active route
+                 */
+                if (@$element['_route']) {
+                    $active_value = self::isRoute(@$element['_route'], @$element['_params'], $active_class);
+
+                    #Helper::d('CLASS => ' . $active_value);
+
+                    if ($active_value) {
+                        $attr['class'] = trim(@$attr['class'] . ' ' . trim($active_value));
+                    }
+                }
+
+                #Helper::dd($attr);
+
+                /**
+                 * Make string line of link attributes, from array
+                 */
+                $attr_array = array();
+                foreach ($attr as $attribute_key => $attribute_value) {
+                    $attr_array[] = $attribute_key . '="' . $attribute_value . '"';
+                }
+                $attr_string = implode(' ', $attr_array);
+
+                #Helper::d($attr_string);
+
+                /**
+                 * Make link
+                 */
+                $link = strtr($tpl_element, array('%url%' => $url, '%attr%' => $attr_string, '%text%' => @$element['_text'],));
+
+            }
+
+            /**
+             * Make string line of link's container attributes, from array
+             */
+            $container_attr_string = '';
+            if (isset($element['_container_attributes']) && is_array($element['_container_attributes']) && count($element['_container_attributes'])) {
+                $container_attr_array = array();
+                foreach ($element['_container_attributes'] as $attribute_key => $attribute_value) {
+                    $container_attr_array[] = $attribute_key . '="' . $attribute_value . '"';
+                }
+                $container_attr_string = implode(' ', $container_attr_array);
+                #Helper::d($container_attr_string);
+            }
+
+            $link = strtr($tpl_element_container, array('%attr%' => $container_attr_string != '' ? ' ' . $container_attr_string : '', '%element%' => $link,));
+
+            $links[] = $link;
+        }
+        #Helper::dd($links);
+        $return = strtr($tpl_container, array('%elements%' => implode('', $links),));
+        #Helper::dd($return);
+        return $return;
+    }
+
+    public static function getFileProperties($file) {
+        $properties = array();
+        $limit = 18;
+
+        if (!file_exists($file) || !is_file($file) || !is_readable($file))
+            return $properties;
+
+        $l = 0;
+        $handle = @fopen($file, "r");
+        if ($handle) {
+            while (($buffer = fgets($handle, 1024)) !== false) {
+                ++$l;
+                /*
+                Helper::d(
+                    $l . " => " . $buffer
+                    . ' / ' . ($l == 1 ? (int)(trim($buffer) == '<?') . '[' . trim($buffer) . ']' : '')
+                    . ' / ' . ($l == 2 ? (int)(trim($buffer) == '/**') . '[' . trim($buffer) . ']' : '')
+                );
+                */
+                if (
+                    $l > $limit
+                    || ($l == 1 && mb_substr($buffer, 0, 2) != '<?')
+                    || ($l == 2 && mb_substr($buffer, 0, 3) != '/**')
+                )
+                    break;
+
+                #Helper::d(' + ' . $buffer . ' => ' . (int)(trim($buffer) == '<?'));
+
+                if ($l > 2) {
+                    if (mb_substr($buffer, 0, 3) == ' */')
+                        break;
+
+                    $buffer = trim($buffer, " \r\n\t*");
+                    $buffer = explode(':', $buffer);
+                    #Helper::d($buffer);
+
+                    $value = @trim($buffer[1]) ?: true;
+                    if ($value !== true && is_string($value) && mb_strlen($value) && mb_strpos($value, '|')) {
+                        $temp = explode('|', $value);
+                        $value = array();
+                        foreach ($temp as $tmp) {
+                            $tmp = trim($tmp);
+                            if (mb_strpos($tmp, '=')) {
+                                $keyval = explode('=', $tmp, 2);
+                                $value[trim($keyval[0])] = trim($keyval[1]);
+                            } else {
+                                $value[$tmp] = true;
+                            }
+                        }
+                    }
+
+                    $properties[@trim($buffer[0])] = $value;
+                }
+
+            }
+            if (!feof($handle)) {
+                #echo "Error: unexpected fgets() fail\n";
+            }
+            fclose($handle);
+        }
+        return $properties;
+    }
+
+    public static function getLayoutProperties($layout = false) {
+         if (!$layout)
+             $layout = Config::get('app.template');
+
+        $file = base_path("/app/views/templates/" . $layout . '.blade.php');
+        return self::getFileProperties($file);
+    }
+
+
+    public static function detect_encoding($string, $pattern_size = 50) {
+        $list = array('cp1251', 'utf-8', 'ascii', '855', 'KOI8R', 'ISO-IR-111', 'CP866', 'KOI8U');
+        $c = strlen($string);
+        if ($c > $pattern_size) {
+            $string = substr($string, floor(($c - $pattern_size) / 2), $pattern_size);
+            $c = $pattern_size;
+        }
+
+        $reg1 = '/(\xE0|\xE5|\xE8|\xEE|\xF3|\xFB|\xFD|\xFE|\xFF)/i';
+        $reg2 = '/(\xE1|\xE2|\xE3|\xE4|\xE6|\xE7|\xE9|\xEA|\xEB|\xEC|\xED|\xEF|\xF0|\xF1|\xF2|\xF4|\xF5|\xF6|\xF7|\xF8|\xF9|\xFA|\xFC)/i';
+
+        $mk = 10000;
+        $enc = 'ascii';
+        foreach ($list as $item) {
+            $sample1 = @iconv($item, 'cp1251', $string);
+            $gl = @preg_match_all($reg1, $sample1, $arr);
+            $sl = @preg_match_all($reg2, $sample1, $arr);
+            if (!$gl || !$sl) {
+                continue;
+            }
+            $k = abs(3 - ($sl / $gl));
+            $k += $c - $gl - $sl;
+            if ($k < $mk) {
+                $enc = $item;
+                $mk = $k;
+            }
+        }
+        return $enc;
+    }
 }
 
