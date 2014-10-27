@@ -435,6 +435,7 @@ Route::get('import/plitka', function(){
         /**
          * Import "interiors" - images of category (collection)
          */
+        $gallery_id = 0;
         if (isset($cats_images[$cat->category_id]) && is_array($cats_images[$cat->category_id]) && count($cats_images[$cat->category_id])) {
 
             $gallery = new Gallery;
@@ -475,21 +476,22 @@ Route::get('import/plitka', function(){
         }
 
 
-
         $dicval = DicVal::inject('collections', array(
             'slug' => $slug,
             'name' => $name,
             'fields' => array(
                 'description' => '',
-                'gallery_id' => $gallery->id,
+                'gallery_id' => $gallery_id,
                 'product_type_id' => $product_type_plitka->id,
                 'country_id' => $country_id,
                 'factory_id' => $factory_id,
             )
         ));
 
-        $gallery->name = $gallery->name . ' (' . $dicval->id . ')';
-        $gallery->save();
+        if (isset($gallery) && is_object($gallery) && $gallery->id) {
+            $gallery->name = $gallery->name . ' (' . $dicval->id . ')';
+            $gallery->save();
+        }
         unset($gallery);
 
         $cat_oldid_newid[$cat->category_id] = $dicval->id;
