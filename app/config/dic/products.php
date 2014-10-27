@@ -8,6 +8,7 @@ return array(
             'collections',
             'colors',
             'surface_type',
+            'format',
         );
         $dics = Dic::whereIn('slug', $dics_slugs)->with('values')->get();
         $dics = Dic::modifyKeys($dics, 'slug');
@@ -17,15 +18,36 @@ return array(
 
         return array(
 
+            'collection_id' => array(
+                'title' => 'Коллекция',
+                'type' => 'select',
+                'values' => array('Выберите..') + $lists['collections'],
+            ),
+
+            'article' => array(
+                'title' => 'Артикул',
+                'type' => 'text',
+            ),
+
             'image_id' => array(
                 'title' => 'Фотография',
                 'type' => 'image',
             ),
 
-            'collection_id' => array(
-                'title' => 'Коллекция',
+            'format_id' => array(
+                'title' => 'Формат',
                 'type' => 'select',
-                'values' => array('Выберите..') + $lists['collections'],
+                'values' => array('Выберите..') + $lists['format'],
+            ),
+
+            'size_text' => array(
+                'title' => 'Размер',
+                'type' => 'text',
+            ),
+
+            'package_text' => array(
+                'title' => 'Упаковка',
+                'type' => 'text',
             ),
 
             'color_id' => array(
@@ -34,7 +56,7 @@ return array(
                 'values' => array('Выберите..') + $lists['colors'],
             ),
 
-            'surface_id' => array(
+            'surface_type_id' => array(
                 'title' => 'Тип поверхности',
                 'type' => 'select',
                 'values' => array('Выберите..') + $lists['surface_type'],
@@ -44,8 +66,8 @@ return array(
                 'title' => 'Цена',
                 'type' => 'text',
                 'others' => array(
-                    'maxlength' => 5,
-                    'onkeyup' => "this.value = this.value.replace (/\D/, '')", ## ONLY DIGITS
+                    #'maxlength' => 5,
+                    #'onkeyup' => "this.value = this.value.replace (/\D/, '')", ## ONLY DIGITS
                 ),
             ),
 

@@ -10,6 +10,9 @@ class AdminGalleriesController extends BaseController {
     ## Routing rules of module
     public static function returnRoutes($prefix = null) {
         $class = __CLASS__;
+
+        Route::post('admin/gallery/ajax-order-save', array('as' => 'gallery.order', 'uses' => $class."@postAjaxOrderSave"));
+
         Route::group(array('before' => 'auth', 'prefix' => $prefix), function() use ($class) {
         	Route::get($class::$group.'/manage', array('uses' => $class.'@getIndex'));
         	Route::controller($class::$group, $class);
@@ -56,14 +59,20 @@ class AdminGalleriesController extends BaseController {
                 }
 
                 #Helper::dd($value);
+                #Helper::dd($params);
 
                 if (is_numeric($value)) {
                     $value = Gallery::find($value);
                 }
 
+                #Helper::tad($value);
+
                 $gallery = $value;
+
+                #Helper::tad($gallery);
+
                 ## return view with form element
-                return View::make($mod_tpl.$tpl, compact('name', 'gallery', 'params'));                
+                return View::make($mod_tpl.$tpl, compact('name', 'gallery', 'params'))->render();
     	    },
             ## Processing results closure
             function($params) use ($mod_tpl, $class) {
@@ -126,6 +135,7 @@ class AdminGalleriesController extends BaseController {
                 }
 
                 #Helper::dd($value);
+                #Helper::dd($params);
 
                 if ( $value === false || $value === null ) {
                     $val = Form::text($name);
@@ -138,6 +148,8 @@ class AdminGalleriesController extends BaseController {
                 } elseif (is_numeric($value)) {
                     $value = Photo::find($value);
                 }
+
+                #Helper::tad($value);
 
                 $photo = $value;
                 ## return view with form element
@@ -373,8 +385,8 @@ class AdminGalleriesController extends BaseController {
 	    }
 
         ## Check upload & thumb dir
-		$uploadPath = Config::get('app-default.galleries_photo_dir');
-		$thumbsPath = Config::get('app-default.galleries_thumb_dir');
+		$uploadPath = Config::get('site.galleries_photo_dir');
+		$thumbsPath = Config::get('site.galleries_thumb_dir');
 
 		if(!File::exists($uploadPath))
 			File::makeDirectory($uploadPath, 0777, TRUE);
@@ -385,8 +397,8 @@ class AdminGalleriesController extends BaseController {
 		$fileName = time() . "_" . rand(1000, 1999) . '.' . $file->getClientOriginalExtension();
 
         ## Get images resize parameters from config
-		$thumb_size = Config::get('app-default.galleries_thumb_size');
-		$photo_size = Config::get('app-default.galleries_photo_size');
+		$thumb_size = Config::get('site.galleries_thumb_size');
+		$photo_size = Config::get('site.galleries_photo_size');
 
         ## Get image width & height
         $image = ImageManipulation::make($file->getRealPath());
@@ -453,8 +465,8 @@ class AdminGalleriesController extends BaseController {
 		    $db_delete = $model->delete();
 
 		if(@$db_delete) {
-			$file_delete = File::delete(Config::get('app-default.galleries_photo_dir').'/'.$model->name);
-			$thumb_delete = File::delete(Config::get('app-default.galleries_thumb_dir').'/'.$model->name);
+			$file_delete = File::delete(Config::get('site.galleries_photo_dir').'/'.$model->name);
+			$thumb_delete = File::delete(Config::get('site.galleries_thumb_dir').'/'.$model->name);
 		}
 
 		#if(@$db_delete && @$file_delete && @$thumb_delete) {
@@ -552,6 +564,20 @@ class AdminGalleriesController extends BaseController {
 
 		return $gallery_id;
 	}
+
+
+    public function postAjaxOrderSave() {
+
+        $poss = Input::get('poss');
+        $pls = Photo::whereIn('id', $poss)->get();
+        if ( $pls ) {
+            foreach ( $pls as $pl ) {
+                $pl->order = array_search($pl->id, $poss);
+                $pl->save();
+            }
+        }
+        return Response::make('1');
+    }
 
 }
 

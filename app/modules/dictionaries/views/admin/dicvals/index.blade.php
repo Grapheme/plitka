@@ -13,8 +13,10 @@
                     <thead>
                         <tr>
                             <th class="text-center" style="width:40px">#</th>
-                            <th style="width:100%;"class="text-center">Название</th>
+                            <th style="width:100%;"class="text-center">{{ $dic->name_title ?: 'Название' }}</th>
+                            @if ($actions_column)
                             <th colspan="2" class="width-250 text-center">Действия</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody class="dicvals @if($sortable) sortable @endif">
@@ -46,6 +48,7 @@
                                 </span>
                             </td>
 
+                            @if ($actions_column)
                             <td class="text-center" style="white-space:nowrap;">
 
                                 @if (NULL != ($actions = @$dic_settings['actions']) && @is_callable($actions))
@@ -58,7 +61,13 @@
                                 </a>
                                 @endif
 
-                                @if(Allow::action($module['group'], 'dicval_delete'))
+                                @if(
+                                    Allow::action($module['group'], 'dicval_delete')
+                                    && (
+                                            !isset($dic_settings['min_elements'])
+                                            || ($dic_settings['min_elements'] > 0 && $total_elements > $dic_settings['min_elements'])
+                                        )
+                                )
                                 <form method="POST" action="{{ action(is_numeric($dic_id) ? 'dicval.destroy' : 'entity.destroy', array('dic_id' => $dic_id, 'id' => $element->id)) }}" style="display:inline-block">
                                     <button type="submit" class="btn btn-danger remove-record">
                                         Удалить
@@ -67,6 +76,8 @@
                                 @endif
 
                             </td>
+                            @endif
+
                         </tr>
                     @endforeach
                     </tbody>
@@ -122,6 +133,12 @@
     @if ($sortable)
     <script>
         init_sortable("{{ URL::route('dicval.order') }}", ".dicvals");
+    </script>
+    @endif
+
+    @if (@trim($dic_settings['javascript']))
+    <script>
+        {{ @$dic_settings['javascript'] }}
     </script>
     @endif
 

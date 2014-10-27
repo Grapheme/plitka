@@ -48,12 +48,6 @@ return array(
 
             array('content' => '<hr/>'),
 
-            'format_id' => array(
-                'title' => 'Формат',
-                'type' => 'select',
-                'values' => array('Выберите..') + $lists['format'],
-            ),
-
             'surface_id' => array(
                 'title' => 'Поверхность',
                 'type' => 'select',
@@ -76,7 +70,16 @@ return array(
                         : $return = array();
                     return $return;
                 },
-            )
+            ),
+
+            array('content' => '<div class="clearfix"></div><br/><hr/>'),
+
+            'gallery_id' => array(
+                'title' => 'Интерьеры',
+                'type' => 'gallery',
+            ),
+
+
         );
 
     },
@@ -122,18 +125,22 @@ return array(
         ## Data from hook: before_index_view
         $dics = Config::get('temp.index_dics');
         $dic_products = $dics['products'];
-        $dic_interiors = $dics['interiors'];
+        #$dic_interiors = $dics['interiors'];
         $counts = Config::get('temp.index_counts');
         return '
             <span class="block_ margin-bottom-5_">
                 <a href="' . URL::route('entity.index', array('products', 'filter[fields][collection_id]' => $dicval->id)) . '" class="btn btn-default">
                     Продукция (' . @(int)$counts[$dicval->id][$dic_products->id] . ')
                 </a>
+                '
+            /*
+            . '
                 <a href="' . URL::route('entity.index', array('interiors', 'filter[fields][collection_id]' => $dicval->id)) . '" class="btn btn-default">
                     Интерьеры (' . @(int)$counts[$dicval->id][$dic_interiors->id] . ')
                 </a>
             </span>
-        ';
+            '*/
+            ;
     },
 
     'hooks' => array(
@@ -147,7 +154,7 @@ return array(
         'before_index_view' => function ($dic, $dicvals) {
             $dics_slugs = array(
                 'products',
-                'interiors',
+                #'interiors',
             );
             $dics = Dic::whereIn('slug', $dics_slugs)->get();
             $dics = Dic::modifyKeys($dics, 'slug');
@@ -193,6 +200,7 @@ return array(
         #Helper::ta($dicval);
         return $dicval->slug;
     },
+
 
     'seo' => false,
 );

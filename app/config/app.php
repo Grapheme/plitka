@@ -105,6 +105,8 @@ return array(
         'URL'             => 'Illuminate\Support\Facades\CustomURL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
-		'ImageManipulation' => 'Intervention\Image\Facades\Image'
+		'ImageManipulation' => 'Intervention\Image\Facades\Image',
+
+        'Collection'      => 'Illuminate\Database\Eloquent\Collection',
 	),
 );
