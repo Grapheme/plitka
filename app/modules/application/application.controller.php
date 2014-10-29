@@ -74,7 +74,9 @@ class ApplicationController extends BaseController {
         if (Input::get('nojson') == 1)
             Helper::tad($data);
 
-        return Response::json($data, 200);
+        return Response::json($data, 200, array(
+            'Access-Control-Allow-Origin' => '*',
+        ));
     }
 
 }
