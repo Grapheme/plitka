@@ -12,6 +12,8 @@ class ApplicationController extends BaseController {
 
         Route::group(array(), function() {
             Route::get('/application/get', array('as' => 'application.get', 'uses' => __CLASS__.'@getApplicationData'));
+
+            Route::post('/ajax/feedback', array('as' => 'ajax.feedback', 'uses' => __CLASS__.'@postFeedback'));
         });
     }
 
@@ -91,6 +93,54 @@ class ApplicationController extends BaseController {
         return Response::json($data, 200, array(
             'Access-Control-Allow-Origin' => '*',
         ));
+    }
+
+    public function postFeedback() {
+
+        if(!Request::ajax())
+            App::abort(404);
+
+        $json_request = array('status' => TRUE, 'responseText' => '');
+
+        ## Send confirmation to user - with password
+        $data = Input::all();
+
+        Mail::send('emails.feedback', $data, function ($message) use ($data) {
+
+            #$message->from(Config::get('mail.from.address'), Config::get('mail.from.name'));
+
+            $from_email = Dic::valueBySlugs('options', 'from_email');
+            $from_email = is_object($from_email) ? $from_email->name : 'no@reply.ru';
+            $from_name = Dic::valueBySlugs('options', 'from_name');
+            $from_name = is_object($from_name) ? $from_name->name : 'No-reply';
+
+            $message->from($from_email, $from_name);
+            $message->subject('Новое сообщение обратной связи');
+
+            #$email = Config::get('mail.feedback.address');
+            $email = Dic::valueBySlugs('options', 'email');
+            $email = is_object($email) ? $email->name : 'dev@null.ru';
+
+            $emails = array();
+            if (strpos($email, ',')) {
+                $emails = explode(',', $email);
+                foreach ($emails as $e => $email)
+                    $emails[$e] = trim($email);
+                $email = array_shift($emails);
+            }
+
+            $message->to($email);
+
+            #$ccs = Config::get('mail.feedback.cc');
+            $ccs = $emails;
+            if (isset($ccs) && is_array($ccs) && count($ccs))
+                foreach ($ccs as $cc)
+                    $message->cc($cc);
+
+        });
+
+        #Helper::dd($result);
+        return Response::json($json_request, 200);
     }
 
 }
