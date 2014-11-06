@@ -13,7 +13,7 @@ class ApplicationController extends BaseController {
         Route::group(array(), function() {
             Route::get('/application/get', array('as' => 'application.get', 'uses' => __CLASS__.'@getApplicationData'));
 
-            Route::post('/ajax/feedback', array('as' => 'ajax.feedback', 'uses' => __CLASS__.'@postFeedback'));
+            Route::any('/ajax/feedback', array('as' => 'ajax.feedback', 'uses' => __CLASS__.'@postFeedback'));
         });
     }
 
