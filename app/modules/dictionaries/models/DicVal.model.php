@@ -25,6 +25,48 @@ class DicVal extends BaseModel {
     #    return self::$rules;
     #}
 
+
+
+
+    /*
+    public function scopeCustom_hasOne($query, $relation_key, $model, $local_id, $remote_id = 'id') {
+
+        #Helper::dd($relation_key);
+
+        #$this->{'scope'.mb_strtoupper($relation_key)} = function() use ($model, $local_id, $remote_id) {
+        $this->$relation_key = function() use ($model, $local_id, $remote_id) {
+
+            return $this->hasOne($model, $local_id, $remote_id);
+        };
+
+        #return $this->hasOne($model, $local_id, $remote_id);
+    }
+
+
+    public function scopeCustom_with($query, $relation_key, $field_key) {
+
+        Helper::d($relation_key);
+        Helper::d($field_key);
+        Helper::d($this->$relation_key);
+        #die;
+
+        $key = $field_key;
+
+        $tbl_dicval = (new DicVal())->getTable();
+        $tbl_dic_field_val = (new DicFieldVal())->getTable();
+        $rand_tbl_alias = md5(time() . rand(999999, 9999999));
+        $query->join($tbl_dic_field_val . ' AS ' . $rand_tbl_alias, $rand_tbl_alias . '.dicval_id', '=', $tbl_dicval . '.id')
+            ->where($rand_tbl_alias . '.key', '=', $key)
+        ;
+
+        #return $query;
+        return $query->with('dic');
+    }
+    */
+
+
+
+
     public function dic() {
         return $this->belongsTo('Dictionary', 'dic_id');
     }
@@ -54,12 +96,21 @@ class DicVal extends BaseModel {
 
 
     public function allfields() {
-        return $this->hasMany('DicFieldVal', 'dicval_id', 'id');
+        return $this->hasMany('DicFieldVal', 'dicval_id', 'id')
+        ;
     }
 
     public function fields() {
+
+        #Helper::dd($this);
+
         return $this
-            ->hasMany('DicFieldVal', 'dicval_id', 'id')->where('language', Config::get('app.locale'))->orWhere('language', NULL)
+            ->hasMany('DicFieldVal', 'dicval_id', 'id')
+            ->where('language', Config::get('app.locale'))
+            ->orWhere('language', NULL)
+
+            #->whereIn('name', array_keys((array)Config::get('dic.dic_name.fields')))
+
             ;
     }
 
@@ -192,6 +243,36 @@ class DicVal extends BaseModel {
         ##................
     }
     */
+
+    public function scopeFilter_by_field($query, $key, $condition = '=', $value = NULL, $do_nothing_if_null = false) {
+
+        if ($value === NULL)
+            if ($do_nothing_if_null)
+                return $query;
+            else
+                $condition = '=';
+
+        $tbl_dicval = (new DicVal())->getTable();
+        $tbl_dic_field_val = (new DicFieldVal())->getTable();
+        $rand_tbl_alias = md5(time() . rand(999999, 9999999));
+        $query->join($tbl_dic_field_val . ' AS ' . $rand_tbl_alias, $rand_tbl_alias . '.dicval_id', '=', $tbl_dicval . '.id')
+            ->where($rand_tbl_alias . '.key', '=', $key)
+            ->where($rand_tbl_alias . '.value', $condition, $value);
+
+        return $query;
+    }
+
+    public function scopeOrder_by_field($query, $key, $order_method = 'ASC') {
+        $tbl_dicval = (new DicVal())->getTable();
+        $tbl_dic_field_val = (new DicFieldVal())->getTable();
+        $rand_tbl_alias = md5(time() . rand(999999, 9999999));
+        $query->join($tbl_dic_field_val . ' AS ' . $rand_tbl_alias, $rand_tbl_alias . '.dicval_id', '=', $tbl_dicval . '.id')
+            ->where($rand_tbl_alias . '.key', '=', $key)
+            ->orderBy($rand_tbl_alias . '.value', $order_method)
+        ;
+        return $query;
+    }
+
 
     public static function extracts($elements, $unset = false, $extract_ids = true) {
         $return = new Collection;

@@ -84,7 +84,12 @@ class AdminDicsController extends BaseController {
         $tbl_dic = $elements->getTable();
 
         ## Ordering
-        $elements = $elements->orderBy('order', 'ASC')->orderBy('name', 'ASC');
+        $elements = $elements
+            #->orderBy('order', 'ASC')
+            ->orderBy(DB::raw('-' . $tbl_dic . '.order'), 'DESC') ## 0, 1, 2 ... NULL, NULL
+            ->orderBy($tbl_dic . '.created_at', 'ASC')
+            ->orderBy('name', 'ASC')
+        ;
 
         ## View access
         if (!Allow::superuser())

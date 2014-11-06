@@ -37,6 +37,11 @@ class Dictionary extends BaseModel {
         return $this->hasMany('DicVal', 'dic_id', 'id')
             ->where('version_of', NULL)
             ->with('meta', 'fields')
+            /*
+            ->with('meta', array('fields' => function($query){
+                #$query->whereIn('name', array_keys((array)Config::get('dic.dic_name.fields')));
+            }))
+            */
             ->orderBy('order', 'ASC')
             ->orderBy('slug', 'ASC')
             ->orderBy('name', 'ASC')
@@ -45,7 +50,11 @@ class Dictionary extends BaseModel {
     }
 
     public function values_no_conditions() {
+
+        $tbl_dicval = (new DicVal())->getTable();
+
         return $this->hasMany('DicVal', 'dic_id', 'id')
+            ->select($tbl_dicval.'.*')
             ->where('version_of', NULL)
             ->with('meta', 'fields')
         ;
@@ -143,6 +152,65 @@ class Dictionary extends BaseModel {
     }
 
 
+    /**
+     * "Ленивая загрузка" данных без использования связи
+     *
+     * @param $collection
+     * @param $key
+     * @param $relation_array
+     * @return mixed
+     */
+    public static function custom_load_hasOne($collection, $key, $relation_array, Closure $additional_rules = NULL) {
+
+        $model = $relation_array[0];
+        $local_id = $relation_array[1];
+        $remote_id = $relation_array[2];
+
+        $list = self::makeLists($collection, null, $local_id);
+        #Helper::d($list);
+
+        $values = new Collection;
+        if (count($list)) {
+            $values = $model::whereIn($remote_id, $list);
+            if (is_callable($additional_rules)) {
+                #$values = $additional_rules($values);
+                /**
+                 * Правильный способ применения доп. условий через функцию-замыкание
+                 */
+                call_user_func($additional_rules, $values);
+            }
+            $values = $values->get();
+
+            $values = Dic::modifyKeys($values, 'id');
+            #Helper::tad($values);
+        }
+
+        foreach($collection as $e => $element) {
+
+            if (isset($element->$local_id) && isset($values[$element->$local_id])) {
+
+                /**
+                 * Правильная кастомная установка поля.
+                 * Доп. поле должно устанавливаться как связь (relation)
+                 */
+                $element->relations[$key] = @$values[$element->$local_id] ?: NULL;
+
+                /**
+                 * Правильное обновление значения элемента коллекции
+                 */
+                $collection->put($e, $element);
+            }
+        }
+
+        unset($list);
+        unset($values);
+
+        return $collection;
+    }
+
+
+
+
     ## Need to check
     public function valueBySlug($slug) {
         return $this->with(array('value' => function($query) use ($slug) {
@@ -232,65 +300,7 @@ class Dictionary extends BaseModel {
         return is_object($data) ? $data : self::firstOrNew(array('id' => 0));
     }
 
-    /**
-     * Удаляет все записи и все их данные из указанного словаря
-     *
-     * @param $dic_slug
-     * @return bool
-     */
-    public static function clear($dic_slug) {
-        $dic = Dic::where('slug', $dic_slug)
-            ->with(array('values_no_conditions' => function($query) {
-                $query->with('meta', 'fields', 'seo', 'related_dicvals');
-            }))
-            ->first();
 
-        #Helper::tad($dic);
-
-        if (count($dic->values_no_conditions)) {
-
-            $meta_ids = array();
-            $fields_ids = array();
-            $seo_ids = array();
-
-            foreach ($dic->values_no_conditions as $value) {
-
-                if (isset($value->meta) && is_object($value->meta)) {
-                    $meta_ids = $value->meta->id;
-                }
-
-                if (count($value->fields)) {
-                    foreach ($value->fields as $field) {
-                        $fields_ids[] = $field->id;
-                    }
-                }
-
-                if (isset($value->seo) && is_object($value->seo)) {
-                    $seo_ids[] = $value->seo->id;
-                }
-
-                if (count($value->related_dicvals)) {
-                    foreach ($value->related_dicvals as $related_dicval)
-                        $related_dicval->delete();
-
-                }
-            }
-
-            if (count($meta_ids))
-                DicValMeta::whereIn('id', $meta_ids)->delete();
-            if (count($fields_ids))
-                DicFieldVal::whereIn('id', $fields_ids)->delete();
-            if (count($seo_ids))
-                Seo::whereIn('id', $seo_ids)->delete();
-
-            $ids = Dic::makeLists($dic->values_no_conditions, false, 'id');
-            if (count($ids))
-                DicVal::whereIn('id', $ids)->delete();
-
-        }
-
-        return true;
-    }
 
 }
 

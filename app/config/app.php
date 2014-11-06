@@ -17,7 +17,7 @@ return array(
 	'manifest' => storage_path('meta'),
 
 	'debug' => FALSE,
-	'url' => 'http://test.grapheme.ru/quest-zenit/public',
+	#'url' => 'http://test.grapheme.ru/quest-zenit/public',
 	'timezone' => 'UTC',
 
     'locales' => array(

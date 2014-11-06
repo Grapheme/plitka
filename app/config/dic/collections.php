@@ -20,6 +20,15 @@ return array(
 
         return array(
 
+            #/*
+            'show_on_mainpage' => array(
+                'title' => 'Выводить на главной',
+                'type' => 'checkbox',
+                'no_label' => true,
+                'label_class' => 'normal_checkbox',
+            ),
+            #*/
+
             'description' => array(
                 'title' => 'Описание',
                 'type' => 'textarea',
@@ -77,6 +86,18 @@ return array(
             'gallery_id' => array(
                 'title' => 'Интерьеры',
                 'type' => 'gallery',
+                'params' => array(
+                    'maxfilesize' => 1, // MB
+                    #'acceptedfiles' => 'image/*',
+                ),
+                'handler' => function($array, $element) {
+                    return ExtForm::process('gallery', array(
+                        'module'  => 'dicval_meta',
+                        'unit_id' => $element->id,
+                        'gallery' => $array,
+                        'single'  => true,
+                    ));
+                }
             ),
 
 

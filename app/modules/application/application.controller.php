@@ -37,8 +37,22 @@ class ApplicationController extends BaseController {
 
         $data = new Collection();
 
-        $dics = Dic::all();
+        /**
+         * Load pages
+         */
+        $pages = Page::with('meta', 'blocks.meta', 'seo')->get();
+        foreach ($pages as $p => $page) {
+            #$page->extract(true);
+            $pages[$p] = $page->extract(true);
+        }
+        $pages = Dic::modifyKeys($pages, 'slug');
+        #Helper::tad($pages);
+        $data['pages'] = $pages;
 
+        /**
+         * Load all dics & data
+         */
+        $dics = Dic::all();
         #Helper::tad($dics);
 
         foreach ($dics as $dic) {
