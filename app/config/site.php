@@ -5,7 +5,7 @@ return array(
     'paginate_limit' => 30,
 
     'upload_dir' => '/uploads',
-    'uploads_dir' => 'public/uploads',
+    'uploads_dir' => public_path('uploads/files'),
 
     'galleries_photo_dir' => public_path('uploads/galleries'),
     'galleries_thumb_dir' => public_path('uploads/galleries/thumbs'),
