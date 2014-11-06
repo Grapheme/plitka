@@ -115,7 +115,7 @@ class ApplicationController extends BaseController {
             $from_name = is_object($from_name) ? $from_name->name : 'No-reply';
 
             $message->from($from_email, $from_name);
-            $message->subject('Новое сообщение обратной связи');
+            $message->subject('Новое сообщение обратной связи - ' . @$data['name']);
 
             #$email = Config::get('mail.feedback.address');
             $email = Dic::valueBySlugs('options', 'email');

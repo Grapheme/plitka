@@ -6,9 +6,9 @@
 <body>
 	<div>
 		<p>
-            Сообщение: &lt;{{ $email }}&gt;
+            Сообщение: {{ $name }} &lt;{{ $email }}&gt;
             <hr/>
-			{{ Helper::nl2br($content) }}
+			{{ Helper::nl2br($text) }}
             <hr/>
 		</p>
 	</div>

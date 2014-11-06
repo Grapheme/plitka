@@ -2,19 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="265d8b9b-4054-4c55-88b5-a221c3c4a8f2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/lib/CustomBuilder_prototype_loadRelation.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/modules/system/lib/RedactorUploadsController.php" />
-      <change type="DELETED" beforePath="C:\home\dev\plitka\kpp_plitka.sql.gz" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/lib/Allow.php" afterPath="$PROJECT_DIR$/app/lib/Allow.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/lib/AuthAccount.php" afterPath="$PROJECT_DIR$/app/lib/AuthAccount.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/lib/SystemModules.php" afterPath="$PROJECT_DIR$/app/lib/SystemModules.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/system/admin_collectors.controller.php" afterPath="$PROJECT_DIR$/app/modules/system/admin_collectors.controller.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/application/application.controller.php" afterPath="$PROJECT_DIR$/app/modules/application/application.controller.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/mail.php" afterPath="$PROJECT_DIR$/app/config/mail.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/modules_js_cache.dat" afterPath="$PROJECT_DIR$/app/storage/modules_js_cache.dat" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/modules_js_modifications.dat" afterPath="$PROJECT_DIR$/app/storage/modules_js_modifications.dat" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/templates/admin/scripts.blade.php" afterPath="$PROJECT_DIR$/app/views/templates/admin/scripts.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/system/js/system.js" afterPath="$PROJECT_DIR$/app/modules/system/js/system.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/emails/feedback.blade.php" afterPath="$PROJECT_DIR$/app/views/emails/feedback.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="plitka.iws" />
@@ -7448,16 +7437,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/config/app.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.153846" vertical-offset="0" max-vertical-offset="1989">
-              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="database.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/config/az/database.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -7468,11 +7447,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.controller.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="application.controller.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/modules/application/application.controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.15151516" vertical-offset="1904" max-vertical-offset="2567">
-              <caret line="117" column="61" selection-start-line="117" selection-start-column="61" selection-end-line="117" selection-end-column="61" />
+            <state vertical-scroll-proportion="-15.038462" vertical-offset="1598" max-vertical-offset="2567">
+              <caret line="117" column="69" selection-start-line="117" selection-start-column="69" selection-end-line="117" selection-end-column="69" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="feedback.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/emails/feedback.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.3030303" vertical-offset="0" max-vertical-offset="561">
+              <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -7613,6 +7602,7 @@
         <option value="$PROJECT_DIR$/app/lib/SystemModules.php" />
         <option value="$PROJECT_DIR$/app/config/mail.php" />
         <option value="$PROJECT_DIR$/app/modules/application/application.controller.php" />
+        <option value="$PROJECT_DIR$/app/views/emails/feedback.blade.php" />
       </list>
     </option>
   </component>
@@ -7970,7 +7960,13 @@
       <option name="project" value="LOCAL" />
       <updated>1415274936644</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="fix">
+      <created>1415277612800</created>
+      <option name="number" value="00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1415277612800</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -8044,13 +8040,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/admin_dics.controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.121212125" vertical-offset="1428" max-vertical-offset="6953">
-          <caret line="88" column="68" selection-start-line="88" selection-start-column="68" selection-end-line="88" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.10695187" vertical-offset="688" max-vertical-offset="2329">
@@ -8423,8 +8412,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/application/application.controller.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15151516" vertical-offset="1904" max-vertical-offset="2567">
-          <caret line="117" column="61" selection-start-line="117" selection-start-column="61" selection-end-line="117" selection-end-column="61" />
+        <state vertical-scroll-proportion="-15.038462" vertical-offset="1598" max-vertical-offset="2567">
+          <caret line="117" column="69" selection-start-line="117" selection-start-column="69" selection-end-line="117" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/emails/feedback.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3030303" vertical-offset="0" max-vertical-offset="561">
+          <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
           <folding />
         </state>
       </provider>
