@@ -4,6 +4,7 @@ return array(
 
     'fields' => function () {
 
+        /*
         $dics_slugs = array(
             'countries',
         );
@@ -12,19 +13,18 @@ return array(
         #Helper::tad($dics);
         $lists = Dic::makeLists($dics, 'values', 'name', 'id');
         #Helper::dd($lists);
+        */
 
         return array(
-
-            'country_id' => array(
-                'title' => 'Страна',
-                'type' => 'select',
-                'values' => array('Выберите..') + $lists['countries'],
-                'default' => Input::get('filter.fields.country_id'),
-            ),
 
             'image_id' => array(
                 'title' => 'Логотип',
                 'type' => 'image',
+            ),
+
+            'url' => array(
+                'title' => 'Ссылка на сайт',
+                'type' => 'text',
             ),
         );
 
@@ -32,7 +32,7 @@ return array(
 
 
     'menus' => function($dic, $dicval = NULL) {
-        #/*
+        /*
         $menus = array();
         $menus[] = array('raw' => '<br/>');
 
@@ -66,6 +66,7 @@ return array(
             /**
              * Предзагружаем нужные словари
              */
+            /*
             $dics_slugs = array(
                 'countries',
             );
@@ -76,6 +77,7 @@ return array(
 
             $dics_values = Dic::makeLists($dics, 'values', 'name', 'id');
             Config::set('temp.index_countries', $dics_values['countries']);
+            */
         },
 
         'before_create_edit' => function ($dic) {
@@ -99,6 +101,7 @@ return array(
     /**
      * Если данная функция объявлена, то ее вывод заменит вторую строку в списке записей словаря
      */
+    /*
     'second_line_modifier' => function($line, $dic, $dicval) {
         #Helper::tad($dicval);
 
@@ -107,6 +110,7 @@ return array(
         $country = @$countries[$dicval->country_id];
         return $country;
     },
+    */
 
     'seo' => false,
 );

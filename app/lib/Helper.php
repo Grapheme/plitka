@@ -519,6 +519,7 @@ HTML;
         }
         $others = ' ' . implode(' ', $others);
         #$others_string = self::arrayToAttributes($others_array);
+        #Helper::dd($others_array);
         switch (@$array['type']) {
             case 'text':
                 $return = Form::text($name, $value, $others_array);
@@ -589,6 +590,12 @@ HTML;
                 }
                 #Helper::d(htmlspecialchars($return));
                 break;
+            case 'hidden':
+                $return = Form::hidden($name, $value, $others_array);
+                break;
+            case 'custom':
+                $return = @$array['content'];
+                break;
         }
         return $return;
     }
@@ -604,6 +611,20 @@ HTML;
                 $line = $key . '="' . $value . '" ';
             }
         }
+        $line = trim($line);
+        return $line;
+    }
+
+    public static function arrayToUrlAttributes($array) {
+        if (!@is_array($array) || !@count($array)) {
+            return false;
+        }
+
+        $line = array();
+        foreach ($array as $key => $value) {
+            $line[] = $key . '=' . $value;
+        }
+        $line = implode('&', $line);
         $line = trim($line);
         return $line;
     }
