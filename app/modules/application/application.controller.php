@@ -97,13 +97,18 @@ class ApplicationController extends BaseController {
 
     public function postFeedback() {
 
-        if(!Request::ajax())
+        if(Request::method() != 'POST')
             App::abort(404);
 
-        $json_request = array('status' => TRUE, 'responseText' => '');
+        $json_request = array('status' => FALSE, 'responseText' => '');
 
         ## Send confirmation to user - with password
         $data = Input::all();
+
+        if (!count($data)) {
+            $json_request['responseText'] = 'Недостаточно переданных данных';
+            return Response::json($json_request, 200);
+        }
 
         Mail::send('emails.feedback', $data, function ($message) use ($data) {
 
@@ -138,6 +143,8 @@ class ApplicationController extends BaseController {
                     $message->cc($cc);
 
         });
+
+        $json_request['status'] = TRUE;
 
         #Helper::dd($result);
         return Response::json($json_request, 200);
