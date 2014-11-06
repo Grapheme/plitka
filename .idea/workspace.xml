@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="265d8b9b-4054-4c55-88b5-a221c3c4a8f2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/config/dic/partners.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/dictionaries/models/DicVal.model.php" afterPath="$PROJECT_DIR$/app/modules/dictionaries/models/DicVal.model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/dictionaries/models/Dictionary.model.php" afterPath="$PROJECT_DIR$/app/modules/dictionaries/models/Dictionary.model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/lib/Helper.php" afterPath="$PROJECT_DIR$/app/lib/Helper.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/dictionaries/admin_dics.controller.php" afterPath="$PROJECT_DIR$/app/modules/dictionaries/admin_dics.controller.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/dictionaries/admin_dicvals.controller.php" afterPath="$PROJECT_DIR$/app/modules/dictionaries/admin_dicvals.controller.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/app.php" afterPath="$PROJECT_DIR$/app/config/app.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/application/application.controller.php" afterPath="$PROJECT_DIR$/app/modules/application/application.controller.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/dic/collections.php" afterPath="$PROJECT_DIR$/app/config/dic/collections.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/az/database.php" afterPath="$PROJECT_DIR$/app/config/az/database.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/edit.blade.php" afterPath="$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/edit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/dic/factory.php" afterPath="$PROJECT_DIR$/app/config/dic/factory.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/menu.blade.php" afterPath="$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/menu.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/site.php" afterPath="$PROJECT_DIR$/app/config/site.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="plitka.iws" />
@@ -7487,15 +7475,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="collections.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="collections.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/config/dic/collections.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3321492" vertical-offset="153" max-vertical-offset="3995">
+            <state vertical-scroll-proportion="-7.1923075" vertical-offset="153" max-vertical-offset="3995">
               <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
               <folding>
                 <marker date="1415274330690" expanded="true" signature="5255:5441" placeholder="..." />
                 <marker date="1415274330690" expanded="true" signature="5408:5441" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="site.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/config/site.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.21212122" vertical-offset="0" max-vertical-offset="561">
+              <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -7581,7 +7579,6 @@
         <option value="$PROJECT_DIR$/app/lib/Helper.php" />
         <option value="$PROJECT_DIR$/app/modules/dictionaries/models/Dictionary.model.php" />
         <option value="$PROJECT_DIR$/app/config/dic/products.php" />
-        <option value="$PROJECT_DIR$/app/config/site.php" />
         <option value="$PROJECT_DIR$/app/modules/dictionaries/admin_dicvals.controller.php" />
         <option value="$PROJECT_DIR$/public/css/your_style.css" />
         <option value="$PROJECT_DIR$/app/modules/system/js/system.js" />
@@ -7598,6 +7595,7 @@
         <option value="$PROJECT_DIR$/app/modules/application/application.controller.php" />
         <option value="$PROJECT_DIR$/app/config/dic/partners.php" />
         <option value="$PROJECT_DIR$/app/config/dic/collections.php" />
+        <option value="$PROJECT_DIR$/app/config/site.php" />
       </list>
     </option>
   </component>
@@ -7937,13 +7935,20 @@
       <option name="project" value="LOCAL" />
       <updated>1414582460684</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="fix">
+      <created>1415274440000</created>
+      <option name="number" value="00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1415274440000</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3219512" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Regex Tester" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -7961,7 +7966,6 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -8148,13 +8152,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="1241">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/site.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5037037" vertical-offset="0" max-vertical-offset="540">
-          <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
         </state>
       </provider>
     </entry>
@@ -8384,12 +8381,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/config/dic/collections.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3321492" vertical-offset="153" max-vertical-offset="3995">
+        <state vertical-scroll-proportion="-7.1923075" vertical-offset="153" max-vertical-offset="3995">
           <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
           <folding>
             <marker date="1415274330690" expanded="true" signature="5255:5441" placeholder="..." />
             <marker date="1415274330690" expanded="true" signature="5408:5441" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/site.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21212122" vertical-offset="0" max-vertical-offset="561">
+          <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
