@@ -2,7 +2,7 @@
     function init_sortable(url, selector, success) {
         if (typeof success != 'function')
             success = function(){};
-        $(document).on("mouseover", selector + ".sortable", function(e){
+        $(document).on("mouseover", ".sortable" + selector, function(e){
             // Check flag of sortable activated
             if ( !$(this).data('sortable') ) {
                 // Activate sortable, if flag is not initialized
