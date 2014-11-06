@@ -107,7 +107,9 @@ class ApplicationController extends BaseController {
 
         if (!count($data)) {
             $json_request['responseText'] = 'Недостаточно переданных данных';
-            return Response::json($json_request, 200);
+            return Response::json($json_request, 200, array(
+                'Access-Control-Allow-Origin' => '*',
+            ));
         }
 
         Mail::send('emails.feedback', $data, function ($message) use ($data) {
@@ -147,7 +149,9 @@ class ApplicationController extends BaseController {
         $json_request['status'] = TRUE;
 
         #Helper::dd($result);
-        return Response::json($json_request, 200);
+        return Response::json($json_request, 200, array(
+            'Access-Control-Allow-Origin' => '*',
+        ));
     }
 
 }
