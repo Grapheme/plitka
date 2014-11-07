@@ -14,6 +14,7 @@ class ApplicationController extends BaseController {
             Route::get('/application/get', array('as' => 'application.get', 'uses' => __CLASS__.'@getApplicationData'));
 
             Route::any('/ajax/feedback', array('as' => 'ajax.feedback', 'uses' => __CLASS__.'@postFeedback'));
+            Route::any('/ajax/search', array('as' => 'ajax.search', 'uses' => __CLASS__.'@postSearch'));
         });
     }
 
@@ -147,6 +148,46 @@ class ApplicationController extends BaseController {
         });
 
         $json_request['status'] = TRUE;
+
+        #Helper::dd($result);
+        return Response::json($json_request, 200, array(
+            'Access-Control-Allow-Origin' => '*',
+        ));
+    }
+
+
+    public function postSearch() {
+
+        #if(Request::method() != 'POST')
+        #    App::abort(404);
+
+        $json_request = array('status' => FALSE, 'responseText' => '');
+
+        #Helper::d(Input::all());
+        $q = Input::get('q');
+
+        $sphinx_match_mode = \Sphinx\SphinxClient::SPH_MATCH_ANY;
+
+        /**
+         * articles
+         */
+        $results['articles'] = SphinxSearch::search($q, 'plitka_articles_index')->setMatchMode($sphinx_match_mode)->query();
+        $results_counts['articles'] = @count($results['articles']['matches']);
+        $results_matches['articles'] = $results['articles']['matches'];
+
+        /**
+         * collections
+         */
+        $results['collections'] = SphinxSearch::search($q, 'plitka_collections_index')->setMatchMode($sphinx_match_mode)->query();
+        $results_counts['collections'] = @count($results['collections']['matches']);
+        $results_matches['collections'] = $results['collections']['matches'];
+
+        #Helper::dd($results_matches);
+
+        $results = $results_matches;
+
+        $json_request['status'] = TRUE;
+        $json_request['results'] = $results;
 
         #Helper::dd($result);
         return Response::json($json_request, 200, array(

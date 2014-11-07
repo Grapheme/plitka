@@ -62,6 +62,7 @@ return array(
         'Barryvdh\Debugbar\ServiceProvider',
         'Illuminate\Custom\CustomUrlServiceProvider',
         'Flynsarmy\DbBladeCompiler\DbBladeCompilerServiceProvider',
+        'Scalia\SphinxSearch\SphinxSearchServiceProvider',
     ),
 	'aliases' => array(
 		'App'             => 'Illuminate\Support\Facades\App',
@@ -108,5 +109,6 @@ return array(
 		'ImageManipulation' => 'Intervention\Image\Facades\Image',
 
         'Collection'      => 'Illuminate\Database\Eloquent\Collection',
+        'SphinxSearch' => 'Scalia\SphinxSearch\SphinxSearchFacade',
 	),
 );
