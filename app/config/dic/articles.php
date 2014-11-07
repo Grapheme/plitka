@@ -104,5 +104,5 @@ return array(
     ),
 
 
-    'seo' => false,
+    'seo' => 1,
 );
