@@ -488,7 +488,7 @@ class AdminDicsController extends BaseController {
         if (isset($fields) && is_array($fields) && count($fields)) {
             foreach ($fields as $field_key => $field) {
 
-                if (!in_array($field['type'], $indexed_types))
+                if (!isset($field['type']) || !in_array($field['type'], $indexed_types))
                     continue;
 
                 ++$j;

@@ -387,7 +387,8 @@ class AdminDicvalsController extends BaseController {
                     $input['slug'] = $input['name'];
                 break;
         }
-        $input['slug'] = @Helper::translit($input['slug'], false);
+        if (isset($input['slug']))
+            $input['slug'] = @Helper::translit($input['slug'], false);
 
         #Helper::dd($input['slug']);
 
