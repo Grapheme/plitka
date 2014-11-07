@@ -22,6 +22,7 @@ return array(
                 'title' => 'Коллекция',
                 'type' => 'select',
                 'values' => array('Выберите..') + $lists['collections'],
+                'default' => Input::get('filter.fields.collection_id'),
             ),
 
             'article' => array(
