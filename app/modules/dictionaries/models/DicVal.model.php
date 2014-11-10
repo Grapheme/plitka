@@ -21,66 +21,36 @@ class DicVal extends BaseModel {
 		'name' => 'required',
 	);
 
-    #public static function rules() {
-    #    return self::$rules;
-    #}
 
-
-
-
-    /*
-    public function scopeCustom_hasOne($query, $relation_key, $model, $local_id, $remote_id = 'id') {
-
-        #Helper::dd($relation_key);
-
-        #$this->{'scope'.mb_strtoupper($relation_key)} = function() use ($model, $local_id, $remote_id) {
-        $this->$relation_key = function() use ($model, $local_id, $remote_id) {
-
-            return $this->hasOne($model, $local_id, $remote_id);
-        };
-
-        #return $this->hasOne($model, $local_id, $remote_id);
-    }
-
-
-    public function scopeCustom_with($query, $relation_key, $field_key) {
-
-        Helper::d($relation_key);
-        Helper::d($field_key);
-        Helper::d($this->$relation_key);
-        #die;
-
-        $key = $field_key;
-
-        $tbl_dicval = (new DicVal())->getTable();
-        $tbl_dic_field_val = (new DicFieldVal())->getTable();
-        $rand_tbl_alias = md5(time() . rand(999999, 9999999));
-        $query->join($tbl_dic_field_val . ' AS ' . $rand_tbl_alias, $rand_tbl_alias . '.dicval_id', '=', $tbl_dicval . '.id')
-            ->where($rand_tbl_alias . '.key', '=', $key)
-        ;
-
-        #return $query;
-        return $query->with('dic');
-    }
-    */
-
-
-
-
+    /**
+     * Связь возвращает словарь записи
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function dic() {
         return $this->belongsTo('Dictionary', 'dic_id');
     }
 
+    /**
+     * Связь возвращает все META-данные записи (для всех языков)
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function metas() {
         return $this->hasMany('DicValMeta', 'dicval_id', 'id');
     }
 
+    /**
+     * Связь возвращает META для записи, для текущего языка запроса
+     *
+     * @return mixed
+     */
     public function meta() {
         return $this->hasOne('DicValMeta', 'dicval_id', 'id')->where('language', Config::get('app.locale'));
     }
 
     /**
      * Связь многие-ко-многим между элементами DicVal, с привязкой к dic_id
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function related_dicvals() {
@@ -88,18 +58,20 @@ class DicVal extends BaseModel {
     }
 
     /**
-     * relations - алиас для свзяи, желательно использовать related_dicvals()
+     * Связь возвращает все доп. поля записи (как зависящие от локали, так и нет)
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function relations() {
-        return $this->related_dicvals();
-    }
-
-
     public function allfields() {
         return $this->hasMany('DicFieldVal', 'dicval_id', 'id')
         ;
     }
 
+    /**
+     * Связь возвращает доп. поля записи: как независящие от языка, так и зависящие (совпадающие с текущей локалью запроса)
+     *
+     * @return mixed
+     */
     public function fields() {
 
         #Helper::dd($this);
@@ -114,16 +86,50 @@ class DicVal extends BaseModel {
             ;
     }
 
+    /**
+     * Связь возвращает все текстовые поля записи (как зависящие от локали, так и нет)
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function alltextfields() {
+        return $this->hasMany('DicTextFieldVal', 'dicval_id', 'id')
+            ;
+    }
+
+    /**
+     * Связь возвращает текстовые поля записи: как независящие от языка, так и зависящие (совпадающие с текущей локалью запроса)
+     *
+     * @return mixed
+     */
+    public function textfields() {
+        return $this->hasMany('DicTextFieldVal', 'dicval_id', 'id')
+            ->where('language', Config::get('app.locale'))
+            ->orWhere('language', NULL)
+            ;
+    }
+
+    /**
+     * Связь возвращает все резервные копии записи
+     *
+     * @return mixed
+     */
     public function versions() {
         return $this->hasMany('DicVal', 'version_of', 'id')->orderBy('updated_at', 'DESC');
     }
 
+    /**
+     * Связь возвращает оригинальную текущую версию записи
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function original_version() {
         return $this->hasOne('DicVal', 'id', 'version_of');
     }
 
     /**
-     * Need to TEST
+     * Возвращает SEO-данные записи, для текущего языка запроса
+     *
+     * @return mixed
      */
     public function seo() {
         return $this->hasOne('Seo', 'unit_id', 'id')->where('module', 'dicval')
@@ -131,6 +137,12 @@ class DicVal extends BaseModel {
             #->where('language', NULL)
             ;
     }
+
+    /**
+     * Связь возвращает все SEO-данные записи, для каждого из языков
+     *
+     * @return mixed
+     */
     public function seos() {
         return $this->hasMany('Seo', 'unit_id', 'id')->where('module', 'dicval');
     }
@@ -231,19 +243,61 @@ class DicVal extends BaseModel {
         return $counts;
     }
 
-    /*
-    public static function get_relations(array $dicval_ids, $field) {
-        if (
-            !isset($dicval_ids) || !is_array($dicval_ids) || !count($dicval_ids)
-            || !isset($field) || !$field
-        )
-            return array();
+    /**
+     * Заготовка запроса для админской части - загрузка всех множественных связей о записи словаря
+     *
+     * @param $query
+     * @return mixed
+     */
+    public function scopeAlldata_admin($query) {
 
-        Helper::d($dicval_ids);
-        ##................
+        return
+            $query
+                ->with('metas')
+                ->with('allfields', 'alltextfields')
+                ->with('seos')
+            ;
     }
-    */
 
+    /**
+     * Заготовка запроса для получения всех одиночных связей для публичной части
+     *
+     * @param $query
+     * @return mixed
+     */
+    public function scopeAlldata($query) {
+
+        return
+            $query
+                ->with('meta')
+                ->with('fields', 'textfields')
+                ->with('seo')
+            ;
+    }
+
+    /**
+     * Заготовка запроса - получение всех резервных копий записи словаря, для админской части
+     *
+     * @param $query
+     * @return mixed
+     */
+    public function scopeWith_versions($query) {
+
+        return $query->with('versions', 'original_version.versions');
+    }
+
+
+    /**
+     * Функция позволяет отфильтровать записи словаря по доп. полю записи.
+     * Только для использования в функции-замыкании доп. условий при получении записей словаря
+     *
+     * @param $query
+     * @param $key
+     * @param string $condition
+     * @param null $value
+     * @param bool $do_nothing_if_null
+     * @return mixed
+     */
     public function scopeFilter_by_field($query, $key, $condition = '=', $value = NULL, $do_nothing_if_null = false) {
 
         if ($value === NULL)
@@ -262,6 +316,15 @@ class DicVal extends BaseModel {
         return $query;
     }
 
+    /**
+     * Функция позволяет отсортировть записи словаря по доп. полю записи.
+     * Только для использования в функции-замыкании доп. условий при получении записей словаря
+     *
+     * @param $query
+     * @param $key
+     * @param string $order_method
+     * @return mixed
+     */
     public function scopeOrder_by_field($query, $key, $order_method = 'ASC') {
         $tbl_dicval = (new DicVal())->getTable();
         $tbl_dic_field_val = (new DicFieldVal())->getTable();
@@ -273,7 +336,16 @@ class DicVal extends BaseModel {
         return $query;
     }
 
-
+    /**
+     * Экстрактит все записи словаря внутри коллекции
+     *
+     * $collection = DicVal::extracts($collection);
+     *
+     * @param $elements
+     * @param bool $unset
+     * @param bool $extract_ids
+     * @return Collection
+     */
     public static function extracts($elements, $unset = false, $extract_ids = true) {
         $return = new Collection;
         #Helper::dd($return);
@@ -283,12 +355,19 @@ class DicVal extends BaseModel {
         return $return;
     }
 
-
+    /**
+     * Экстрактит одну запись словаря
+     *
+     * $value->extract();
+     *
+     * @param bool $unset
+     * @return $this
+     */
     public function extract($unset = false) {
 
         #Helper::ta($this);
 
-        ## Extract allfields (without language & all i18n)
+        ## Extract all fields (without language & all i18n)
         if (isset($this->allfields) && @is_object($this->allfields) && count($this->allfields)) {
 
             foreach ($this->allfields as $field) {
@@ -305,6 +384,26 @@ class DicVal extends BaseModel {
             }
             if ($unset)
                 unset($this->fields);
+
+        }
+
+        ## Extract all text fields (without language & all i18n)
+        if (isset($this->alltextfields) && @is_object($this->alltextfields) && count($this->alltextfields)) {
+
+            foreach ($this->alltextfields as $textfield) {
+                $this->{$textfield->key} = $textfield->value;
+            }
+            if ($unset)
+                unset($this->alltextfields);
+
+        } elseif (isset($this->textfields) && @is_object($this->textfields) && count($this->textfields)) {
+
+            ## Extract text fields (with NULL language or language = default locale)
+            foreach ($this->textfields as $textfield) {
+                $this->{$textfield->key} = $textfield->value;
+            }
+            if ($unset)
+                unset($this->textfields);
 
         }
 
@@ -370,6 +469,7 @@ class DicVal extends BaseModel {
         return $this;
     }
 
+
     public static function extracts_related($elements, $dicval_data = false, $extract_ids = true) {
         $return = new Collection;
         #Helper::dd($return);
@@ -378,6 +478,7 @@ class DicVal extends BaseModel {
         }
         return $return;
     }
+
 
     public function extract_related($dicval_data = false, $extract_ids = true) {
 
@@ -425,12 +526,29 @@ class DicVal extends BaseModel {
                     'payment_full' => json_encode(array('paymode' => $mode_type)),
                 ),
             ),
+            'textfields' => array(
+                'description_text' => 'some long text data',
+            ),
+            'textfields_i18n' => array(
+                'ru' => array(
+                    'description_text_i18n' => 'some long i18n text data',
+                ),
+            ),
             'meta' => array(
                 'en' => array(
                     'name' => 'ololo',
                 ),
             ),
         ));
+     */
+    /**
+     * Добавляет запись в словарь.
+     * Первый параметр - системное имя словаря
+     * Второй параметр - массив указанной выше структуры, с данными и полями записи
+     *
+     * @param $dic_slug
+     * @param $array
+     * @return DicVal
      */
     public static function inject($dic_slug, $array) {
 
@@ -448,6 +566,7 @@ class DicVal extends BaseModel {
         $dicval->slug = @$array['slug'] ?: NULL;
         $dicval->name = @$array['name'] ?: NULL;
         $dicval->save();
+
 
         ## CREATE FIELDS
         if (@isset($array['fields']) && is_array($array['fields']) && count($array['fields'])) {
@@ -490,6 +609,49 @@ class DicVal extends BaseModel {
             #$dicval->fields_i18n = $fields_i18n;
         }
 
+
+        ## CREATE TEXT FIELDS
+        if (@isset($array['textfields']) && is_array($array['textfields']) && count($array['textfields'])) {
+            $textfields = array();
+            foreach ($array['textfields'] as $key => $value) {
+                $dicval_textfield = new DicTextFieldVal();
+                $dicval_textfield->dicval_id = $dicval->id;
+                $dicval_textfield->language = is_array($value) && isset($value['language']) ? @$value['language'] : NULL;
+                $dicval_textfield->key = $key;
+                $dicval_textfield->value = is_array($value) ? @$value['value'] : $value;
+                $dicval_textfield->save();
+
+                $textfields[] = $dicval_textfield;
+            }
+            #$dicval->textfields = $textfields;
+        }
+
+        ## CREATE TEXT FIELDS_I18N
+        if (@isset($array['textfields_i18n']) && is_array($array['textfields_i18n']) && count($array['textfields_i18n'])) {
+            $textfields_i18n = array();
+            foreach ($array['textfields_i18n'] as $locale_sign => $textfields) {
+
+                if (!@is_array($textfields) || !@count($textfields))
+                    continue;
+
+                $temp = array();
+                foreach ($textfields as $key => $value) {
+
+                    $dicval_textfield_i18n = new DicTextFieldVal();
+                    $dicval_textfield_i18n->dicval_id = $dicval->id;
+                    $dicval_textfield_i18n->language = $locale_sign;
+                    $dicval_textfield_i18n->key = $key;
+                    $dicval_textfield_i18n->value = is_array($value) ? @$value['value'] : $value;
+                    $dicval_textfield_i18n->save();
+
+                    $temp[] = $dicval_textfield_i18n;
+                }
+                $textfields_i18n[$locale_sign] = $temp;
+            }
+            #$dicval->textfields_i18n = $textfields_i18n;
+        }
+
+
         ## CREATE META
         if (@isset($array['meta']) && is_array($array['meta']) && count($array['meta'])) {
             $metas = array();
@@ -517,6 +679,20 @@ class DicVal extends BaseModel {
 
         ## RETURN EXTRACTED DICVAL
         return $dicval;
+    }
+
+
+
+    /**
+     * DEPRECATED
+     * Устаревшие и не рекомендуемые к использованию методы
+     */
+
+    /**
+     * relations - алиас для свзяи, желательно использовать related_dicvals()
+     */
+    public function relations() {
+        return $this->related_dicvals();
     }
 
 }

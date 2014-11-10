@@ -29,10 +29,12 @@ class Dictionary extends BaseModel {
 		'name' => 'required',
 	);
 
-    #public static function rules() {
-    #    return self::$rules;
-    #}
 
+    /**
+     * Связь возвращает все записи словаря со всеми полями; с сортировкой.
+     *
+     * @return mixed
+     */
     public function values() {
         return $this->hasMany('DicVal', 'dic_id', 'id')
             ->where('version_of', NULL)
@@ -49,6 +51,12 @@ class Dictionary extends BaseModel {
         ;
     }
 
+    /**
+     * Связь возвращает все записи словаря со всеми полями, без доп. условия сортировки.
+     * Только для внутреннего использования.
+     *
+     * @return mixed
+     */
     public function values_no_conditions() {
 
         $tbl_dicval = (new DicVal())->getTable();
@@ -57,24 +65,27 @@ class Dictionary extends BaseModel {
             ->select($tbl_dicval.'.*')
             ->where('version_of', NULL)
             ->with('meta', 'fields')
-        ;
+            ;
     }
 
-    public function values_count() {
-        return DicVal::where('dic_id', $this->id)->where('version_of', NULL)->count();
-    }
-
-    public function values_count2() {
-        return $this->hasMany('DicVal', 'dic_id', 'id')->where('version_of', NULL); #->select(DB::raw('COUNT(*) as count'));
-    }
-
+    /**
+     * Связь возвращает ОДНУ запись из словаря. Только для использования с доп. условиями.
+     *
+     * @return mixed
+     */
     public function value() {
         return $this->hasOne('DicVal', 'dic_id', 'id')->where('version_of', NULL);
     }
 
-    public static function whereSlugValues($slug) {
-        return self::firstOrNew(array('slug' => $slug))->values;
+    /**
+     * Возвращает количество записей в словаре
+     *
+     * @return int
+     */
+    public function values_count() {
+        return DicVal::where('dic_id', $this->id)->where('version_of', NULL)->count();
     }
+
 
 
     /**
@@ -209,15 +220,15 @@ class Dictionary extends BaseModel {
     }
 
 
-
-
-    ## Need to check
-    public function valueBySlug($slug) {
-        return $this->with(array('value' => function($query) use ($slug) {
-                $query->whereSlug($slug);
-            }))->first()->value;
-    }
-
+    /**
+     * Возвращает все записи в словаре, по его системному имени.
+     * Вторым параметром передается функция-замыкание с доп. условиями выборки,
+     * аналогичная по синтаксису доп. условия при вызове связи.
+     *
+     * @param $slug
+     * @param callable $conditions
+     * @return mixed
+     */
     public static function valuesBySlug($slug, Closure $conditions = NULL) {
         #Helper::dd($slug);
         $return = Dic::where('slug', $slug);
@@ -239,7 +250,16 @@ class Dictionary extends BaseModel {
         return $return;
     }
 
-    ## Work cool
+
+    /**
+     * Возвращает значение записи из словаря по системному имени словаря и системному имени записи.
+     * Третьим параметром можно передать метку, указывающую на необходимость сделать экстракт записи.
+     *
+     * @param $dic_slug
+     * @param $val_slug
+     * @param bool $extract
+     * @return mixed|static
+     */
     public static function valueBySlugs($dic_slug, $val_slug, $extract = false) {
 
         #Helper::d("$dic_slug, $val_slug");
@@ -259,13 +279,23 @@ class Dictionary extends BaseModel {
         return is_object($data) ? $data : self::firstOrNew(array('id' => 0));
     }
 
+
+    /**
+     * Возвращает значение записи из словаря по системному имени словаря и ID записи.
+     * Третьим параметром можно передать метку, указывающую на необходимость сделать экстракт записи.
+     *
+     * @param $dic_slug
+     * @param $val_id
+     * @param bool $extract
+     * @return mixed|static
+     */
     public static function valueBySlugAndId($dic_slug, $val_id, $extract = false) {
 
         $data = self::where('slug', $dic_slug)->with(array('value' => function($query) use ($val_id){
-                $query->where('version_of', NULL);
-                $query->where('id', $val_id);
-                $query->with('meta', 'fields', 'seo', 'related_dicvals');
-            }))
+            $query->where('version_of', NULL);
+            $query->where('id', $val_id);
+            $query->with('meta', 'fields', 'seo', 'related_dicvals');
+        }))
             ->first()
             ->value
         ;
@@ -278,6 +308,15 @@ class Dictionary extends BaseModel {
         return is_object($data) ? $data : self::firstOrNew(array('id' => 0));
     }
 
+    /**
+     * Возвращает записи из словаря по системному имени словаря и набору IDs нужных записей.
+     * Третьим параметром можно передать метку, указывающую на необходимость сделать экстракт каждой записи.
+     *
+     * @param $dic_slug
+     * @param $val_ids
+     * @param bool $extract
+     * @return mixed|static
+     */
     public static function valuesBySlugAndIds($dic_slug, $val_ids, $extract = false) {
 
         $data = self::where('slug', $dic_slug)->with(array('values_no_conditions' => function($query) use ($val_ids){
@@ -290,16 +329,24 @@ class Dictionary extends BaseModel {
         ;
         #Helper::tad($data);
 
-        /*
         ## Need to test
         if ($extract)
-            $data->extract(0);
-        */
+            $data = DicVal::extracts($data);
         #Helper::tad($data);
 
         return is_object($data) ? $data : self::firstOrNew(array('id' => 0));
     }
 
+
+
+
+    /**
+     * DEPRECATED
+     * Устаревшие и не рекомендуемые к использованию методы
+     */
+    public static function whereSlugValues($slug) {
+        return self::firstOrNew(array('slug' => $slug))->values;
+    }
 
 
 }

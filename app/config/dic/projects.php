@@ -48,6 +48,23 @@ return array(
     },
 
 
+    /*
+    'fields_i18n' => function () {
+
+        return array(
+            'title_i18n' => array(
+                'title' => 'Заголовок i18n',
+                'type' => 'text',
+            ),
+            'description_i18n' => array(
+                'title' => 'Описание i18n',
+                'type' => 'textarea_redactor',
+            ),
+        );
+    },
+    #*/
+
+
     'menus' => function($dic, $dicval = NULL) {
         /*
         $menus = array();

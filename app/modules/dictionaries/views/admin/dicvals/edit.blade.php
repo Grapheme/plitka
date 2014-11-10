@@ -109,6 +109,14 @@
                     #$element_fields = array();
                     $element_fields = $element->toArray();
                 }
+                if (isset($element->textfields) && is_object($element->textfields) && count($element->textfields)) {
+                    $element_textfields = $element->textfields->lists('value', 'key');
+                } elseif (isset($element->alltextfields) && is_object($element->alltextfields) && count($element->alltextfields)) {
+                    $element_textfields = $element->alltextfields->lists('value', 'key');
+                } else {
+                    $element_textfields = $element->toArray();
+                }
+                $element_fields = @(array)$element_fields + @(array)$element_textfields;
                 #Helper::d($element_fields);
                 #$fields_general = $dic_settings['fields'];
                 ?>
@@ -144,44 +152,47 @@
                     $fields_i18n = $dic_settings['fields_i18n']();
                 ?>
                 @if (count($fields_i18n))
-                <fieldset class="clearfix">
-                    <section>
-                        {{--
-                        <label class="label">Индивидуальные настройки для разных языков (необязательно)</label>
-                        --}}
+                    <?
+                    #Helper::ta($fields_i18n);
+                    ?>
+                    <fieldset class="clearfix">
+                        <section>
+                            {{--
+                            <label class="label">Индивидуальные настройки для разных языков (необязательно)</label>
+                            --}}
 
-                        <div class="widget-body">
-                            @if (count($locales) > 1)
-                            <ul id="myTab1" class="nav nav-tabs bordered">
-                                <? $i = 0; ?>
-                                @foreach ($locales as $locale_sign => $locale_name)
-                                <li class="{{ !$i++ ? 'active' : '' }}">
-                                    <a href="#locale_{{ $locale_sign }}" data-toggle="tab">
-                                        {{ $locale_name }}
-                                    </a>
-                                </li>
-                                @endforeach
-                            </ul>
-                            @endif
-                            <div id="myTabContent1" class="tab-content{{ count($locales) > 1 ? ' padding-10' : '' }}">
-                                <? $i = 0; ?>
-                                @foreach ($locales as $locale_sign => $locale_name)
-                                <div class="tab-pane fade {{ !$i++ ? 'active in' : '' }}" id="locale_{{ $locale_sign }}">
+                            <div class="widget-body">
+                                @if (count($locales) > 1)
+                                <ul id="myTab1" class="nav nav-tabs bordered">
+                                    <? $i = 0; ?>
+                                    @foreach ($locales as $locale_sign => $locale_name)
+                                    <li class="{{ !$i++ ? 'active' : '' }}">
+                                        <a href="#locale_{{ $locale_sign }}" data-toggle="tab">
+                                            {{ $locale_name }}
+                                        </a>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                                @endif
+                                <div id="myTabContent1" class="tab-content{{ count($locales) > 1 ? ' padding-10' : '' }}">
+                                    <? $i = 0; ?>
+                                    @foreach ($locales as $locale_sign => $locale_name)
+                                    <div class="tab-pane fade {{ !$i++ ? 'active in' : '' }}" id="locale_{{ $locale_sign }}">
 
-                                    @include($module['tpl'].'_dicval_meta', compact('locale_sign', 'locale_name', 'element', 'fields_i18n'))
+                                        @include($module['tpl'].'_dicval_meta', compact('locale_sign', 'locale_name', 'element', 'fields_i18n'))
 
+                                    </div>
+                                    @endforeach
                                 </div>
-                                @endforeach
                             </div>
-                        </div>
-                    </section>
-                </fieldset>
+                        </section>
+                    </fieldset>
 
                 @else
 
-                @foreach ($locales as $locale_sign => $locale_name)
-                @include($module['tpl'].'_dicval_meta', compact('locale_sign', 'locale_name', 'element'))
-                @endforeach
+                    @foreach ($locales as $locale_sign => $locale_name)
+                    @include($module['tpl'].'_dicval_meta', compact('locale_sign', 'locale_name', 'element'))
+                    @endforeach
 
                 @endif
 

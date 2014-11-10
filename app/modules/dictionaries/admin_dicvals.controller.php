@@ -267,14 +267,10 @@ class AdminDicvalsController extends BaseController {
         $locales = $this->locales;
         $dic_settings = Config::get('dic/' . $dic->slug);
 
-        $element = DicVal::where('id', $id)
-            ->with('metas')
-            #->with('meta')
-            ->with('allfields')
-            ->with('seos');
+        $element = DicVal::where('id', $id)->alldata_admin();
 
         if (@$dic_settings['versions'] > 0)
-            $element = $element->with('versions', 'original_version.versions');
+            $element = $element->with_versions();
 
         $element = $element->first();
 
@@ -286,6 +282,7 @@ class AdminDicvalsController extends BaseController {
             App::abort(404);
 
         $element->extract(0);
+
         #Helper::tad($element);
 
         $total_elements = DicVal::where('dic_id', $dic->id)->where('version_of', '=', NULL)->count();
@@ -463,10 +460,10 @@ class AdminDicvalsController extends BaseController {
                 #Helper::d($fields);
                 foreach ($element_fields as $key => $_value) {
 
-                    if (is_numeric($key))
+                    if (is_numeric($key) || !@$_value['type'])
                         continue;
 
-                    #Helper::d($key);
+                    #Helper::dd($key . ' - ' . $_value['type']);
 
                     $value = @$fields[$key];
 
@@ -484,7 +481,12 @@ class AdminDicvalsController extends BaseController {
                     if ($value === false)
                         continue;
 
-                    $field = DicFieldVal::firstOrNew(array('dicval_id' => $id, 'key' => $key, 'language' => NULL));
+                    $field_model = in_array(
+                        @$_value['type'],
+                        array('textarea', 'textarea_redactor')
+                    ) ? new DicTextFieldVal : new DicFieldVal;
+
+                    $field = $field_model->firstOrNew(array('dicval_id' => $id, 'key' => $key, 'language' => NULL));
                     $field->value = $value;
                     $field->save();
                     unset($field);
@@ -498,7 +500,7 @@ class AdminDicvalsController extends BaseController {
             $element_fields_i18n = Config::get('dic/' . $dic->slug . '.fields_i18n');
             if (isset($element_fields_i18n) && is_callable($element_fields_i18n))
                 $element_fields_i18n = $element_fields_i18n();
-            #Helper::dd($element_fields_i18n);
+            #Helper::d($element_fields_i18n);
             #Helper::dd($fields_i18n);
 
             ## FIELDS I18N
@@ -512,11 +514,18 @@ class AdminDicvalsController extends BaseController {
                 #Helper::dd($fields_i18n);
                 #Helper::dd($element_fields_i18n);
 
+                /**
+                 * Перебираем все доп. поля из конфига
+                 */
                 foreach ($element_fields_i18n as $field_name => $field_params) {
                     #Helper::d($field_name);
                     #Helper::d($field_params);
                     #Helper::dd($fields_i18n);
                     #continue;
+
+                    /**
+                     * Перебираем все локали, и выбираем значение текущего доп. поля для каждого языка
+                     */
                     foreach ($fields_i18n as $locale_sign => $values) {
 
                         #Helper::d($field_name . ' => ' . @$values[$field_name]);
@@ -539,7 +548,12 @@ class AdminDicvalsController extends BaseController {
                         if ($value === false)
                             continue;
 
-                        $field = DicFieldVal::firstOrNew(array('dicval_id' => $id, 'key' => $field_name, 'language' => $locale_sign));
+                        $field_model = in_array(
+                            @$field_params['type'],
+                            array('textarea', 'textarea_redactor')
+                        ) ? new DicTextFieldVal : new DicFieldVal;
+
+                        $field = $field_model->firstOrNew(array('dicval_id' => $id, 'key' => $field_name, 'language' => $locale_sign));
                         $field->value = $value;
                         $field->save();
                         #Helper::ta($field);
