@@ -201,7 +201,8 @@ class AdminDicvalsController extends BaseController {
 
         DicVal::extracts($elements, true);
 
-        #Helper::tad($elements);
+        if (Config::get('debug') == 1)
+            Helper::tad($elements);
 
         $dic_settings = Config::get('dic/' . $dic->slug);
         #Helper::dd($dic_settings);
@@ -283,7 +284,8 @@ class AdminDicvalsController extends BaseController {
 
         $element->extract(0);
 
-        #Helper::tad($element);
+        if (Config::get('debug') == 1)
+            Helper::tad($element);
 
         $total_elements = DicVal::where('dic_id', $dic->id)->where('version_of', '=', NULL)->count();
 
