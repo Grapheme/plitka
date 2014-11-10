@@ -101,6 +101,8 @@
                 <?
                 #Helper::ta($element);
                 $onsuccess_js = array();
+
+                /*
                 if (isset($element->fields) && is_object($element->fields) && count($element->fields)) {
                     $element_fields = $element->fields->lists('value', 'key');
                 } elseif (isset($element->allfields) && is_object($element->allfields) && count($element->allfields)) {
@@ -118,7 +120,7 @@
                 }
                 $element_fields = @(array)$element_fields + @(array)$element_textfields;
                 #Helper::d($element_fields);
-                #$fields_general = $dic_settings['fields'];
+                */
                 ?>
                     <fieldset class="padding-top-10 clearfix">
                         @foreach ($fields_general as $field_name => $field)
@@ -135,7 +137,7 @@
                             <label class="note first_note">{{ @$field['first_note'] }}</label>
                             @endif
                             <div class="input {{ @$field['type'] }} {{ @$field['label_class'] }}">
-                                {{ Helper::formField('fields[' . @$field_name . ']', @$field, @$element_fields[$field_name], $element) }}
+                                {{ Helper::formField('fields[' . @$field_name . ']', @$field, @$element->$field_name, $element) }}
                             </div>
                             @if (@$field['second_note'])
                             <label class="note second_note">{{ @$field['second_note'] }}</label>
