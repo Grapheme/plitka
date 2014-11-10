@@ -466,11 +466,13 @@ class AdminDicsController extends BaseController {
         #Helper::d('Мультиязычные доп. поля словаря (fields_i18n):') . Helper::d($fields_i18n);
 
         $tbl_dic_field_val = (new DicFieldVal)->getTable();
+        $tbl_dic_textfield_val = (new DicTextFieldVal)->getTable();
 
         /**
          * Будут индексироваться только поля следующих типов
          */
         $indexed_types = array('textarea', 'textarea_redactor', 'text');
+        $fulltext_types = array('textarea', 'textarea_redactor');
 
         $selects = array(
             "dicval.id AS id",
@@ -491,11 +493,13 @@ class AdminDicsController extends BaseController {
                 if (!isset($field['type']) || !in_array($field['type'], $indexed_types))
                     continue;
 
+                $tbl_field = in_array($field['type'], $fulltext_types) ? $tbl_dic_textfield_val : $tbl_dic_field_val;
+
                 ++$j;
                 $tbl =  "tbl" . $j;
                 ##$selects[] = $tbl . '.language AS language';
                 $selects[] = $tbl . '.value AS ' . $field_key;
-                $sql[] = "LEFT JOIN " . $tbl_dic_field_val . " AS " . $tbl . " ON " . $tbl . ".dicval_id = dicval.id AND " . $tbl . ".key = '" . $field_key . "' AND " . $tbl . ".language IS NULL";
+                $sql[] = "LEFT JOIN " . $tbl_field . " AS " . $tbl . " ON " . $tbl . ".dicval_id = dicval.id AND " . $tbl . ".key = '" . $field_key . "' AND " . $tbl . ".language IS NULL";
             }
         }
         /**
@@ -507,11 +511,13 @@ class AdminDicsController extends BaseController {
                 if (!in_array($field['type'], $indexed_types))
                     continue;
 
+                $tbl_field = in_array($field['type'], $fulltext_types) ? $tbl_dic_textfield_val : $tbl_dic_field_val;
+
                 ++$j;
                 $tbl =  "tbl" . $j;
                 ##$selects[] = $tbl . '.language AS language';
                 $selects[] = $tbl . '.value AS ' . $field_key;
-                $sql[] = "LEFT JOIN " . $tbl_dic_field_val . " AS " . $tbl . " ON " . $tbl . ".dicval_id = dicval.id AND " . $tbl . ".key = '" . $field_key . "' AND " . $tbl . ".language IS NOT NULL";
+                $sql[] = "LEFT JOIN " . $tbl_field . " AS " . $tbl . " ON " . $tbl . ".dicval_id = dicval.id AND " . $tbl . ".key = '" . $field_key . "' AND " . $tbl . ".language IS NOT NULL";
             }
         }
 

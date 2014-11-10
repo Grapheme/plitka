@@ -173,14 +173,14 @@ class ApplicationController extends BaseController {
          */
         $results['articles'] = SphinxSearch::search($q, 'plitka_articles_index')->setMatchMode($sphinx_match_mode)->query();
         $results_counts['articles'] = @count($results['articles']['matches']);
-        $results_matches['articles'] = $results['articles']['matches'];
+        $results_matches['articles'] = @$results['articles']['matches'];
 
         /**
          * collections
          */
         $results['collections'] = SphinxSearch::search($q, 'plitka_collections_index')->setMatchMode($sphinx_match_mode)->query();
         $results_counts['collections'] = @count($results['collections']['matches']);
-        $results_matches['collections'] = $results['collections']['matches'];
+        $results_matches['collections'] = @$results['collections']['matches'];
 
         #Helper::dd($results_matches);
 
@@ -188,6 +188,9 @@ class ApplicationController extends BaseController {
 
         $json_request['status'] = TRUE;
         $json_request['results'] = $results;
+
+        if (Input::get('nojson') == 1)
+            Helper::tad($results);
 
         #Helper::dd($result);
         return Response::json($json_request, 200, array(
