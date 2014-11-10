@@ -131,7 +131,7 @@
                         ?>
                         <section>
                             @if (!@$field['no_label'])
-                            <label class="label">{{ @$field['title'] }}</label>
+                            <label class="label">{{ @$field['title'] }}&nbsp;</label>
                             @endif
                             @if (@$field['first_note'])
                             <label class="note first_note">{{ @$field['first_note'] }}</label>
