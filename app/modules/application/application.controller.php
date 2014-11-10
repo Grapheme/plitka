@@ -88,6 +88,22 @@ class ApplicationController extends BaseController {
             $data['galleries'][$gallery_id]->photos = $photos;
         }
 
+        $prices = array();
+        if (isset($data['products']) && count($data['products'])) {
+            foreach ($data['products'] as $product) {
+                #Helper::tad($product);
+                $price = (int)$product->price;
+                if (
+                    $product->collection_id
+                    && $price > 0
+                    && (!isset($prices[$product->collection_id]) || $price < $prices[$product->collection_id])
+                )
+                    $prices[$product->collection_id] = $price;
+            }
+        }
+        #Helper::dd($prices);
+        $data['prices'] = $prices;
+
         if (Input::get('nojson') == 1)
             Helper::tad($data);
 

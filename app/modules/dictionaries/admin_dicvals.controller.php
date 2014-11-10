@@ -446,7 +446,6 @@ class AdminDicvalsController extends BaseController {
                 $redirect = true;
             }
 
-
             /**
              * Доп. поля, не зависящие от языка
              */
