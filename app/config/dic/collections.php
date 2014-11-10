@@ -81,7 +81,7 @@ return array(
                 },
             ),
 
-            array('content' => '<div class="clearfix"></div><br/><hr/>'),
+            array('content' => '<hr/>'),
 
             'gallery_id' => array(
                 'title' => 'Интерьеры',

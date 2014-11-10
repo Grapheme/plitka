@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="265d8b9b-4054-4c55-88b5-a221c3c4a8f2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/dictionaries/admin_dicvals.controller.php" afterPath="$PROJECT_DIR$/app/modules/dictionaries/admin_dicvals.controller.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/lib/Helper.php" afterPath="$PROJECT_DIR$/app/lib/Helper.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/application/application.controller.php" afterPath="$PROJECT_DIR$/app/modules/application/application.controller.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/dic/collections.php" afterPath="$PROJECT_DIR$/app/config/dic/collections.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/edit.blade.php" afterPath="$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/edit.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="plitka.iws" />
@@ -7427,32 +7429,49 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="application.controller.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="application.controller.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/modules/application/application.controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.0" vertical-offset="1551" max-vertical-offset="3774">
-              <caret line="105" column="0" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.4962963" vertical-offset="2452" max-vertical-offset="4709">
+              <caret line="160" column="0" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="admin_dicvals.controller.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="admin_dicvals.controller.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/admin_dicvals.controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.56296295" vertical-offset="7346" max-vertical-offset="18904">
-              <caret line="447" column="0" selection-start-line="447" selection-start-column="0" selection-end-line="447" selection-end-column="0" />
+            <state vertical-scroll-proportion="-13.0" vertical-offset="7346" max-vertical-offset="18836">
+              <caret line="452" column="59" selection-start-line="452" selection-start-column="59" selection-end-line="452" selection-end-column="59" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="projects.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/config/dic/projects.php">
+      <file leaf-file-name="collections.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/config/dic/collections.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.038462" vertical-offset="563" max-vertical-offset="2176">
-              <caret line="50" column="4" selection-start-line="50" selection-start-column="4" selection-end-line="50" selection-end-column="4" />
-              <folding />
+            <state vertical-scroll-proportion="-14.384615" vertical-offset="1037" max-vertical-offset="3995">
+              <caret line="83" column="32" selection-start-line="83" selection-start-column="32" selection-end-line="83" selection-end-column="32" />
+              <folding>
+                <marker date="1415628143827" expanded="true" signature="5222:5408" placeholder="..." />
+                <marker date="1415628143827" expanded="true" signature="5375:5408" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Helper.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/lib/Helper.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-9.538462" vertical-offset="9748" max-vertical-offset="20213">
+              <caret line="588" column="35" selection-start-line="588" selection-start-column="35" selection-end-line="588" selection-end-column="35" />
+              <folding>
+                <marker date="1415628201476" expanded="false" signature="936:951" placeholder="..." />
+                <marker date="1415628201476" expanded="true" signature="11806:11918" placeholder="..." />
+                <marker date="1415628201476" expanded="true" signature="11864:11918" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -7460,8 +7479,8 @@
       <file leaf-file-name="edit.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/edit.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.769231" vertical-offset="1872" max-vertical-offset="7242">
-              <caret line="122" column="0" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
+            <state vertical-scroll-proportion="-2.5384614" vertical-offset="2195" max-vertical-offset="7242">
+              <caret line="133" column="77" selection-start-line="133" selection-start-column="77" selection-end-line="133" selection-end-column="77" />
               <folding />
             </state>
           </provider>
@@ -7490,8 +7509,8 @@
       <file leaf-file-name="DicVal.model.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/models/DicVal.model.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.615385" vertical-offset="11409" max-vertical-offset="11951">
-              <caret line="695" column="5" selection-start-line="695" selection-start-column="5" selection-end-line="695" selection-end-column="5" />
+            <state vertical-scroll-proportion="-10.461538" vertical-offset="663" max-vertical-offset="11951">
+              <caret line="55" column="35" selection-start-line="55" selection-start-column="20" selection-end-line="55" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -7554,7 +7573,6 @@
         <option value="$PROJECT_DIR$/app/lib/Allow.php" />
         <option value="$PROJECT_DIR$/app/config/dic/_default.php" />
         <option value="$PROJECT_DIR$/app/modules/uploads/views/admin/index.blade.php" />
-        <option value="$PROJECT_DIR$/app/lib/Helper.php" />
         <option value="$PROJECT_DIR$/public/css/your_style.css" />
         <option value="$PROJECT_DIR$/app/modules/system/js/system.js" />
         <option value="$PROJECT_DIR$/app/modules/galleries/js/gallery.js" />
@@ -7567,7 +7585,6 @@
         <option value="$PROJECT_DIR$/app/config/dic/factory.php" />
         <option value="$PROJECT_DIR$/app/config/az/database.php" />
         <option value="$PROJECT_DIR$/app/config/dic/partners.php" />
-        <option value="$PROJECT_DIR$/app/config/dic/collections.php" />
         <option value="$PROJECT_DIR$/app/config/site.php" />
         <option value="$PROJECT_DIR$/app/lib/SystemModules.php" />
         <option value="$PROJECT_DIR$/app/views/emails/feedback.blade.php" />
@@ -7584,8 +7601,10 @@
         <option value="$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/_dicval_meta.blade.php" />
         <option value="$PROJECT_DIR$/app/config/dic/projects.php" />
         <option value="$PROJECT_DIR$/app/modules/dictionaries/models/DicVal.model.php" />
-        <option value="$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/edit.blade.php" />
         <option value="$PROJECT_DIR$/app/modules/dictionaries/admin_dicvals.controller.php" />
+        <option value="$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/edit.blade.php" />
+        <option value="$PROJECT_DIR$/app/config/dic/collections.php" />
+        <option value="$PROJECT_DIR$/app/lib/Helper.php" />
         <option value="$PROJECT_DIR$/app/modules/application/application.controller.php" />
       </list>
     </option>
@@ -8023,7 +8042,13 @@
       <option name="project" value="LOCAL" />
       <updated>1415622532151</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="fix">
+      <created>1415626378690</created>
+      <option name="number" value="00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1415626378690</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -8284,14 +8309,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/lib/Helper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4998" max-vertical-offset="20077">
-          <caret line="294" column="0" selection-start-line="294" selection-start-column="0" selection-end-line="294" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/config/site.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="544">
@@ -8347,13 +8364,6 @@
         <state vertical-scroll-proportion="-17.0" vertical-offset="1445" max-vertical-offset="2023">
           <caret line="111" column="67" selection-start-line="111" selection-start-column="67" selection-end-line="111" selection-end-column="67" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/dic/collections.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="680" max-vertical-offset="3961">
-          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -8414,22 +8424,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/dic/projects.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.038462" vertical-offset="563" max-vertical-offset="2176">
-          <caret line="50" column="4" selection-start-line="50" selection-start-column="4" selection-end-line="50" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/models/Dictionary.model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.846154" vertical-offset="5574" max-vertical-offset="6137">
-          <caret line="346" column="0" selection-start-line="342" selection-start-column="0" selection-end-line="346" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/models/DicFieldVal.model.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-14.384615" vertical-offset="0" max-vertical-offset="493">
@@ -8448,32 +8442,71 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/models/DicVal.model.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.615385" vertical-offset="11409" max-vertical-offset="11951">
-          <caret line="695" column="5" selection-start-line="695" selection-start-column="5" selection-end-line="695" selection-end-column="5" />
+        <state vertical-scroll-proportion="-10.461538" vertical-offset="663" max-vertical-offset="11951">
+          <caret line="55" column="35" selection-start-line="55" selection-start-column="20" selection-end-line="55" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/models/Dictionary.model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.846154" vertical-offset="5574" max-vertical-offset="6137">
+          <caret line="346" column="0" selection-start-line="342" selection-start-column="0" selection-end-line="346" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/dic/projects.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.038462" vertical-offset="563" max-vertical-offset="2176">
+          <caret line="50" column="4" selection-start-line="50" selection-start-column="4" selection-end-line="50" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.769231" vertical-offset="1872" max-vertical-offset="7242">
-          <caret line="122" column="0" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
+        <state vertical-scroll-proportion="-2.5384614" vertical-offset="2195" max-vertical-offset="7242">
+          <caret line="133" column="77" selection-start-line="133" selection-start-column="77" selection-end-line="133" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/dic/collections.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.384615" vertical-offset="1037" max-vertical-offset="3995">
+          <caret line="83" column="32" selection-start-line="83" selection-start-column="32" selection-end-line="83" selection-end-column="32" />
+          <folding>
+            <marker date="1415628143827" expanded="true" signature="5222:5408" placeholder="..." />
+            <marker date="1415628143827" expanded="true" signature="5375:5408" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/lib/Helper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.538462" vertical-offset="9748" max-vertical-offset="20213">
+          <caret line="588" column="35" selection-start-line="588" selection-start-column="35" selection-end-line="588" selection-end-column="35" />
+          <folding>
+            <marker date="1415628201476" expanded="false" signature="936:951" placeholder="..." />
+            <marker date="1415628201476" expanded="true" signature="11806:11918" placeholder="..." />
+            <marker date="1415628201476" expanded="true" signature="11864:11918" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/admin_dicvals.controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.0" vertical-offset="7346" max-vertical-offset="18904">
+          <caret line="452" column="59" selection-start-line="452" selection-start-column="59" selection-end-line="452" selection-end-column="59" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/application/application.controller.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.0" vertical-offset="1551" max-vertical-offset="3774">
-          <caret line="105" column="0" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/admin_dicvals.controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.56296295" vertical-offset="7346" max-vertical-offset="18904">
-          <caret line="447" column="0" selection-start-line="447" selection-start-column="0" selection-end-line="447" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.4962963" vertical-offset="2452" max-vertical-offset="4709">
+          <caret line="160" column="0" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
           <folding />
         </state>
       </provider>

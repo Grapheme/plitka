@@ -59,10 +59,14 @@ class ApplicationController extends BaseController {
         #Helper::tad($dics);
 
         foreach ($dics as $dic) {
-            $data[$dic->slug] = Dic::valuesBySlug($dic->slug);
+            $data[$dic->slug] = Dic::valuesBySlug($dic->slug, function($query){
+                $query->with('related_dicvals');
+            });
             $data[$dic->slug] = DicVal::extracts($data[$dic->slug], 1);
             $data[$dic->slug] = Dic::modifyKeys($data[$dic->slug], 'id');
         }
+
+        #Helper::tad($data['collections']);
 
         $data['galleries'] = Gallery::all();
         $data['galleries'] = Dic::modifyKeys($data['galleries'], 'id');
@@ -88,21 +92,72 @@ class ApplicationController extends BaseController {
             $data['galleries'][$gallery_id]->photos = $photos;
         }
 
-        $prices = array();
+        $collections_prices = array();
+        $collections_colors = array();
+        $collections_surface_types = array();
         if (isset($data['products']) && count($data['products'])) {
             foreach ($data['products'] as $product) {
+
                 #Helper::tad($product);
+
                 $price = (int)$product->price;
+                $color_id = (int)$product->color_id;
+                $surface_type_id = (int)$product->surface_type_id;
+                $collection_id = (int)$product->collection_id;
+
                 if (
                     $product->collection_id
                     && $price > 0
-                    && (!isset($prices[$product->collection_id]) || $price < $prices[$product->collection_id])
+                    && (!isset($collections_prices[$product->collection_id]) || $price < $collections_prices[$product->collection_id])
                 )
-                    $prices[$product->collection_id] = $price;
+                    $collections_prices[$product->collection_id] = $price;
+
+                if ($color_id && $collection_id) {
+                    if (!isset($collections_colors[$color_id])) {
+                        $collections_colors[$color_id] = array();
+                    }
+                    if (!in_array($collection_id, $collections_colors[$color_id])) {
+                        $collections_colors[$color_id][] = $collection_id;
+                    }
+                }
+
+                if ($surface_type_id && $collection_id) {
+                    if (!isset($collections_surface_types[$surface_type_id])) {
+                        $collections_surface_types[$surface_type_id] = array();
+                    }
+                    if (!in_array($collection_id, $collections_surface_types[$surface_type_id])) {
+                        $collections_surface_types[$surface_type_id][] = $collection_id;
+                    }
+                }
+
             }
         }
         #Helper::dd($prices);
-        $data['prices'] = $prices;
+
+        $data['collections_prices'] = $collections_prices;
+        $data['collections_colors'] = $collections_colors;
+        $data['collections_surface_types'] = $collections_surface_types;
+
+        $scope_ids = array();
+        foreach ($data['collections'] as $collection) {
+            #$scope_ids[]
+
+            if (count($collection->related_dicvals)) {
+                #Helper::tad($collection);
+                foreach ($collection->related_dicvals as $scope) {
+
+                    if (!isset($scope_ids[$scope->id]) || !is_array($scope_ids[$scope->id])) {
+                        $scope_ids[$scope->id] = array();
+                    }
+
+                    if (!in_array($collection->id, $scope_ids[$scope->id])) {
+                        $scope_ids[$scope->id][] = $collection->id;
+                    }
+                }
+            }
+        }
+        #Helper::tad($scope_ids);
+        $data['collections_scopes'] = $scope_ids;
 
         if (Input::get('nojson') == 1)
             Helper::tad($data);

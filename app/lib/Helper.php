@@ -588,6 +588,7 @@ HTML;
                         . '</label>' . "\n\n";
                     $return .= $el;
                 }
+                $return = '<div class="clearfix">' . $return . '</div>';
                 #Helper::d(htmlspecialchars($return));
                 break;
             case 'hidden':
