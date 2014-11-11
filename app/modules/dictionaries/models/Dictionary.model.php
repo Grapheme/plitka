@@ -38,7 +38,7 @@ class Dictionary extends BaseModel {
     public function values() {
         return $this->hasMany('DicVal', 'dic_id', 'id')
             ->where('version_of', NULL)
-            ->with('meta', 'fields')
+            ->with('meta', 'fields', 'textfields')
             /*
             ->with('meta', array('fields' => function($query){
                 #$query->whereIn('name', array_keys((array)Config::get('dic.dic_name.fields')));
@@ -64,7 +64,7 @@ class Dictionary extends BaseModel {
         return $this->hasMany('DicVal', 'dic_id', 'id')
             ->select($tbl_dicval.'.*')
             ->where('version_of', NULL)
-            ->with('meta', 'fields')
+            ->with('meta', 'fields', 'textfields')
             ;
     }
 

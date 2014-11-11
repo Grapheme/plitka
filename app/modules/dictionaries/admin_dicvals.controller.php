@@ -99,6 +99,8 @@ class AdminDicvalsController extends BaseController {
 
         $this->dicval_permission($dic, 'dicval_view');
 
+        $dic->settings = json_decode($dic->settings, 1);
+
         $this->checkDicUrl($dic, $dic_id);
         $this->callHook('before_all', $dic);
         $this->callHook('before_index', $dic);
@@ -221,6 +223,11 @@ class AdminDicvalsController extends BaseController {
         $total_elements = DicVal::where('dic_id', $dic->id)->where('version_of', '=', NULL)->count();
 
         $this->callHook('before_index_view', $dic, $elements);
+
+
+        #Helper::ta($dic);
+        #Helper::tad($elements);
+
 
         #return View::make(Helper::acclayout());
         return View::make($this->module['tpl'].'index', compact('elements', 'dic', 'dic_id', 'sortable', 'dic_settings', 'actions_column', 'total_elements', 'total_elements_current_selection'));
