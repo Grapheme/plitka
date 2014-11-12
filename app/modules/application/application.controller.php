@@ -72,7 +72,7 @@ class ApplicationController extends BaseController {
         $data['galleries'] = Dic::modifyKeys($data['galleries'], 'id');
 
         $gal = array();
-        $data['photos'] = Photo::all();
+        $data['photos'] = Photo::orderBy('order', 'ASC')->get();
         $data['photos'] = Dic::modifyKeys($data['photos'], 'id');
         foreach ($data['photos'] as $p => $photo) {
 
@@ -91,6 +91,8 @@ class ApplicationController extends BaseController {
         foreach ($gal as $gallery_id => $photos) {
             $data['galleries'][$gallery_id]->photos = $photos;
         }
+
+        Helper::tad($data['galleries']);
 
         $collections_prices = array();
         $collections_colors = array();
