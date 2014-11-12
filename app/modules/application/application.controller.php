@@ -95,6 +95,7 @@ class ApplicationController extends BaseController {
         $collections_prices = array();
         $collections_colors = array();
         $collections_surface_types = array();
+        $collections_formats = array();
         if (isset($data['products']) && count($data['products'])) {
             foreach ($data['products'] as $product) {
 
@@ -104,6 +105,7 @@ class ApplicationController extends BaseController {
                 $color_id = (int)$product->color_id;
                 $surface_type_id = (int)$product->surface_type_id;
                 $collection_id = (int)$product->collection_id;
+                $format_id = (int)$product->format_id;
 
                 if (
                     $product->collection_id
@@ -130,6 +132,15 @@ class ApplicationController extends BaseController {
                     }
                 }
 
+                if ($format_id && $collection_id) {
+                    if (!isset($collections_formats[$format_id])) {
+                        $collections_formats[$format_id] = array();
+                    }
+                    if (!in_array($collection_id, $collections_formats[$format_id])) {
+                        $collections_formats[$format_id][] = $collection_id;
+                    }
+                }
+
             }
         }
         #Helper::dd($prices);
@@ -137,6 +148,7 @@ class ApplicationController extends BaseController {
         $data['collections_prices'] = $collections_prices;
         $data['collections_colors'] = $collections_colors;
         $data['collections_surface_types'] = $collections_surface_types;
+        $data['collections_formats'] = $collections_formats;
 
         $scope_ids = array();
         $collections_surfaces = array();
