@@ -92,7 +92,7 @@ class ApplicationController extends BaseController {
             $data['galleries'][$gallery_id]->photos = $photos;
         }
 
-        Helper::tad($data['galleries']);
+        #Helper::tad($data['galleries']);
 
         $collections_prices = array();
         $collections_colors = array();
