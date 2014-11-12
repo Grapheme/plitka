@@ -67,7 +67,7 @@
 </div>
 -->
                 <fieldset>
-                    <section class="dd">
+                    <section class="dd menu-list">
 
                         <p class="alert alert-info fade in padding-10 menu_list_info">
                             <i class="fa-fw fa fa-info"></i>
@@ -580,7 +580,7 @@
              * Get max id of the exists menu items
              */
             //console.log($('.dd [name^=items][name$="[id]"]'));
-            var ids= $('.dd [name^=items][name$="[id]"]').map(function() {
+            var ids= $('.dd.menu-list [name^=items][name$="[id]"]').map(function() {
                 return $(this).val();
             }).get();
             var N = Array.max(ids);
@@ -588,9 +588,9 @@
         @endif
 
         @if ($element->order)
-            $('.dd').data('output').text('{{ $element->order }}');
+            $('.dd.menu-list').data('output').text('{{ $element->order }}');
         @else
-            updateOutput($('.dd'));
+            updateOutput($('.dd.menu-list'));
         @endif
 
         //$('.menu_list_item_dd-handle_custom').css('height', $('.panel-default').css('height'));

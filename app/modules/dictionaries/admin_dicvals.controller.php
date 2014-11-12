@@ -16,6 +16,7 @@ class AdminDicvalsController extends BaseController {
 
         Route::group(array('before' => 'auth', 'prefix' => $prefix . "/" . $class::$group), function() use ($class, $entity) {
             Route::post($entity.'/ajax-order-save', array('as' => 'dicval.order', 'uses' => $class."@postAjaxOrderSave"));
+            Route::post($entity.'/ajax-nested-set-model', array('as' => 'dicval.nestedsetmodel', 'uses' => $class."@postAjaxNestedSetModel"));
             Route::get ($entity.'/{dic_slug}/{entity_id}/restore', array('as' => 'dicval.restore', 'uses' => $class.'@restore'));
             Route::resource('dic.val', $class,
                 array(
@@ -113,6 +114,10 @@ class AdminDicvalsController extends BaseController {
             ->where($tbl_dicval.'.dic_id', (int)$dic->id)
             ->where($tbl_dicval.'.version_of', '=', NULL)
             ->with('fields')
+            /**
+             * Здесь не нужно делать выборку textfields, т.к. это всего лишь список записей,
+             * а фильтрация может происходить только по неполнотекстовым полям (fields).
+             */
         ;
         #$elements = DB::table('dictionary_values')->where('dic_id', $dic->id)->select('dictionary_values.*');
 
@@ -155,7 +160,14 @@ class AdminDicvalsController extends BaseController {
 
         switch ($dic->sort_by) {
             case '':
-                $elements = $elements->orderBy($tbl_dicval.'.order', $sort_order)->orderBy($tbl_dicval.'.name', $sort_order);
+                /*
+                $elements = $elements
+                    ->orderBy($tbl_dicval.'.order', $sort_order)
+                    ->orderBy($tbl_dicval.'.name', $sort_order);
+                */
+                $elements = $elements
+                    ->orderBy($tbl_dicval.'.lft', 'ASC')
+                    ->orderBy($tbl_dicval.'.name', $sort_order);
                 break;
             case 'name':
                 $elements = $elements->orderBy($tbl_dicval.'.name', $sort_order);
@@ -175,8 +187,7 @@ class AdminDicvalsController extends BaseController {
                  */
                 #Helper::dd($dic->sort_by);
                 #$dic->sort_by .= '2';
-                $tbl_fields = new DicFieldVal();
-                $tbl_fields = $tbl_fields->getTable();
+                $tbl_fields = (new DicFieldVal())->getTable();
                 $rand_tbl_alias = md5(rand(99999, 999999));
                 $elements = $elements
                     ->leftJoin($tbl_fields . ' AS ' . $rand_tbl_alias, function ($join) use ($tbl_dicval, $tbl_fields, $rand_tbl_alias, $dic, $sort_order) {
@@ -230,7 +241,7 @@ class AdminDicvalsController extends BaseController {
 
 
         #return View::make(Helper::acclayout());
-        return View::make($this->module['tpl'].'index', compact('elements', 'dic', 'dic_id', 'sortable', 'dic_settings', 'actions_column', 'total_elements', 'total_elements_current_selection'));
+        return View::make($this->module['tpl'].'index_old', compact('elements', 'dic', 'dic_id', 'sortable', 'dic_settings', 'actions_column', 'total_elements', 'total_elements_current_selection'));
 	}
 
     /************************************************************************************/
@@ -1049,6 +1060,36 @@ class AdminDicvalsController extends BaseController {
             foreach ( $pls as $pl ) {
                 $pl->order = array_search($pl->id, $poss);
                 $pl->save();
+            }
+        }
+
+        return Response::make('1');
+    }
+
+
+    public function postAjaxNestedSetModel() {
+
+        #$input = Input::all();
+
+        $data = Input::get('data');
+        $data = json_decode($data, 1);
+        #Helper::dd($data);
+
+        if (count($data)) {
+
+            $id_left_right = (new NestedSetModel($data))->get_id_left_right();
+
+            if (count($id_left_right)) {
+
+                $dicvals = DicVal::whereIn('id', array_keys($id_left_right))->get();
+
+                if (count($dicvals)) {
+                    foreach ($dicvals as $dicval) {
+                        $dicval->lft = $id_left_right[$dicval->id]['left'];
+                        $dicval->rgt = $id_left_right[$dicval->id]['right'];
+                        $dicval->save();
+                    }
+                }
             }
         }
 

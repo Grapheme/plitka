@@ -139,8 +139,16 @@ class ApplicationController extends BaseController {
         $data['collections_surface_types'] = $collections_surface_types;
 
         $scope_ids = array();
+        $collections_surfaces = array();
         foreach ($data['collections'] as $collection) {
             #$scope_ids[]
+
+            if ($collection->surface_id) {
+                if (!isset($collections_surfaces[$collection->surface_id]) || !is_array($collections_surfaces[$collection->surface_id]))
+                    $collections_surfaces[$collection->surface_id] = array();
+                if (!in_array($collection->id, $collections_surfaces[$collection->surface_id]))
+                    $collections_surfaces[$collection->surface_id][] = $collection->id;
+            }
 
             if (count($collection->related_dicvals)) {
                 #Helper::tad($collection);
@@ -158,6 +166,7 @@ class ApplicationController extends BaseController {
         }
         #Helper::tad($scope_ids);
         $data['collections_scopes'] = $scope_ids;
+        $data['collections_surfaces'] = $collections_surfaces;
 
         if (Input::get('nojson') == 1)
             Helper::tad($data);
