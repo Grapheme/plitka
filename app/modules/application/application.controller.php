@@ -111,6 +111,7 @@ class ApplicationController extends BaseController {
 
                 if (
                     $product->collection_id
+                    && $product->basic
                     && $price > 0
                     && (!isset($collections_prices[$product->collection_id]) || $price < $collections_prices[$product->collection_id])
                 )
