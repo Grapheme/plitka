@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/app/modules/application/application.controller.php" line="205" mnemonic="2" />
+    <bookmark url="file://$PROJECT_DIR$/app/modules/application/application.controller.php" line="46" mnemonic="1" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="265d8b9b-4054-4c55-88b5-a221c3c4a8f2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/galleries/admin_galleries.controller.php" afterPath="$PROJECT_DIR$/app/modules/galleries/admin_galleries.controller.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/galleries/views/admin/edit.blade.php" afterPath="$PROJECT_DIR$/app/modules/galleries/views/admin/edit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/modules_js_cache.dat" afterPath="$PROJECT_DIR$/app/storage/modules_js_cache.dat" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/modules_js_modifications.dat" afterPath="$PROJECT_DIR$/app/storage/modules_js_modifications.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/application/application.controller.php" afterPath="$PROJECT_DIR$/app/modules/application/application.controller.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="plitka.iws" />
@@ -7429,11 +7430,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="DicVal.model.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/models/DicVal.model.php">
+      <file leaf-file-name="application.controller.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/modules/application/application.controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.8846154" vertical-offset="2142" max-vertical-offset="13311">
-              <caret line="135" column="27" selection-start-line="57" selection-start-column="20" selection-end-line="57" selection-end-column="35" />
+            <state vertical-scroll-proportion="0.5202952" vertical-offset="602" max-vertical-offset="5508">
+              <caret line="52" column="47" selection-start-line="52" selection-start-column="47" selection-end-line="52" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cache.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/config/cache.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="323">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -7442,7 +7453,7 @@
       <file leaf-file-name="admin_dicvals.controller.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/admin_dicvals.controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="27.5" vertical-offset="4455" max-vertical-offset="22304">
+            <state vertical-scroll-proportion="0.0" vertical-offset="4455" max-vertical-offset="22304">
               <caret line="220" column="17" selection-start-line="220" selection-start-column="17" selection-end-line="220" selection-end-column="17" />
               <folding />
             </state>
@@ -7452,11 +7463,9 @@
       <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.192307" vertical-offset="2988" max-vertical-offset="3604">
+            <state vertical-scroll-proportion="0.0" vertical-offset="2988" max-vertical-offset="3604">
               <caret line="199" column="0" selection-start-line="199" selection-start-column="0" selection-end-line="199" selection-end-column="0" />
-              <folding>
-                <element signature="e#2755#2783#0#HTML" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -7464,7 +7473,7 @@
       <file leaf-file-name="edit.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/edit.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.230769" vertical-offset="6562" max-vertical-offset="7310">
+            <state vertical-scroll-proportion="0.0" vertical-offset="6698" max-vertical-offset="7123">
               <caret line="394" column="59" selection-start-line="394" selection-start-column="59" selection-end-line="394" selection-end-column="59" />
               <folding />
             </state>
@@ -7484,18 +7493,18 @@
       <file leaf-file-name="admin_galleries.controller.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/modules/galleries/admin_galleries.controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.692307" vertical-offset="4098" max-vertical-offset="10081">
+            <state vertical-scroll-proportion="0.0" vertical-offset="4098" max-vertical-offset="10081">
               <caret line="262" column="35" selection-start-line="262" selection-start-column="35" selection-end-line="262" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="edit.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="edit.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/modules/galleries/views/admin/edit.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.27272728" vertical-offset="0" max-vertical-offset="561">
-              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+            <state vertical-scroll-proportion="-9.153846" vertical-offset="0" max-vertical-offset="340">
+              <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -7514,7 +7523,7 @@
       <file leaf-file-name="your_style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/css/your_style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="14271" max-vertical-offset="15368">
+            <state vertical-scroll-proportion="0.0" vertical-offset="14382" max-vertical-offset="15113">
               <caret line="846" column="12" selection-start-line="846" selection-start-column="12" selection-end-line="846" selection-end-column="12" />
               <folding />
             </state>
@@ -7537,9 +7546,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.txt" root0="SKIP_INSPECTION" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
@@ -7582,7 +7588,6 @@
         <option value="$PROJECT_DIR$/app/modules/dictionaries/models/Dictionary.model.php" />
         <option value="$PROJECT_DIR$/app/modules/system/views/admin/menu_editor/manage.blade.php" />
         <option value="$PROJECT_DIR$/app/modules/system/js/menu_editor.js" />
-        <option value="$PROJECT_DIR$/app/modules/application/application.controller.php" />
         <option value="$PROJECT_DIR$/app/lib/NestedSetModel.php" />
         <option value="$PROJECT_DIR$/app/modules/dictionaries/models/DicVal.model.php" />
         <option value="$PROJECT_DIR$/app/modules/dictionaries/views/admin/dics/edit.blade.php" />
@@ -7595,6 +7600,7 @@
         <option value="$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/index.blade.php" />
         <option value="$PROJECT_DIR$/app/modules/galleries/admin_galleries.controller.php" />
         <option value="$PROJECT_DIR$/app/modules/galleries/views/admin/edit.blade.php" />
+        <option value="$PROJECT_DIR$/app/modules/application/application.controller.php" />
       </list>
     </option>
   </component>
@@ -7853,15 +7859,15 @@
       <BehatRunner />
       <method />
     </configuration>
-    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
-      <method />
-    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-options />
       <gulpfile />
       <tasks />
       <pass-parent-env-vars>false</pass-parent-env-vars>
       <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
       <method />
     </configuration>
     <list size="0" />
@@ -8243,15 +8249,20 @@
       <option name="project" value="LOCAL" />
       <updated>1415980303134</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="fix">
+      <created>1415981660355</created>
+      <option name="number" value="00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1415981660355</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31810766" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31707317" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Regex Tester" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -8262,17 +8273,18 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3284553" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3284553" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -8321,13 +8333,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../../git/is-ottava-rima/classes/CMUDict.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4848485" vertical-offset="0" max-vertical-offset="2805">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../git/is-ottava-rima/test.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5151515" vertical-offset="0" max-vertical-offset="561">
@@ -8444,7 +8449,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5737122" vertical-offset="0" max-vertical-offset="629">
           <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -8501,11 +8505,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="9996" max-vertical-offset="20094">
           <caret line="588" column="35" selection-start-line="588" selection-start-column="35" selection-end-line="588" selection-end-column="35" />
-          <folding>
-            <marker date="1415628201476" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1415628201476" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1415628201476" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -8528,9 +8528,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="3876" max-vertical-offset="9367">
           <caret line="228" column="30" selection-start-line="228" selection-start-column="30" selection-end-line="228" selection-end-column="30" />
-          <folding>
-            <marker date="1415975099803" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -8538,7 +8536,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="10064" max-vertical-offset="10353">
           <caret line="592" column="41" selection-start-line="592" selection-start-column="41" selection-end-line="592" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -8546,15 +8543,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.57575756" vertical-offset="935" max-vertical-offset="2448">
           <caret line="74" column="18" selection-start-line="74" selection-start-column="13" selection-end-line="74" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/application/application.controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="5117">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -8562,7 +8550,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="4394" max-vertical-offset="4981">
           <caret line="270" column="0" selection-start-line="270" selection-start-column="0" selection-end-line="270" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -8570,18 +8557,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.41111112" vertical-offset="2991" max-vertical-offset="4403">
           <caret line="188" column="155" selection-start-line="188" selection-start-column="155" selection-end-line="188" selection-end-column="155" />
-          <folding>
-            <marker date="1415967049489" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1415967049489" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1415967049489" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1415967049489" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1415967049489" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1415967049489" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1415967049489" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1415967049489" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1415967049489" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1415967049489" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -8589,13 +8565,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.5" vertical-offset="3366" max-vertical-offset="3927">
           <caret line="211" column="0" selection-start-line="211" selection-start-column="0" selection-end-line="211" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/models/DicVal.model.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.8846154" vertical-offset="2142" max-vertical-offset="13311">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2142" max-vertical-offset="13311">
           <caret line="135" column="27" selection-start-line="57" selection-start-column="20" selection-end-line="57" selection-end-column="35" />
           <folding />
         </state>
@@ -8605,9 +8580,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3434">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -8615,16 +8587,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.46532845" vertical-offset="2414" max-vertical-offset="3978">
           <caret line="156" column="0" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
-          <folding>
-            <marker date="1415968219423" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1415968219423" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.230769" vertical-offset="6562" max-vertical-offset="7310">
+        <state vertical-scroll-proportion="0.0" vertical-offset="6698" max-vertical-offset="7123">
           <caret line="394" column="59" selection-start-line="394" selection-start-column="59" selection-end-line="394" selection-end-column="59" />
           <folding />
         </state>
@@ -8640,11 +8609,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.192307" vertical-offset="2988" max-vertical-offset="3604">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2988" max-vertical-offset="3604">
           <caret line="199" column="0" selection-start-line="199" selection-start-column="0" selection-end-line="199" selection-end-column="0" />
-          <folding>
-            <element signature="e#2755#2783#0#HTML" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -8654,9 +8621,6 @@
           <caret line="672" column="368" selection-start-line="672" selection-start-column="368" selection-end-line="672" selection-end-column="368" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <marker date="1415972952551" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1415972952551" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1415972952551" expanded="false" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -8665,7 +8629,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.325784" vertical-offset="7399" max-vertical-offset="7973">
           <caret line="463" column="29" selection-start-line="463" selection-start-column="29" selection-end-line="463" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -8673,7 +8636,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.1890971" vertical-offset="484" max-vertical-offset="1360">
           <caret line="35" column="9" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -8689,7 +8651,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.060606062" vertical-offset="0" max-vertical-offset="561">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -8705,13 +8666,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.40925926" vertical-offset="0" max-vertical-offset="540">
           <caret line="13" column="24" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/admin_dicvals.controller.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="27.5" vertical-offset="4455" max-vertical-offset="22440">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4455" max-vertical-offset="22304">
           <caret line="220" column="17" selection-start-line="220" selection-start-column="17" selection-end-line="220" selection-end-column="17" />
           <folding />
         </state>
@@ -8719,7 +8679,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/galleries/admin_galleries.controller.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.692307" vertical-offset="4098" max-vertical-offset="10081">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4098" max-vertical-offset="10081">
           <caret line="262" column="35" selection-start-line="262" selection-start-column="35" selection-end-line="262" selection-end-column="35" />
           <folding />
         </state>
@@ -8727,8 +8687,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/galleries/views/admin/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27272728" vertical-offset="0" max-vertical-offset="561">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        <state vertical-scroll-proportion="-9.153846" vertical-offset="0" max-vertical-offset="340">
+          <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/cache.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="568">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/application/application.controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5202952" vertical-offset="602" max-vertical-offset="5508">
+          <caret line="52" column="47" selection-start-line="52" selection-start-column="47" selection-end-line="52" selection-end-column="47" />
           <folding />
         </state>
       </provider>
