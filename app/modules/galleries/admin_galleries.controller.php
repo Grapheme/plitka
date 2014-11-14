@@ -246,7 +246,7 @@ class AdminGalleriesController extends BaseController {
 	public function postCreate(){
 		
 		$input = Input::all();
-		$validation = Validator::make($input, gallery::getRules());
+		$validation = Validator::make($input, Gallery::getRules());
 		if($validation->fails()) {
 			return Response::json($validation->messages()->toJson(), 400);
 		} else {
@@ -260,7 +260,10 @@ class AdminGalleriesController extends BaseController {
     
 	public function getEdit($id){
 		
-        $gallery = Rel_mod_gallery::where('gallery_id', $id)->first();
+        $gallery = Gallery::where('id', $id)->first();
+
+
+
 		return View::make($this->tpl.'edit', compact('gallery', 'bread'));
 	}
 
