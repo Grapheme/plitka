@@ -2,16 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="265d8b9b-4054-4c55-88b5-a221c3c4a8f2" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\home\dev\plitka\app\storage\.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="C:\home\dev\plitka\app\storage\cache\.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="C:\home\dev\plitka\app\storage\debugbar\.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="C:\home\dev\plitka\app\storage\logs\.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="C:\home\dev\plitka\app\storage\meta\.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="C:\home\dev\plitka\app\storage\modules_js_cache.dat" afterPath="" />
-      <change type="DELETED" beforePath="C:\home\dev\plitka\app\storage\modules_js_modifications.dat" afterPath="" />
-      <change type="DELETED" beforePath="C:\home\dev\plitka\app\storage\sessions\.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="C:\home\dev\plitka\app\storage\views\.gitignore" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/dictionaries/admin_dicvals.controller.php" afterPath="$PROJECT_DIR$/app/modules/dictionaries/admin_dicvals.controller.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/index.blade.php" afterPath="$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/index.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -7504,8 +7494,8 @@
       <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3030303" vertical-offset="1666" max-vertical-offset="3723">
-              <caret line="105" column="14" selection-start-line="105" selection-start-column="14" selection-end-line="105" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.54545456" vertical-offset="1564" max-vertical-offset="3757">
+              <caret line="107" column="4" selection-start-line="107" selection-start-column="4" selection-end-line="107" selection-end-column="4" />
               <folding>
                 <element signature="e#2754#2782#0#HTML" expanded="true" />
               </folding>
@@ -8235,7 +8225,13 @@
       <option name="project" value="LOCAL" />
       <updated>1415975913649</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="fix">
+      <created>1415976927170</created>
+      <option name="number" value="00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1415976927170</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -8713,8 +8709,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3030303" vertical-offset="1666" max-vertical-offset="3723">
-          <caret line="105" column="14" selection-start-line="105" selection-start-column="14" selection-end-line="105" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.54545456" vertical-offset="1564" max-vertical-offset="3757">
+          <caret line="107" column="4" selection-start-line="107" selection-start-column="4" selection-end-line="107" selection-end-column="4" />
           <folding>
             <element signature="e#2754#2782#0#HTML" expanded="true" />
           </folding>
