@@ -14,6 +14,8 @@ class AdminDicvalsController extends BaseController {
         $class = __CLASS__;
         $entity = self::$entity;
 
+        Route::any('/ajax/check-dicval-slug-unique', array('as' => 'dicval.check-dicval-slug-unique', 'uses' => $class."@postAjaxCheckDicvalSlugUnique"));
+
         Route::group(array('before' => 'auth', 'prefix' => $prefix . "/" . $class::$group), function() use ($class, $entity) {
             Route::post($entity.'/ajax-order-save', array('as' => 'dicval.order', 'uses' => $class."@postAjaxOrderSave"));
             Route::post($entity.'/ajax-nested-set-model', array('as' => 'dicval.nestedsetmodel', 'uses' => $class."@postAjaxNestedSetModel"));
@@ -166,8 +168,8 @@ class AdminDicvalsController extends BaseController {
                     ->orderBy($tbl_dicval.'.name', $sort_order);
                 */
                 $elements = $elements
-                    ->orderBy($tbl_dicval.'.lft', 'ASC')
-                    ->orderBy($tbl_dicval.'.name', $sort_order);
+                    ->orderBy(DB::raw('-'.$tbl_dicval.'.lft'), 'DESC')
+                    ->orderBy($tbl_dicval.'.id', $sort_order);
                 break;
             case 'name':
                 $elements = $elements->orderBy($tbl_dicval.'.name', $sort_order);
@@ -188,14 +190,18 @@ class AdminDicvalsController extends BaseController {
                 #Helper::dd($dic->sort_by);
                 #$dic->sort_by .= '2';
                 $tbl_fields = (new DicFieldVal())->getTable();
+                
                 $rand_tbl_alias = md5(rand(99999, 999999));
                 $elements = $elements
                     ->leftJoin($tbl_fields . ' AS ' . $rand_tbl_alias, function ($join) use ($tbl_dicval, $tbl_fields, $rand_tbl_alias, $dic, $sort_order) {
                         $join
                             ->on($rand_tbl_alias . '.dicval_id', '=', $tbl_dicval . '.id')
-                            ->where($rand_tbl_alias . '.key', '=', $dic->sort_by)
+
                         ;
                     })
+                    /* !!! WHERE должно быть именно здесь, а не внутри JOIN-а !!! */
+                    /* !!! Иначе происходит неведомая хрень: dic_id = 'field' !!! */
+                    ->where($rand_tbl_alias . '.key', '=', $dic->sort_by)
                     ->addSelect($rand_tbl_alias . '.value AS ' . $dic->sort_by)
                     ->orderBy($dic->sort_by, $sort_order)
                     ->orderBy($tbl_dicval.'.created_at', 'DESC'); /* default */
@@ -213,6 +219,7 @@ class AdminDicvalsController extends BaseController {
         #Helper::smartQueries(1);
 
         DicVal::extracts($elements, true);
+        $elements = Dic::modifyKeys($elements, 'id');
 
         if (Config::get('debug') == 1)
             Helper::tad($elements);
@@ -236,12 +243,22 @@ class AdminDicvalsController extends BaseController {
         $this->callHook('before_index_view', $dic, $elements);
 
 
+        $id_left_right = array();
+        foreach($elements as $element) {
+            $id_left_right[$element->id] = array();
+            $id_left_right[$element->id]['left'] = $element->lft;
+            $id_left_right[$element->id]['right'] = $element->rgt;
+        }
+        $hierarchy = (new NestedSetModel())->get_hierarchy_from_id_left_right($id_left_right);
+
         #Helper::ta($dic);
         #Helper::tad($elements);
-
+        #Helper::dd($hierarchy);
+        #Helper::dd($dic_settings['actions']());
 
         #return View::make(Helper::acclayout());
-        return View::make($this->module['tpl'].'index_old', compact('elements', 'dic', 'dic_id', 'sortable', 'dic_settings', 'actions_column', 'total_elements', 'total_elements_current_selection'));
+        #return View::make($this->module['tpl'].'index_old', compact('elements', 'dic', 'dic_id', 'sortable', 'dic_settings', 'actions_column', 'total_elements', 'total_elements_current_selection'));
+        return View::make($this->module['tpl'].'index', compact('elements', 'hierarchy', 'dic', 'dic_id', 'sortable', 'dic_settings', 'actions_column', 'total_elements', 'total_elements_current_selection'));
 	}
 
     /************************************************************************************/
@@ -455,6 +472,13 @@ class AdminDicvalsController extends BaseController {
                 #$json_request['responseText'] = "<pre>" . print_r($input, 1) . "</pre>";
                 #return Response::json($json_request,200);
 
+                /**
+                 * Ставим элемент в конец списка
+                 */
+                $temp = DicVal::selectRaw('max(rgt) AS max_rgt')->where('dic_id', $dic->id)->first();
+                $input['lft'] = $temp->max_rgt+1;
+                $input['rgt'] = $temp->max_rgt+2;
+
                 ## CREATE DICVAL
                 $element = new DicVal;
                 #$element = DicVal::insert($input);
@@ -654,22 +678,47 @@ class AdminDicvalsController extends BaseController {
 
         $json_request = array('status' => FALSE, 'responseText' => '');
 
-        $element = DicVal::where('id', $id)->with('allfields', 'metas')->first();
+        $element = DicVal::where('id', $id)->with('allfields', 'alltextfields', 'metas', 'seos', 'related_dicvals')->first();
 
         $this->callHook('before_all', $dic);
         $this->callHook('before_destroy', $dic, $element);
 
         if (is_object($element)) {
 
+            #Helper::dd("UPDATE " . (new DicVal())->getTable() . " SET lft = lft - 1, rgt = rgt - 1 WHERE dic_id = '" . $element->dic_id . "' AND lft > " . $element->rgt . "");
+
             #Helper::tad($element);
 
-            if (@count($element->allfields))
-                foreach ($element->allfields as $el)
-                    $el->delete();
+            if (@count($element->allfields)) {
+                #foreach ($element->allfields as $el)
+                #    $el->delete();
+                $temp_ids = Dic::makeLists($element->allfields, 'id');
+                DicFieldVal::whereIn('id', $temp_ids)->delete();
+            }
 
-            if (@count($element->metas))
-                foreach ($element->metas as $el)
+            if (@count($element->alltextfields)) {
+                $temp_ids = Dic::makeLists($element->alltextfields, 'id');
+                DicTextFieldVal::whereIn('id', $temp_ids)->delete();
+            }
+
+            if (@count($element->metas)) {
+                #foreach ($element->metas as $el)
+                #    $el->delete();
+                $temp_ids = Dic::makeLists($element->metas, 'id');
+                DicValMeta::whereIn('id', $temp_ids)->delete();
+            }
+
+            if (@count($element->seos)) {
+                $temp_ids = Dic::makeLists($element->seos, 'id');
+                Seo::whereIn('id', $temp_ids)->delete();
+            }
+
+            if (@count($element->related_dicvals)) {
+                foreach ($element->related_dicvals as $el)
                     $el->delete();
+            }
+
+            DB::update(DB::raw("UPDATE " . (new DicVal())->getTable() . " SET lft = lft - 2, rgt = rgt - 2 WHERE dic_id = '" . $element->dic_id . "' AND lft > " . $element->rgt . ""));
 
             $element->delete();
         }
@@ -1077,7 +1126,7 @@ class AdminDicvalsController extends BaseController {
 
         if (count($data)) {
 
-            $id_left_right = (new NestedSetModel($data))->get_id_left_right();
+            $id_left_right = (new NestedSetModel())->get_id_left_right($data);
 
             if (count($id_left_right)) {
 
@@ -1144,6 +1193,107 @@ class AdminDicvalsController extends BaseController {
          */
         Allow::permission($this->module['group'], $permission);
     }
+
+
+
+    public function postAjaxCheckDicvalSlugUnique() {
+
+        $input = Input::all();
+
+        #Helper::dd(Input::all());
+
+        $json_request = array('status' => FALSE, 'responseText' => '');
+
+        $dic_id = Input::get('_dic_id');
+
+        $dic = Dic::find($dic_id);
+
+        /**
+         * Если словарь не найден - сообщаем об ошибке
+         */
+        if (!is_object($dic)) {
+            $json_request['responseText'] = 'Вы пытаетесь добавить запись в несуществующую сущность';
+            return Response::json($json_request, 200);
+        }
+
+        $id = Input::get('_id');
+        $slug = trim(Input::get('slug'));
+        $name = Input::get('name');
+
+        $element = new DicVal;
+        if ($id)
+            $element = DicVal::find($id);
+        if (!is_object($element))
+            $element = new DicVal;
+
+        switch ((int)$dic->make_slug_from_name) {
+            case 1:
+                $input['slug'] = Helper::translit($input['name']);
+                break;
+            case 2:
+                if (!$dic->hide_slug && !@$input['slug'])
+                    $input['slug'] = Helper::translit($input['name']);
+                break;
+            case 3:
+                if ($dic->hide_slug && $element->slug == '')
+                    $input['slug'] = Helper::translit($input['name']);
+                break;
+
+            case 4:
+                $input['slug'] = Helper::translit($input['name'], false);
+                break;
+            case 5:
+                if (!$dic->hide_slug && !@$input['slug'])
+                    $input['slug'] = Helper::translit($input['name'], false);
+                break;
+            case 6:
+                if ($dic->hide_slug && $element->slug == '')
+                    $input['slug'] = Helper::translit($input['name'], false);
+                break;
+
+            case 7:
+                $input['slug'] = $input['name'];
+                break;
+            case 8:
+                if (!$dic->hide_slug && !@$input['slug'])
+                    $input['slug'] = $input['name'];
+                break;
+            case 9:
+                if ($dic->hide_slug && $element->slug == '')
+                    $input['slug'] = $input['name'];
+                break;
+        }
+
+        $new_slug = $input['slug'];
+        $json_request['new_slug'] = $new_slug;
+        #Helper::d($new_slug);
+
+        #Helper::tad($input);
+
+        /**
+         * Ищем записи в текущем словаре с новым системным именем
+         */
+        $dicval = DicVal::where('slug', $new_slug)->where('dic_id', $dic_id);
+
+        /**
+         * Если мы редактируем существующую запись - исключаем ее ID из проверки
+         */
+        if ($element->id)
+            $dicval = $dicval->where('id', '!=', $element->id);
+
+        $dicval = $dicval->first();
+        #Helper::ta($dicval);
+
+        if (is_object($dicval)) {
+            $json_request['responseText'] = 'Запись с таким системным именем уже существует';
+            $json_request['also_exists'] = $dicval->id;
+        } else {
+            $json_request['status'] = TRUE;
+        }
+
+        return Response::json($json_request, 200);
+    }
+
 
 }
 

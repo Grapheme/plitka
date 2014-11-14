@@ -360,6 +360,12 @@
     </script>
 
     <script>
+        @if (@$dic_settings['unique_slug'])
+        var CheckDicvalSlugUnique = true;
+        @else
+        var CheckDicvalSlugUnique = false;
+        @endif
+
         var onsuccess_function = function() {
 
             // UPLOAD
@@ -384,12 +390,10 @@
         }
     </script>
 
-	{{ HTML::script('js/modules/standard.js') }}
-
 	<script type="text/javascript">
 		if(typeof pageSetUp === 'function'){pageSetUp();}
-		if(typeof runFormValidation === 'function') {
-			loadScript("{{ asset('js/vendor/jquery-form.min.js'); }}", runFormValidation);
+		if(typeof runDicValFormValidation === 'function') {
+			loadScript("{{ asset('js/vendor/jquery-form.min.js'); }}", runDicValFormValidation);
 		} else {
 			loadScript("{{ asset('js/vendor/jquery-form.min.js'); }}");
 		}        

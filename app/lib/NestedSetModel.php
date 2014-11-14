@@ -4,18 +4,18 @@ class NestedSetModel {
 
     public $data, $id_left_right, $i;
 
-	public function __construct($data = null) {
+	public function __construct() {
 
-		$this->data = $data;
+		$this->data = array();
         $this->id_left_right = array();
         $this->i = 0;
 	}
-	
-	public function get_id_left_right($data = null){
 
-        if ($data)
-            $this->data = $data;
 
+	public function get_id_left_right($data){
+
+
+        $this->data = $data;
         #Helper::dd($this->data);
 
         $this->id_left_right = array();
@@ -27,8 +27,8 @@ class NestedSetModel {
         return $this->id_left_right;
 	}
 
-
     private function parse_level($array) {
+
         if (is_array($array) && count($array))
             foreach ($array as $key => $value) {
                 if (isset($value['id'])) {
@@ -42,6 +42,184 @@ class NestedSetModel {
                     $this->id_left_right[$value['id']]['right'] = ++$this->i;
                 }
             }
+    }
+
+
+
+    public function get_hierarchy_from_id_left_right($id_left_right) {
+
+        $this->id_left_right = $id_left_right;
+
+        $this->parent_id = 0;
+
+        $dbg = 0;
+
+        if ($dbg) {
+            Helper::d($id_left_right);
+            echo "<hr/>";
+        }
+
+        /**
+         * Сначала проставим parent_id
+         */
+        $this->set_parent_id($this->id_left_right);
+
+        if ($dbg) {
+            Helper::d($this->id_left_right);
+            echo "<hr/>";
+        }
+
+        /**
+         * Сформируем древовидную структуру
+         */
+        $tree = $this->get_hierarchy($this->id_left_right);
+
+        if ($dbg) {
+            Helper::dd($tree);
+            echo "<hr/>";
+        }
+
+        /**
+         * Вернем дерево
+         */
+        return $tree;
+    }
+
+
+    /**
+     * Рекурсивно устанавливает всем элементам parent_id
+     *
+     * @param $array
+     * @param int $parent_id
+     */
+    private function set_parent_id($array, $parent_id = 0) {
+
+        /**
+         * Проходим по всем элементам списка
+         */
+        while (list($key, $value) = each($array)) {
+
+            $this->id_left_right[$key]['parent_id'] = $parent_id;
+
+            /**
+             * Если текущий элемент имеет дочерние элементы...
+             */
+            if (
+                isset($value['left']) && isset($value['right'])
+                && $value['left'] && $value['right']
+                && $value['left'] + 1 < $value['right']
+            ) {
+
+                /**
+                 * Отбираем все дочерние элементы
+                 */
+                $children = array_filter(
+                    $array,
+                    create_function(
+                        '$element, $left=' . $value['left'] . ', $right=' . $value['right'],
+                        'return (
+                            isset($element["left"]) && isset($element["right"])
+                            && $element["left"] > $left && $element["right"] < $right
+                        );'
+                    )
+                );
+
+                /**
+                 * Если нашлись дочерние элементы...
+                 */
+                if (count($children)) {
+
+                    /**
+                     * Удалим их ID из основного списка, чтобы ошибочно не обрабатывать их по несколько раз
+                     */
+                    foreach ($children as $k => $v)
+                        unset($array[$k]);
+
+                    /**
+                     * Устанавливаем всем дочерним элементам родительский ID (текущего элемента)
+                     */
+                    $this->set_parent_id($children, $key);
+                }
+            }
+        }
+    }
+
+
+    /**
+     * Возвращает иерархическое дерево
+     *
+     * @param $array
+     * @return array
+     */
+    private function get_hierarchy($array) {
+
+        /**
+         * В этом массиве:
+         * ключи - ID родительской категории (у категорий верхнего уровня = 0)
+         * значения - массив со списком значений ID дочерних категорий (у которых parent_id = ключу текущей записи массива)
+         */
+        $this->levels = array();
+
+        /**
+         * Заполним массив...
+         */
+        foreach ($array as $a => $arr)
+            $this->levels[$arr['parent_id']][] = $a;
+        #Helper::d($this->levels);
+
+        /**
+         * Сформируем дерево, начиная с самого верхнего уровня
+         */
+        $tree = $this->get_hierarchy_level($this->levels[0]);
+        #Helper::d($tree);
+
+        /**
+         * Возвращаем дерево
+         */
+        return $tree;
+    }
+
+
+    /**
+     * Рекурсивно формирует текущий уровень иерархического дерева
+     *
+     * @param $array
+     * @return array
+     */
+    private function get_hierarchy_level($array) {
+
+        /**
+         * Текущий уровень дерева
+         */
+        $tree = array();
+
+        /**
+         * Перебираем все элементы, входящие в текущий уровень дерева
+         */
+        foreach($array as $id) {
+
+            /**
+             * Формируем массив с требуемыми значениями текущего элемента
+             */
+            $element = array('id' => $id);
+
+            /**
+             * Если есть запись о том, что текущий элемент - родительский по отношению к некоторым другим -
+             * то построим новый уровень дерева, начиная с текущего элемента
+             */
+            if (isset($this->levels[$id]))
+                $element['children'] = $this->get_hierarchy_level($this->levels[$id]);
+
+            /**
+             * Добавим текущий элемент (он также может быть деревом) к текущему дереву
+             */
+            $tree[] = $element;
+        }
+
+        /**
+         * Возвращаем текущее дерево
+         */
+        return $tree;
     }
 
 }

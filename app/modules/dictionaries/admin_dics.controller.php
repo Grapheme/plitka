@@ -215,12 +215,12 @@ class AdminDicsController extends BaseController {
             $input['make_slug_from_name'] = Input::get('make_slug_from_name') > 0 ? (int)Input::get('make_slug_from_name') : NULL;
             $input['name_title'] = Input::get('name_title') ?: NULL;
             $input['view_access'] = Input::get('view_access') ?: NULL;
-            $input['sortable'] = Input::get('sortable') ?: 0;
+            $input['sortable'] = Input::get('sortable') ? 1 : 0;
             $input['sort_by'] = Input::get('sort_by') != 'order' ? Input::get('sort_by') : NULL;
         }
 
         $json_request['responseText'] = "<pre>" . print_r($_POST, 1) . "</pre>";
-        #return Response::json($json_request, 200);
+        #return Response::json($json_request,200);
 
         $json_request = array('status'=>FALSE, 'responseText'=>'', 'responseErrorText'=>'', 'redirect'=>FALSE);
 		$validator = Validator::make($input, array('name' => 'required'));
