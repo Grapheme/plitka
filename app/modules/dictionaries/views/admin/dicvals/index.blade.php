@@ -3,7 +3,7 @@
 
 
 <?
-function write_level($hierarchy, $elements, $dic_id, $dic, $dic_settings, $module) {
+function write_level($hierarchy, $elements, $dic_id, $dic, $dic_settings, $module, $sortable) {
 ?>
 	@if($count = @count($elements))
         <ol class="dd-list">
@@ -22,12 +22,12 @@ function write_level($hierarchy, $elements, $dic_id, $dic, $dic_settings, $modul
             ?>
 
             <li class="dd-item dd3-item dd-item-fixed-height" data-id="{{ $element->id }}">
-                @if ($dic->sortable > 0)
+                @if ($sortable > 0)
                 <div class="dd-handle dd3-handle">
                     Drag
                 </div>
                 @endif
-                <div class="dd3-content{{ $dic->sortable > 0 ? '' : ' padding-left-15 padding-top-10' }} clearfix">
+                <div class="dd3-content{{ $sortable > 0 ? '' : ' padding-left-15 padding-top-10' }} clearfix">
 
                     <div class="pull-left">
                         {{ $line }}
@@ -75,7 +75,7 @@ function write_level($hierarchy, $elements, $dic_id, $dic, $dic_settings, $modul
                     /**
                      * Вывод дочерних элементов
                      */
-                    write_level($h['children'], $elements, $dic_id, $dic, $dic_settings, $module);
+                    write_level($h['children'], $elements, $dic_id, $dic, $dic_settings, $module, $sortable);
                     #Helper::dd($h['children']);
                     ?>
                 @endif
@@ -101,7 +101,7 @@ function write_level($hierarchy, $elements, $dic_id, $dic, $dic_settings, $modul
 
         <div class="dd dicval-list" data-output="#nestable-output">
             <?
-            write_level($hierarchy, $elements, $dic_id, $dic, $dic_settings, $module);
+            write_level($hierarchy, $elements, $dic_id, $dic, $dic_settings, $module, $sortable);
             ?>
         </div>
 

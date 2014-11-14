@@ -7449,8 +7449,8 @@
       <file leaf-file-name="admin_dicvals.controller.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/admin_dicvals.controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.038462" vertical-offset="4131" max-vertical-offset="22440">
-              <caret line="266" column="77" selection-start-line="266" selection-start-column="77" selection-end-line="266" selection-end-column="77" />
+            <state vertical-scroll-proportion="27.5" vertical-offset="4455" max-vertical-offset="22440">
+              <caret line="220" column="17" selection-start-line="220" selection-start-column="17" selection-end-line="220" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -7479,7 +7479,7 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/system/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1254" max-vertical-offset="23562">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1254" max-vertical-offset="22763">
               <caret line="87" column="48" selection-start-line="87" selection-start-column="48" selection-end-line="87" selection-end-column="48" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
@@ -7494,10 +7494,10 @@
       <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.54545456" vertical-offset="1564" max-vertical-offset="3757">
-              <caret line="107" column="4" selection-start-line="107" selection-start-column="4" selection-end-line="107" selection-end-column="4" />
+            <state vertical-scroll-proportion="0.8484849" vertical-offset="1377" max-vertical-offset="3757">
+              <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
               <folding>
-                <element signature="e#2754#2782#0#HTML" expanded="true" />
+                <element signature="e#2755#2783#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -8231,7 +8231,13 @@
       <option name="project" value="LOCAL" />
       <updated>1415976927170</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="fix">
+      <created>1415977473873</created>
+      <option name="number" value="00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1415977473873</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -8651,19 +8657,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/system/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1254" max-vertical-offset="23562">
-          <caret line="87" column="48" selection-start-line="87" selection-start-column="48" selection-end-line="87" selection-end-column="48" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <marker date="1415972952551" expanded="false" signature="5007:5018" placeholder="..." />
-            <marker date="1415972952551" expanded="false" signature="20082:20098" placeholder="..." />
-            <marker date="1415972952551" expanded="false" signature="36546:36593" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/your_style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="14781" max-vertical-offset="15368">
@@ -8701,18 +8694,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/admin_dicvals.controller.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.038462" vertical-offset="4131" max-vertical-offset="22440">
-          <caret line="266" column="77" selection-start-line="266" selection-start-column="77" selection-end-line="266" selection-end-column="77" />
+        <state vertical-scroll-proportion="27.5" vertical-offset="4455" max-vertical-offset="22440">
+          <caret line="220" column="17" selection-start-line="220" selection-start-column="17" selection-end-line="220" selection-end-column="17" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/system/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1254" max-vertical-offset="23562">
+          <caret line="87" column="48" selection-start-line="87" selection-start-column="48" selection-end-line="87" selection-end-column="48" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <marker date="1415972952551" expanded="false" signature="5007:5018" placeholder="..." />
+            <marker date="1415972952551" expanded="false" signature="20082:20098" placeholder="..." />
+            <marker date="1415972952551" expanded="false" signature="36546:36593" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.54545456" vertical-offset="1564" max-vertical-offset="3757">
-          <caret line="107" column="4" selection-start-line="107" selection-start-column="4" selection-end-line="107" selection-end-column="4" />
+        <state vertical-scroll-proportion="0.8484849" vertical-offset="1377" max-vertical-offset="3757">
+          <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
           <folding>
-            <element signature="e#2754#2782#0#HTML" expanded="true" />
+            <element signature="e#2755#2783#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
