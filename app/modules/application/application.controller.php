@@ -38,6 +38,23 @@ class ApplicationController extends BaseController {
 
     public function getApplicationData() {
 
+        $cache_key = 'application.data';
+        $cache_time = 5;
+
+        if (Cache::has($cache_key)) {
+            #Helper::dd('111');
+
+            $data = Cache::get($cache_key);
+            $data = json_decode($data, 1);
+
+            if (Input::get('nojson') == 1)
+                Helper::tad($data);
+
+            return Response::json($data, 200, array(
+                'Access-Control-Allow-Origin' => '*',
+            ));
+        }
+
         $data = new Collection();
 
         /**
@@ -185,6 +202,12 @@ class ApplicationController extends BaseController {
 
         if (Input::get('nojson') == 1)
             Helper::tad($data);
+
+        if (Cache::has($cache_key)) {
+            Cache::put($cache_key, json_encode($data), $cache_time);
+        } else {
+            Cache::add($cache_key, json_encode($data), $cache_time);
+        }
 
         return Response::json($data, 200, array(
             'Access-Control-Allow-Origin' => '*',
