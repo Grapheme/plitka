@@ -153,6 +153,7 @@ return array(
                 <a href="' . URL::route('entity.index', array('products', 'filter[fields][collection_id]' => $dicval->id)) . '" class="btn btn-default">
                     Продукция (' . @(int)$counts[$dicval->id][$dic_products->id] . ')
                 </a>
+            </span>
                 '
             /*
             . '

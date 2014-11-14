@@ -15,6 +15,8 @@ class DicVal extends BaseModel {
         'slug',
         'name',
         'order',
+        'lft',
+        'rgt',
     );
 
 	public static $rules = array(
@@ -336,6 +338,84 @@ class DicVal extends BaseModel {
         return $query;
     }
 
+
+    /**
+     * Подключаем доп. поле с помощью LEFT JOIN
+     *
+     * @param $query
+     * @param $key
+     * @param bool $as_alias
+     * @param callable $additional_rules
+     * @return string
+     */
+    public function scopeLeftJoin_field($query, $key, $as_alias = false, Closure $additional_rules = NULL) {
+
+        return $this->scopeHook_up_field($query, $key, $as_alias, $additional_rules, 'leftJoin');
+    }
+
+
+    /**
+     * Подключаем доп. поле с помощью JOIN
+     *
+     * @param $query
+     * @param $key
+     * @param bool $as_alias
+     * @param callable $additional_rules
+     * @return string
+     */
+    public function scopeJoin_field($query, $key, $as_alias = false, Closure $additional_rules = NULL) {
+
+        return $this->scopeHook_up_field($query, $key, $as_alias, $additional_rules, 'join');
+    }
+
+    /*
+        Пример использования:
+
+        $query->hook_up_field('published_at', 'published_at', function($join, $value){
+            # Подключаем только новости, у которых дата публикации меньше или совпадает с текущей датой
+            $join->where($value, '<=', date('Y-m-d'));
+        });
+     */
+    /**
+     * Функция с помощью JOIN "подключает" доп. поле записи к выборке, после чего можно добавлять условия в запрос.
+     * Условия для JOIN должны передаваться в функции-замыкании:
+     *
+     * @param $query
+     * @param $key - название доп. поля; значение столбца key
+     * @param bool $as_alias - название поля, которое будет присвоено после подключания; можно оставить пустым
+     * @param callable $additional_rules - функция-замыкание с доп. условиями для JOIN
+     * @param string $method - 'join' или 'leftJoin'
+     * @return string - случайное имя таблицы DicFieldVal, используемое для осуществления JOIN
+     */
+    public function scopeHook_up_field($query, $key, $as_alias = false, Closure $additional_rules = NULL, $method) {
+
+        if (!$as_alias)
+            $as_alias = $key;
+
+        $tbl_dicval = (new DicVal())->getTable();
+        $tbl_dic_field_val = (new DicFieldVal())->getTable();
+        $rand_tbl_alias = md5(time() . rand(999999, 9999999));
+        $query
+            ->addSelect(DB::raw('`' . $rand_tbl_alias . '`.`value` AS ' . $as_alias))
+
+            ->$method($tbl_dic_field_val . ' AS ' . $rand_tbl_alias, function ($join) use ($rand_tbl_alias, $tbl_dicval, $tbl_dic_field_val, $key, $additional_rules) {
+                $join->on($rand_tbl_alias . '.dicval_id', '=', $tbl_dicval . '.id');
+                $join->where($rand_tbl_alias . '.key', '=', $key);
+
+                if (is_callable($additional_rules)) {
+                    /**
+                     * Правильный способ применения доп. условий через функцию-замыкание
+                     */
+                    call_user_func($additional_rules, $join, $rand_tbl_alias . '.value');
+                }
+            })
+
+            #->where($rand_tbl_alias . '.key', '=', $key)
+        ;
+        #return $query;
+
+        return $rand_tbl_alias;
+    }
     /**
      * Экстрактит все записи словаря внутри коллекции
      *
