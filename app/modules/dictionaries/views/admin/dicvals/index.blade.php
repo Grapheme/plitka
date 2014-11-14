@@ -152,19 +152,13 @@ function write_level($hierarchy, $elements, $dic_id, $dic, $dic_settings, $modul
 		}
 	</script>
 
-    @if ($sortable)
-    <script>
-        init_sortable("{{ URL::route('dicval.order') }}", ".dicvals");
-    </script>
-    @endif
-
     @if (@trim($dic_settings['javascript']))
     <script>
         {{ @$dic_settings['javascript'] }}
     </script>
     @endif
 
-    @if ($dic->sortable > 0)
+    @if ($sortable && $dic->sortable > 0)
     <script>
     $(document).ready(function() {
 
