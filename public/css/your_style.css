@@ -843,8 +843,8 @@ div > .dd-list > .dd-item:first-child > button::before {
     min-width: 80px;
     text-align: left;
     position: relative;
-    top: 4px;
-    right: 0px;
+    top: 3px;
+    right: 1px;
 }
 .dicval-actions-margin-left {
     margin-left: 4px;
