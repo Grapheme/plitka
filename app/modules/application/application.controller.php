@@ -106,7 +106,8 @@ class ApplicationController extends BaseController {
         }
 
         foreach ($gal as $gallery_id => $photos) {
-            $data['galleries'][$gallery_id]->photos = $photos;
+            if (isset($data['galleries'][$gallery_id]))
+                $data['galleries'][$gallery_id]->photos = $photos;
         }
 
         #Helper::tad($data['galleries']);
