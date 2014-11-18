@@ -6,10 +6,10 @@
 <body>
 	<div>
 		<p>
-            Сообщение: {{ $name }} &lt;{{ $email }}&gt;
-            <hr/>
-			{{ Helper::nl2br($text) }}
-            <hr/>
+            Отправитель: {{ $name }} &lt;{{ $email }}&gt;
+        </p>
+        <p>
+			Текст сообщения: {{ Helper::nl2br($text) }}
 		</p>
 	</div>
 </body>
