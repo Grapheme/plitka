@@ -17,12 +17,12 @@ function write_level($hierarchy, $elements, $dic_id, $dic, $dic_settings, $modul
             if (isset($dic_settings['first_line_modifier']) && is_callable($dic_settings['first_line_modifier']))
                 $line = $dic_settings['first_line_modifier']($line, $dic, $element);
 
-            $line = preg_replace("~<br[/ ]*?>~is", ' ', $line);
+            $line = preg_replace("~<br[/ ]*?".">~is", ' ', $line);
 
             $line2 = $element->slug;
             if (isset($dic_settings['second_line_modifier']) && is_callable($dic_settings['second_line_modifier']))
                 $line2 = $dic_settings['second_line_modifier']($line2, $dic, $element);
-            $line2 = preg_replace("~<br[/ ]*?>~is", ' ', $line2);
+            $line2 = preg_replace("~<br[/ ]*?".">~is", ' ', $line2);
             ?>
 
             <li class="dd-item dd3-item dd-item-fixed-height" data-id="{{ $element->id }}">
@@ -32,14 +32,6 @@ function write_level($hierarchy, $elements, $dic_id, $dic, $dic_settings, $modul
                 </div>
                 @endif
                 <div class="dd3-content{{ $sortable > 0 ? '' : ' padding-left-15 padding-top-10' }} clearfix">
-
-                    <div class="pull-left">
-                        {{ $line }}
-                        <br/>
-                        <span class="note dicval_note">
-                            {{ $line2 }}
-                        </span>
-                    </div>
 
                     @if (@$actions_column || 1)
 
@@ -72,6 +64,15 @@ function write_level($hierarchy, $elements, $dic_id, $dic, $dic_settings, $modul
                         </div>
 
                     @endif
+
+                    <div class="dicval-lines">
+                        {{ $line }}
+                        <br/>
+                        <span class="note dicval_note">
+                            {{ $line2 }}
+                        </span>
+                    </div>
+
 
                 </div>
                 @if (isset($h['children']) && is_array($h['children']) && count($h['children']))
