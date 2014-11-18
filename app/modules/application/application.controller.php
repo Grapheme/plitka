@@ -41,7 +41,9 @@ class ApplicationController extends BaseController {
         $cache_key = 'application.data';
         $cache_time = 5;
 
-        if (Cache::has($cache_key)) {
+        $debug = Config::get('app.debug');
+
+        if (Cache::has($cache_key) && !@$debug) {
             #Helper::dd('111');
 
             $data = Cache::get($cache_key);
@@ -82,6 +84,13 @@ class ApplicationController extends BaseController {
             $data[$dic->slug] = DicVal::extracts($data[$dic->slug], 1);
             $data[$dic->slug] = Dic::modifyKeys($data[$dic->slug], 'id');
         }
+
+        #Helper::ta($data['product_type']);
+        $product_types = Dic::modifyKeys($data['product_type'], 'slug');
+        #Helper::ta($product_types);
+        $dic_product_type_others_id = @$product_types['others']['id'] ?: false;
+        #echo $dic_product_type_others_id;
+        #die;
 
         #Helper::tad($data['collections']);
 
@@ -173,6 +182,7 @@ class ApplicationController extends BaseController {
 
         $scope_ids = array();
         $collections_surfaces = array();
+        $dic_others_collections = new Collection();
         foreach ($data['collections'] as $collection) {
             #$scope_ids[]
 
@@ -196,19 +206,31 @@ class ApplicationController extends BaseController {
                     }
                 }
             }
+
+            if ($dic_product_type_others_id && $collection->product_type_id == $dic_product_type_others_id) {
+                $dic_others_collections[$collection->name] = $collection;
+            }
+
         }
+
+        $dic_others_collections = $dic_others_collections->toArray();
+        ksort($dic_others_collections);
+        $dic_others_collections = Dic::modifyKeys($dic_others_collections, 'id');
+        #Helper::tad($dic_others_collections);
+        $data['product_type_others_collections'] = $dic_others_collections;
+
         #Helper::tad($scope_ids);
         $data['collections_scopes'] = $scope_ids;
         $data['collections_surfaces'] = $collections_surfaces;
-
-        if (Input::get('nojson') == 1)
-            Helper::tad($data);
 
         if (Cache::has($cache_key)) {
             Cache::put($cache_key, json_encode($data), $cache_time);
         } else {
             Cache::add($cache_key, json_encode($data), $cache_time);
         }
+
+        if (Input::get('nojson') == 1)
+            Helper::tad($data);
 
         return Response::json($data, 200, array(
             'Access-Control-Allow-Origin' => '*',
