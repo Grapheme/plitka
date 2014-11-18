@@ -6,8 +6,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="265d8b9b-4054-4c55-88b5-a221c3c4a8f2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/dictionaries/models/Dictionary.model.php" afterPath="$PROJECT_DIR$/app/modules/dictionaries/models/Dictionary.model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/application/application.controller.php" afterPath="$PROJECT_DIR$/app/modules/application/application.controller.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/index.blade.php" afterPath="$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/index.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="plitka.iws" />
@@ -7431,11 +7430,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="application.controller.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="application.controller.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/modules/application/application.controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3939394" vertical-offset="510" max-vertical-offset="5899">
-              <caret line="43" column="17" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
+            <state vertical-scroll-proportion="-15.038462" vertical-offset="4131" max-vertical-offset="5899">
+              <caret line="266" column="62" selection-start-line="266" selection-start-column="62" selection-end-line="266" selection-end-column="62" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="feedback.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/emails/feedback.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="357">
+              <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -7454,8 +7463,8 @@
       <file leaf-file-name="admin_dicvals.controller.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/admin_dicvals.controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.461538" vertical-offset="4097" max-vertical-offset="22440">
-              <caret line="257" column="71" selection-start-line="257" selection-start-column="71" selection-end-line="257" selection-end-column="71" />
+            <state vertical-scroll-proportion="-10.461538" vertical-offset="4080" max-vertical-offset="22440">
+              <caret line="256" column="9" selection-start-line="256" selection-start-column="9" selection-end-line="256" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -7483,11 +7492,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2988" max-vertical-offset="3604">
-              <caret line="199" column="0" selection-start-line="199" selection-start-column="0" selection-end-line="199" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.6363636" vertical-offset="51" max-vertical-offset="3723">
+              <caret line="24" column="63" selection-start-line="24" selection-start-column="63" selection-end-line="24" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -7554,7 +7563,6 @@
         <option value="$PROJECT_DIR$/app/config/dic/partners.php" />
         <option value="$PROJECT_DIR$/app/config/site.php" />
         <option value="$PROJECT_DIR$/app/lib/SystemModules.php" />
-        <option value="$PROJECT_DIR$/app/views/emails/feedback.blade.php" />
         <option value="$PROJECT_DIR$/app/config/mail.php" />
         <option value="$PROJECT_DIR$/../cms/app/modules/dictionaries/views/admin/dics/index.blade.php" />
         <option value="$PROJECT_DIR$/app/config/app.php" />
@@ -7575,15 +7583,16 @@
         <option value="$PROJECT_DIR$/app/modules/dictionaries/js/dic.js" />
         <option value="$PROJECT_DIR$/public/js/system/app.js" />
         <option value="$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/edit.blade.php" />
-        <option value="$PROJECT_DIR$/app/modules/dictionaries/admin_dicvals.controller.php" />
         <option value="$PROJECT_DIR$/public/css/your_style.css" />
-        <option value="$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/index.blade.php" />
         <option value="$PROJECT_DIR$/app/modules/galleries/admin_galleries.controller.php" />
         <option value="$PROJECT_DIR$/app/modules/galleries/views/admin/edit.blade.php" />
         <option value="$PROJECT_DIR$/app/modules/dictionaries/admin_dics.controller.php" />
         <option value="$PROJECT_DIR$/app/lib/NestedSetModel.php" />
         <option value="$PROJECT_DIR$/app/modules/dictionaries/models/Dictionary.model.php" />
+        <option value="$PROJECT_DIR$/app/modules/dictionaries/admin_dicvals.controller.php" />
         <option value="$PROJECT_DIR$/app/modules/application/application.controller.php" />
+        <option value="$PROJECT_DIR$/app/views/emails/feedback.blade.php" />
+        <option value="$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/index.blade.php" />
       </list>
     </option>
   </component>
@@ -8140,7 +8149,19 @@
       <option name="project" value="LOCAL" />
       <updated>1416303338340</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="fix">
+      <created>1416306101392</created>
+      <option name="number" value="00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1416306101392</updated>
+    </task>
+    <task id="LOCAL-00067" summary="fix">
+      <created>1416306723327</created>
+      <option name="number" value="00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1416306723327</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -8302,13 +8323,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/emails/feedback.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="357">
-          <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../cms/app/modules/dictionaries/views/admin/dics/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6363636" vertical-offset="306" max-vertical-offset="2414">
@@ -8465,14 +8479,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2988" max-vertical-offset="3604">
-          <caret line="199" column="0" selection-start-line="199" selection-start-column="0" selection-end-line="199" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/system/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.36236933" vertical-offset="11284" max-vertical-offset="22763">
@@ -8558,14 +8564,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/admin_dicvals.controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.461538" vertical-offset="4097" max-vertical-offset="22440">
-          <caret line="257" column="71" selection-start-line="257" selection-start-column="71" selection-end-line="257" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/lib/NestedSetModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.230769" vertical-offset="636" max-vertical-offset="3978">
@@ -8576,16 +8574,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/models/Dictionary.model.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5294118" vertical-offset="1505" max-vertical-offset="6154">
-          <caret line="106" column="40" selection-start-line="106" selection-start-column="40" selection-end-line="106" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.49910873" vertical-offset="1505" max-vertical-offset="6154">
+          <caret line="105" column="59" selection-start-line="105" selection-start-column="59" selection-end-line="105" selection-end-column="59" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/application/application.controller.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3939394" vertical-offset="510" max-vertical-offset="5899">
-          <caret line="43" column="17" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
+        <state vertical-scroll-proportion="-15.038462" vertical-offset="4131" max-vertical-offset="5899">
+          <caret line="266" column="62" selection-start-line="266" selection-start-column="62" selection-end-line="266" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/emails/feedback.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="357">
+          <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/admin_dicvals.controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.461538" vertical-offset="4080" max-vertical-offset="22440">
+          <caret line="256" column="9" selection-start-line="256" selection-start-column="9" selection-end-line="256" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6363636" vertical-offset="51" max-vertical-offset="3723">
+          <caret line="24" column="63" selection-start-line="24" selection-start-column="63" selection-end-line="24" selection-end-column="63" />
           <folding />
         </state>
       </provider>

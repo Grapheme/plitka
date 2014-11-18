@@ -103,7 +103,7 @@ class Dictionary extends BaseModel {
         #$array = array();
         $array = new Collection;
         foreach ($collection as $c => $col) {
-            $current_key = is_object($col) ? $col->$key : $col[$key];
+            $current_key = is_object($col) ? $col->$key : @$col[$key];
             if (NULL !== $current_key) {
                 $array[$current_key] = $col;
             }
