@@ -79,7 +79,7 @@ class ApplicationController extends BaseController {
 
         foreach ($dics as $dic) {
             $data[$dic->slug] = Dic::valuesBySlug($dic->slug, function($query){
-                $query->with('related_dicvals');
+                $query->with('related_dicvals', 'seo');
             });
             $data[$dic->slug] = DicVal::extracts($data[$dic->slug], 1);
             $data[$dic->slug] = Dic::modifyKeys($data[$dic->slug], 'id');
