@@ -42,8 +42,9 @@ class ApplicationController extends BaseController {
         $cache_time = 5;
 
         $debug = Config::get('app.debug');
+        $nocache = Input::get('nocache');
 
-        if (Cache::has($cache_key) && !@$debug) {
+        if (Cache::has($cache_key) && !@$debug && !$nocache) {
             #Helper::dd('111');
 
             $data = Cache::get($cache_key);
