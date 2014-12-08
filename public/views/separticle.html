@@ -1,0 +1,6 @@
+<div class="sep-entity sep-article"> <div class="back-to-block"> <a href="#!/articles"> <span class="icon icon-angle-left"></span> К списку статей </a> </div> <h1 class="sep-entity-name"> {{ $root.h1 }} </h1> <div class="sep-entity-date"> {{ SepCtrl.articles[ SepCtrl.articleId ].created_at.slice(0, 10) | date : 'dd/MM/yy' }} </div> <div class="sep-entity-desc"> <img src="{{ SepCtrl.photos[ SepCtrl.articles[ SepCtrl.articleId ].image_id ].full }}" alt=""> <div class="sep-article-columns" ng-bind-html="SepCtrl.articles[ SepCtrl.articleId ].content"></div> </div> <div class="sep-entity-nav"> <!-- <a href="#">
+			<span class="icon icon-angle-left"></span> пред.
+		</a>
+		<a href="#">
+			след. <span class="icon icon-angle-right"></span> 
+		</a> --> </div> </div>
