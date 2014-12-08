@@ -54,7 +54,7 @@ class AdminDicsMenuController extends BaseController {
         ## Without child links
         return array(
             array(
-            	'title' => 'Словари',
+            	'title' => 'Справочники',
                 'link' => self::$group . '/dic',
                 #'link' => URL::route('dic.index'),
                 'class' => 'fa-bars',
