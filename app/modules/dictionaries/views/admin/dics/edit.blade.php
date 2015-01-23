@@ -136,7 +136,7 @@
                     <section>
                         <label class="label">Кто может видеть этот словарь:</label>
                         <label class="radio">
-                            {{ Form::radio('view_access', 0, $element->id ? NULL : true) }}
+                            {{ Form::radio('view_access', '0', $element->view_access === 0 ?: ($element->id ? NULL : true)) }}
                             <i></i> Все, у кого есть доступ к словарям
                         </label>
                         <label class="radio">
@@ -239,14 +239,14 @@
 	};
     </script>
 
-	{{ HTML::script('js/modules/standard.js') }}
+	{{ HTML::script('private/js/modules/standard.js') }}
 
 	<script type="text/javascript">
 		if(typeof pageSetUp === 'function'){pageSetUp();}
 		if(typeof runFormValidation === 'function') {
-			loadScript("{{ asset('js/vendor/jquery-form.min.js'); }}", runFormValidation);
+			loadScript("{{ asset('private/js/vendor/jquery-form.min.js'); }}", runFormValidation);
 		} else {
-			loadScript("{{ asset('js/vendor/jquery-form.min.js'); }}");
+			loadScript("{{ asset('private/js/vendor/jquery-form.min.js'); }}");
 		}        
 	</script>
 

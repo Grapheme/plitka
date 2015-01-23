@@ -1118,8 +1118,8 @@ HTML;
                     #Helper::d($buffer);
 
                     $value = @trim($buffer[1]) ?: true;
-                    if ($value !== true && is_string($value) && mb_strlen($value) && mb_strpos($value, '|')) {
-                        $temp = explode('|', $value);
+                    if ($value !== true && is_string($value) && mb_strlen($value)) {
+                        $temp = mb_strpos($value, '|') ? explode('|', $value) : (array)$value;
                         $value = array();
                         foreach ($temp as $tmp) {
                             $tmp = trim($tmp);

@@ -109,6 +109,6 @@ return array(
 		'ImageManipulation' => 'Intervention\Image\Facades\Image',
 
         'Collection'      => 'Illuminate\Database\Eloquent\Collection',
-        'SphinxSearch' => 'Scalia\SphinxSearch\SphinxSearchFacade',
+        'SphinxSearch'    => 'Scalia\SphinxSearch\SphinxSearchFacade',
 	),
 );
