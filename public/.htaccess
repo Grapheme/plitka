@@ -1,4 +1,10 @@
 
+    ##
+    ## http://plitkamira.ru/?_escaped_fragment_=/collection/black-amp-white
+    ##
+    RewriteCond %{QUERY_STRING} _escaped_fragment_=(.*) [NC]
+    RewriteRule ^ http://%{HTTP_HOST}:9090/?%{QUERY_STRING} [L]
+
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{HTTP_HOST} !^dev.grapheme.ru$
