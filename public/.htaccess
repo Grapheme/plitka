@@ -8,10 +8,6 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{HTTP_HOST} !^dev.grapheme.ru$
-
-    #RewriteRule ^.*?\?_escaped_fragment_=(.*?) /$1 [L]
-    RewriteRule ^.*?\?_escaped_fragment_=(.*?)$ http://plitkamira.ru:9090/?_escaped_fragment_=$1 [L]
-
     RewriteRule ^ /!index.php [L]
 
 # Apache Configuration File

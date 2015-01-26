@@ -6,7 +6,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="265d8b9b-4054-4c55-88b5-a221c3c4a8f2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/.htaccess" afterPath="$PROJECT_DIR$/public/.htaccess" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="plitka.iws" />
@@ -7443,8 +7442,8 @@
       <file leaf-file-name=".htaccess" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/.htaccess">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.028960818" vertical-offset="0" max-vertical-offset="10107">
-              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.26064736" vertical-offset="0" max-vertical-offset="10039">
+              <caret line="9" column="47" selection-start-line="9" selection-start-column="47" selection-end-line="9" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -7718,12 +7717,6 @@
       <created>1410442546809</created>
       <option name="number" value="Default" />
       <updated>1410442546809</updated>
-    </task>
-    <task id="LOCAL-00031" summary="fix">
-      <created>1414582460684</created>
-      <option name="number" value="00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1414582460684</updated>
     </task>
     <task id="LOCAL-00032" summary="fix">
       <created>1415274440000</created>
@@ -8013,7 +8006,13 @@
       <option name="project" value="LOCAL" />
       <updated>1422277552024</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="phantomjs fix">
+      <created>1422281968807</created>
+      <option name="number" value="00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1422281968808</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -8084,7 +8083,8 @@
     <MESSAGE value="textfields" />
     <MESSAGE value="colors" />
     <MESSAGE value="fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix" />
+    <MESSAGE value="phantomjs fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="phantomjs fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -8461,8 +8461,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/.htaccess">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.028960818" vertical-offset="0" max-vertical-offset="10107">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.26064736" vertical-offset="0" max-vertical-offset="10039">
+          <caret line="9" column="47" selection-start-line="9" selection-start-column="47" selection-end-line="9" selection-end-column="47" />
           <folding />
         </state>
       </provider>
