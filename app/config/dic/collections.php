@@ -224,5 +224,5 @@ return array(
     },
 
 
-    'seo' => false,
+    'seo' => true,
 );

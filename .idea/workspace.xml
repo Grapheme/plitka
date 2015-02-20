@@ -6,6 +6,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="265d8b9b-4054-4c55-88b5-a221c3c4a8f2" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/dic/collections.php" afterPath="$PROJECT_DIR$/app/config/dic/collections.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="plitka.iws" />
@@ -7432,19 +7433,33 @@
       <file leaf-file-name=".htaccess" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.htaccess">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="878">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".htaccess" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".htaccess" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/.htaccess">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.26064736" vertical-offset="0" max-vertical-offset="10039">
-              <caret line="9" column="47" selection-start-line="9" selection-start-column="47" selection-end-line="9" selection-end-column="47" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="663" max-vertical-offset="9469">
+              <caret line="39" column="53" selection-start-line="39" selection-start-column="53" selection-end-line="39" selection-end-column="53" />
+              <folding>
+                <marker date="1422282251119" expanded="true" signature="1891:2162" placeholder="&lt;IfModule mod_setenvif.c&gt;" />
+                <marker date="1422282251119" expanded="true" signature="2455:2614" placeholder="&lt;IfModule mod_headers.c&gt;" />
+                <marker date="1422282251119" expanded="true" signature="4422:4881" placeholder="&lt;IfModule mod_headers.c&gt;" />
+                <marker date="1422282251119" expanded="true" signature="6368:8549" placeholder="&lt;IfModule mod_mime.c&gt;" />
+                <marker date="1422282251119" expanded="true" signature="8933:9031" placeholder="&lt;IfModule mod_mime.c&gt;" />
+                <marker date="1422282251119" expanded="true" signature="10078:10215" placeholder="&lt;IfModule mod_rewrite.c&gt;" />
+                <marker date="1422282251119" expanded="true" signature="11118:11282" placeholder="&lt;IfModule mod_rewrite.c&gt;" />
+                <marker date="1422282251119" expanded="true" signature="13663:13722" placeholder="&lt;IfModule mod_autoindex.c&gt;" />
+                <marker date="1422282251119" expanded="true" signature="13935:14084" placeholder="&lt;IfModule mod_rewrite.c&gt;" />
+                <marker date="1422282251119" expanded="true" signature="14329:14477" placeholder="&lt;FilesMatch &quot;(^#.*#|\.(bak|config|dist|fla|inc|ini|log|psd|sh|sql|sw[op])|~)$&quot;&gt;" />
+                <marker date="1422282251119" expanded="true" signature="16745:18560" placeholder="&lt;IfModule mod_deflate.c&gt;" />
+                <marker date="1422282251119" expanded="true" signature="19488:19546" placeholder="&lt;IfModule mod_headers.c&gt;" />
+                <marker date="1422282251119" expanded="true" signature="20034:22230" placeholder="&lt;IfModule mod_expires.c&gt;" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -7452,7 +7467,7 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="1600">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
@@ -7462,9 +7477,22 @@
       <file leaf-file-name="application.controller.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/modules/application/application.controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-204.0" vertical-offset="0" max-vertical-offset="6360">
-              <caret line="312" column="11" selection-start-line="312" selection-start-column="11" selection-end-line="312" selection-end-column="11" />
+            <state vertical-scroll-proportion="-15.038462" vertical-offset="1275" max-vertical-offset="6360">
+              <caret line="98" column="52" selection-start-line="98" selection-start-column="52" selection-end-line="98" selection-end-column="52" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="collections.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/config/dic/collections.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.30195382" vertical-offset="3689" max-vertical-offset="4422">
+              <caret line="227" column="2" selection-start-line="227" selection-start-column="2" selection-end-line="227" selection-end-column="2" />
+              <folding>
+                <marker date="1424437302236" expanded="true" signature="5222:5502" placeholder="..." />
+                <marker date="1424437302236" expanded="true" signature="5375:5482" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -7472,9 +7500,11 @@
       <file leaf-file-name="!index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/!index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="13.730769" vertical-offset="357" max-vertical-offset="1294">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="782">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+              <folding>
+                <element signature="e#6#135#0#PHP" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -7544,6 +7574,7 @@
         <option value="C:/usr/local/sphinx/sphinx.conf" />
         <option value="$PROJECT_DIR$/app/config/packages/scalia/sphinxsearch/config.php" />
         <option value="$PROJECT_DIR$/public/.htaccess" />
+        <option value="$PROJECT_DIR$/app/config/dic/collections.php" />
       </list>
     </option>
   </component>
@@ -7701,6 +7732,7 @@
       <node-options />
       <gulpfile />
       <tasks />
+      <arguments />
       <pass-parent-envs>true</pass-parent-envs>
       <envs />
       <method />
@@ -7717,12 +7749,6 @@
       <created>1410442546809</created>
       <option name="number" value="Default" />
       <updated>1410442546809</updated>
-    </task>
-    <task id="LOCAL-00032" summary="fix">
-      <created>1415274440000</created>
-      <option name="number" value="00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1415274440000</updated>
     </task>
     <task id="LOCAL-00033" summary="fix">
       <created>1415274832909</created>
@@ -8012,20 +8038,24 @@
       <option name="project" value="LOCAL" />
       <updated>1422281968808</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="phantomjs fix">
+      <created>1422282276425</created>
+      <option name="number" value="00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1422282276426</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30995107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Regex Tester" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.24981412" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.24981412" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -8037,7 +8067,9 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -8232,13 +8264,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/dic/collections.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46532845" vertical-offset="2414" max-vertical-offset="3978">
-          <caret line="156" column="0" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/views/admin/dicvals/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="6698" max-vertical-offset="7123">
@@ -8415,23 +8440,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.25976232" vertical-offset="4471" max-vertical-offset="6420">
           <caret line="263" column="42" selection-start-line="263" selection-start-column="42" selection-end-line="263" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/!index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="13.730769" vertical-offset="357" max-vertical-offset="1294">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="782">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/application/application.controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-204.0" vertical-offset="0" max-vertical-offset="6360">
-          <caret line="312" column="11" selection-start-line="312" selection-start-column="11" selection-end-line="312" selection-end-column="11" />
-          <folding />
+          <folding>
+            <element signature="e#6#135#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -8461,9 +8479,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/.htaccess">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26064736" vertical-offset="0" max-vertical-offset="10039">
-          <caret line="9" column="47" selection-start-line="9" selection-start-column="47" selection-end-line="9" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="10041">
+          <caret line="39" column="53" selection-start-line="39" selection-start-column="53" selection-end-line="39" selection-end-column="53" />
+          <folding>
+            <marker date="1422282251119" expanded="true" signature="1891:2162" placeholder="&lt;IfModule mod_setenvif.c&gt;" />
+            <marker date="1422282251119" expanded="true" signature="2455:2614" placeholder="&lt;IfModule mod_headers.c&gt;" />
+            <marker date="1422282251119" expanded="true" signature="4422:4881" placeholder="&lt;IfModule mod_headers.c&gt;" />
+            <marker date="1422282251119" expanded="true" signature="6368:8549" placeholder="&lt;IfModule mod_mime.c&gt;" />
+            <marker date="1422282251119" expanded="true" signature="8933:9031" placeholder="&lt;IfModule mod_mime.c&gt;" />
+            <marker date="1422282251119" expanded="true" signature="10078:10215" placeholder="&lt;IfModule mod_rewrite.c&gt;" />
+            <marker date="1422282251119" expanded="true" signature="11118:11282" placeholder="&lt;IfModule mod_rewrite.c&gt;" />
+            <marker date="1422282251119" expanded="true" signature="13663:13722" placeholder="&lt;IfModule mod_autoindex.c&gt;" />
+            <marker date="1422282251119" expanded="true" signature="13935:14084" placeholder="&lt;IfModule mod_rewrite.c&gt;" />
+            <marker date="1422282251119" expanded="true" signature="14329:14477" placeholder="&lt;FilesMatch &quot;(^#.*#|\.(bak|config|dist|fla|inc|ini|log|psd|sh|sql|sw[op])|~)$&quot;&gt;" />
+            <marker date="1422282251119" expanded="true" signature="16745:18560" placeholder="&lt;IfModule mod_deflate.c&gt;" />
+            <marker date="1422282251119" expanded="true" signature="19488:19546" placeholder="&lt;IfModule mod_headers.c&gt;" />
+            <marker date="1422282251119" expanded="true" signature="20034:22230" placeholder="&lt;IfModule mod_expires.c&gt;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/application/application.controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.038462" vertical-offset="1275" max-vertical-offset="6360">
+          <caret line="98" column="52" selection-start-line="98" selection-start-column="52" selection-end-line="98" selection-end-column="52" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/dic/collections.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.30195382" vertical-offset="3689" max-vertical-offset="4422">
+          <caret line="227" column="2" selection-start-line="227" selection-start-column="2" selection-end-line="227" selection-end-column="2" />
+          <folding>
+            <marker date="1424437302236" expanded="true" signature="5222:5502" placeholder="..." />
+            <marker date="1424437302236" expanded="true" signature="5375:5482" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
