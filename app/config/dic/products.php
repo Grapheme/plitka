@@ -9,6 +9,7 @@ return array(
             'colors',
             'surface_type',
             'format',
+            'units',
         );
         $dics = Dic::whereIn('slug', $dics_slugs)->with('values')->get();
         $dics = Dic::modifyKeys($dics, 'slug');
@@ -64,12 +65,28 @@ return array(
             ),
 
             'price' => array(
-                'title' => 'Цена',
+                'title' => 'Цена в РУБЛЯХ - только целое число, без указания валюты',
                 'type' => 'text',
                 'others' => array(
                     #'maxlength' => 5,
                     #'onkeyup' => "this.value = this.value.replace (/\D/, '')", ## ONLY DIGITS
                 ),
+            ),
+
+            'price_euro' => array(
+                'title' => 'Цена в ЕВРО - только целое число, без указания валюты',
+                'type' => 'text',
+                'others' => array(
+                    #'maxlength' => 5,
+                    #'onkeyup' => "this.value = this.value.replace (/\D/, '')", ## ONLY DIGITS
+                ),
+            ),
+
+            'unit' => array(
+                'title' => 'Единица измерения (кв.м. / пог.м. / шт.)',
+                'type' => 'select',
+                'values' => array('Выберите..') + $lists['units'],
+                #'default' => Input::get('filter.fields.collection_id'),
             ),
 
             'basic' => array(

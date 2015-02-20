@@ -724,7 +724,8 @@ class AdminDicvalsController extends BaseController {
                     $el->delete();
             }
 
-            DB::update(DB::raw("UPDATE " . (new DicVal())->getTable() . " SET lft = lft - 2, rgt = rgt - 2 WHERE dic_id = '" . $element->dic_id . "' AND lft > " . $element->rgt . ""));
+            if ($element->rgt)
+                DB::update(DB::raw("UPDATE " . (new DicVal())->getTable() . " SET lft = lft - 2, rgt = rgt - 2 WHERE dic_id = '" . $element->dic_id . "' AND lft > " . $element->rgt . ""));
 
             $element->delete();
         }

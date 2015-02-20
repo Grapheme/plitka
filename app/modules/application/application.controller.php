@@ -122,6 +122,8 @@ class ApplicationController extends BaseController {
 
         #Helper::tad($data['galleries']);
 
+        $course_euro_rub = @(int)Dic::valueBySlugs('options', 'course_euro_rub');
+
         $collections_prices = array();
         $collections_colors = array();
         $collections_surface_types = array();
@@ -132,6 +134,9 @@ class ApplicationController extends BaseController {
                 #Helper::tad($product);
 
                 $price = (int)$product->price;
+                if (isset($product->price_euro) && (int)$product->price_euro > 0 && $course_euro_rub > 0) {
+                    $price = (int)$product->price_euro * $course_euro_rub;
+                }
                 $color_id = (int)$product->color_id;
                 $surface_type_id = (int)$product->surface_type_id;
                 $collection_id = (int)$product->collection_id;
