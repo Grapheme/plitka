@@ -133,7 +133,7 @@ class ApplicationController extends BaseController {
 
                 #Helper::tad($product);
 
-                $price = (int)$product->price;
+                $price = (int)(str_replace(' ', '', $product->price));
                 if (isset($product->price_euro) && (int)$product->price_euro > 0 && $course_euro_rub > 0) {
                     $price = (int)$product->price_euro * $course_euro_rub;
                 }
