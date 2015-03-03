@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/app/modules/application/application.controller.php" line="263" mnemonic="2" />
+    <bookmark url="file://$PROJECT_DIR$/app/modules/application/application.controller.php" line="268" mnemonic="2" />
     <bookmark url="file://$PROJECT_DIR$/app/modules/application/application.controller.php" line="49" mnemonic="1" />
   </component>
   <component name="ChangeListManager">
@@ -7467,8 +7467,8 @@
       <file leaf-file-name="application.controller.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/modules/application/application.controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7878788" vertical-offset="2329" max-vertical-offset="6987">
-              <caret line="163" column="93" selection-start-line="163" selection-start-column="93" selection-end-line="163" selection-end-column="93" />
+            <state vertical-scroll-proportion="0.6666667" vertical-offset="1870" max-vertical-offset="7072">
+              <caret line="132" column="42" selection-start-line="132" selection-start-column="42" selection-end-line="132" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -7754,12 +7754,6 @@
       <created>1410442546809</created>
       <option name="number" value="Default" />
       <updated>1410442546809</updated>
-    </task>
-    <task id="LOCAL-00039" summary="fix">
-      <created>1415280414480</created>
-      <option name="number" value="00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1415280414480</updated>
     </task>
     <task id="LOCAL-00040" summary="fix">
       <created>1415283046210</created>
@@ -8049,7 +8043,13 @@
       <option name="project" value="LOCAL" />
       <updated>1425384942035</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="fix">
+      <created>1425385210960</created>
+      <option name="number" value="00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1425385210960</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -8517,8 +8517,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/application/application.controller.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7878788" vertical-offset="2329" max-vertical-offset="6987">
-          <caret line="163" column="93" selection-start-line="163" selection-start-column="93" selection-end-line="163" selection-end-column="93" />
+        <state vertical-scroll-proportion="0.6666667" vertical-offset="1870" max-vertical-offset="7072">
+          <caret line="132" column="42" selection-start-line="132" selection-start-column="42" selection-end-line="132" selection-end-column="42" />
           <folding />
         </state>
       </provider>

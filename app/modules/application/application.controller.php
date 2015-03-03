@@ -128,6 +128,11 @@ class ApplicationController extends BaseController {
         $collections_colors = [];
         $collections_surface_types = [];
         $collections_formats = [];
+
+        if (Input::get('dbg-min-collection-price')) {
+            var_dump('$course_euro_rub => ' . $course_euro_rub);
+        }
+
         if (isset($data['products']) && count($data['products'])) {
             foreach ($data['products'] as $product) {
 
