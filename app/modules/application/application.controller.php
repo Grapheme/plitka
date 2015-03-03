@@ -219,8 +219,9 @@ class ApplicationController extends BaseController {
         }
         #Helper::dd($prices);
 
-        if (Input::get('dbg-min-collection-price'))
-            die;
+        if (Input::get('dbg-min-collection-price')) {
+            Helper::dd($collections_prices);
+        }
 
         $data['collections_prices'] = $collections_prices;
         $data['collections_colors'] = $collections_colors;
