@@ -131,6 +131,13 @@ class ApplicationController extends BaseController {
         if (isset($data['products']) && count($data['products'])) {
             foreach ($data['products'] as $product) {
 
+                if (Input::get('dbg-min-collection-price')) {
+
+                    if ($product->collection_id == Input::get('dbg-min-collection-price')) {
+                        var_dump($product);
+                    }
+                }
+
                 #Helper::tad($product);
 
                 $price = (int)(str_replace(' ', '', $product->price));
@@ -180,6 +187,9 @@ class ApplicationController extends BaseController {
             }
         }
         #Helper::dd($prices);
+
+        if (Input::get('dbg-min-collection-price'))
+            die;
 
         $data['collections_prices'] = $collections_prices;
         $data['collections_colors'] = $collections_colors;
