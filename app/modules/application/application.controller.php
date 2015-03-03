@@ -122,7 +122,7 @@ class ApplicationController extends BaseController {
 
         #Helper::tad($data['galleries']);
 
-        $course_euro_rub = @(int)Dic::valueBySlugs('options', 'course_euro_rub');
+        $course_euro_rub = Dic::valueBySlugs('options', 'course_euro_rub');
 
         $collections_prices = [];
         $collections_colors = [];

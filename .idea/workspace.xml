@@ -6,7 +6,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="265d8b9b-4054-4c55-88b5-a221c3c4a8f2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/application/application.controller.php" afterPath="$PROJECT_DIR$/app/modules/application/application.controller.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="plitka.iws" />
@@ -7467,8 +7466,8 @@
       <file leaf-file-name="application.controller.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/modules/application/application.controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6666667" vertical-offset="1870" max-vertical-offset="7072">
-              <caret line="132" column="42" selection-start-line="132" selection-start-column="42" selection-end-line="132" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.42424244" vertical-offset="1870" max-vertical-offset="7072">
+              <caret line="124" column="27" selection-start-line="124" selection-start-column="27" selection-end-line="124" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -7754,12 +7753,6 @@
       <created>1410442546809</created>
       <option name="number" value="Default" />
       <updated>1410442546809</updated>
-    </task>
-    <task id="LOCAL-00040" summary="fix">
-      <created>1415283046210</created>
-      <option name="number" value="00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1415283046210</updated>
     </task>
     <task id="LOCAL-00041" summary="search">
       <created>1415362602140</created>
@@ -8049,7 +8042,13 @@
       <option name="project" value="LOCAL" />
       <updated>1425385210960</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="fix">
+      <created>1425385305867</created>
+      <option name="number" value="00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1425385305867</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -8517,8 +8516,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/application/application.controller.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6666667" vertical-offset="1870" max-vertical-offset="7072">
-          <caret line="132" column="42" selection-start-line="132" selection-start-column="42" selection-end-line="132" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.42424244" vertical-offset="1870" max-vertical-offset="7072">
+          <caret line="124" column="27" selection-start-line="124" selection-start-column="27" selection-end-line="124" selection-end-column="27" />
           <folding />
         </state>
       </provider>
