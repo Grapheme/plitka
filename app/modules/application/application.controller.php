@@ -10,11 +10,11 @@ class ApplicationController extends BaseController {
     ## Routing rules of module
     public static function returnRoutes($prefix = null) {
 
-        Route::group(array(), function() {
-            Route::get('/application/get', array('as' => 'application.get', 'uses' => __CLASS__.'@getApplicationData'));
+        Route::group([], function() {
+            Route::get('/application/get', ['as' => 'application.get', 'uses' => __CLASS__.'@getApplicationData']);
 
-            Route::any('/ajax/feedback', array('as' => 'ajax.feedback', 'uses' => __CLASS__.'@postFeedback'));
-            Route::any('/ajax/search', array('as' => 'ajax.search', 'uses' => __CLASS__.'@postSearch'));
+            Route::any('/ajax/feedback', ['as' => 'ajax.feedback', 'uses' => __CLASS__.'@postFeedback']);
+            Route::any('/ajax/search', ['as' => 'ajax.search', 'uses' => __CLASS__.'@postSearch']);
         });
     }
 
@@ -23,7 +23,7 @@ class ApplicationController extends BaseController {
 
 	public function __construct(){
 
-        $this->module = array(
+        $this->module = [
             'name' => self::$name,
             'group' => self::$group,
             'tpl' => static::returnTpl(),
@@ -32,7 +32,7 @@ class ApplicationController extends BaseController {
 
             #'entity' => self::$entity,
             #'entity_name' => self::$entity_name,
-        );
+        ];
         View::share('module', $this->module);
 	}
 
@@ -53,9 +53,9 @@ class ApplicationController extends BaseController {
             if (Input::get('nojson') == 1)
                 Helper::tad($data);
 
-            return Response::json($data, 200, array(
+            return Response::json($data, 200, [
                 'Access-Control-Allow-Origin' => '*',
-            ));
+            ]);
         }
 
         $data = new Collection();
@@ -98,7 +98,7 @@ class ApplicationController extends BaseController {
         $data['galleries'] = Gallery::all();
         $data['galleries'] = Dic::modifyKeys($data['galleries'], 'id');
 
-        $gal = array();
+        $gal = [];
         $data['photos'] = Photo::orderBy('order', 'ASC')->get();
         $data['photos'] = Dic::modifyKeys($data['photos'], 'id');
         foreach ($data['photos'] as $p => $photo) {
@@ -110,7 +110,7 @@ class ApplicationController extends BaseController {
                 continue;
 
             if (!isset($gal[$photo->gallery_id]) || !is_array($gal[$photo->gallery_id]))
-                $gal[$photo->gallery_id] = array();
+                $gal[$photo->gallery_id] = [];
 
             $gal[$photo->gallery_id][] = $photo->id;
         }
@@ -124,26 +124,48 @@ class ApplicationController extends BaseController {
 
         $course_euro_rub = @(int)Dic::valueBySlugs('options', 'course_euro_rub');
 
-        $collections_prices = array();
-        $collections_colors = array();
-        $collections_surface_types = array();
-        $collections_formats = array();
+        $collections_prices = [];
+        $collections_colors = [];
+        $collections_surface_types = [];
+        $collections_formats = [];
         if (isset($data['products']) && count($data['products'])) {
             foreach ($data['products'] as $product) {
 
-                if (Input::get('dbg-min-collection-price')) {
 
+                if (Input::get('dbg-min-collection-price')) {
                     if ($product->collection_id == Input::get('dbg-min-collection-price')) {
                         Helper::ta($product);
                     }
                 }
 
-                #Helper::tad($product);
 
                 $price = (int)(str_replace(' ', '', $product->price));
+
+
+                if (Input::get('dbg-min-collection-price')) {
+                    if ($product->collection_id == Input::get('dbg-min-collection-price')) {
+                        Helper::d('$price ($product->price) = ' . $price);
+                    }
+                }
+
+
                 if (isset($product->price_euro) && (int)$product->price_euro > 0 && $course_euro_rub > 0) {
                     $price = (int)$product->price_euro * $course_euro_rub;
                 }
+
+
+                if (Input::get('dbg-min-collection-price')) {
+                    if ($product->collection_id == Input::get('dbg-min-collection-price')) {
+                        Helper::d(
+                            'isset($product->price_euro) => ' . isset($product->price_euro)
+                            . ' && (int)$product->price_euro > 0 => ' . ((int)$product->price_euro > 0)
+                            . ' && $course_euro_rub > 0 => ' . ($course_euro_rub > 0)
+                        );
+                        Helper::d('$price = (int)$product->price_euro * $course_euro_rub; => ' . $price);
+                    }
+                }
+
+
                 $color_id = (int)$product->color_id;
                 $surface_type_id = (int)$product->surface_type_id;
                 $collection_id = (int)$product->collection_id;
@@ -159,7 +181,7 @@ class ApplicationController extends BaseController {
 
                 if ($color_id && $collection_id) {
                     if (!isset($collections_colors[$color_id])) {
-                        $collections_colors[$color_id] = array();
+                        $collections_colors[$color_id] = [];
                     }
                     if (!in_array($collection_id, $collections_colors[$color_id])) {
                         $collections_colors[$color_id][] = $collection_id;
@@ -168,7 +190,7 @@ class ApplicationController extends BaseController {
 
                 if ($surface_type_id && $collection_id) {
                     if (!isset($collections_surface_types[$surface_type_id])) {
-                        $collections_surface_types[$surface_type_id] = array();
+                        $collections_surface_types[$surface_type_id] = [];
                     }
                     if (!in_array($collection_id, $collections_surface_types[$surface_type_id])) {
                         $collections_surface_types[$surface_type_id][] = $collection_id;
@@ -177,7 +199,7 @@ class ApplicationController extends BaseController {
 
                 if ($format_id && $collection_id) {
                     if (!isset($collections_formats[$format_id])) {
-                        $collections_formats[$format_id] = array();
+                        $collections_formats[$format_id] = [];
                     }
                     if (!in_array($collection_id, $collections_formats[$format_id])) {
                         $collections_formats[$format_id][] = $collection_id;
@@ -196,15 +218,15 @@ class ApplicationController extends BaseController {
         $data['collections_surface_types'] = $collections_surface_types;
         $data['collections_formats'] = $collections_formats;
 
-        $scope_ids = array();
-        $collections_surfaces = array();
+        $scope_ids = [];
+        $collections_surfaces = [];
         $dic_others_collections = new Collection();
         foreach ($data['collections'] as $collection) {
             #$scope_ids[]
 
             if ($collection->surface_id) {
                 if (!isset($collections_surfaces[$collection->surface_id]) || !is_array($collections_surfaces[$collection->surface_id]))
-                    $collections_surfaces[$collection->surface_id] = array();
+                    $collections_surfaces[$collection->surface_id] = [];
                 if (!in_array($collection->id, $collections_surfaces[$collection->surface_id]))
                     $collections_surfaces[$collection->surface_id][] = $collection->id;
             }
@@ -214,7 +236,7 @@ class ApplicationController extends BaseController {
                 foreach ($collection->related_dicvals as $scope) {
 
                     if (!isset($scope_ids[$scope->id]) || !is_array($scope_ids[$scope->id])) {
-                        $scope_ids[$scope->id] = array();
+                        $scope_ids[$scope->id] = [];
                     }
 
                     if (!in_array($collection->id, $scope_ids[$scope->id])) {
@@ -248,9 +270,9 @@ class ApplicationController extends BaseController {
         if (Input::get('nojson') == 1)
             Helper::tad($data);
 
-        return Response::json($data, 200, array(
+        return Response::json($data, 200, [
             'Access-Control-Allow-Origin' => '*',
-        ));
+        ]);
     }
 
     public function postFeedback() {
@@ -258,16 +280,16 @@ class ApplicationController extends BaseController {
         if(Request::method() != 'POST')
             App::abort(404);
 
-        $json_request = array('status' => FALSE, 'responseText' => '');
+        $json_request = ['status' => FALSE, 'responseText' => ''];
 
         ## Send confirmation to user - with password
         $data = Input::all();
 
         if (!count($data)) {
             $json_request['responseText'] = 'Недостаточно переданных данных';
-            return Response::json($json_request, 200, array(
+            return Response::json($json_request, 200, [
                 'Access-Control-Allow-Origin' => '*',
-            ));
+            ]);
         }
 
         Mail::send('emails.feedback', $data, function ($message) use ($data) {
@@ -286,7 +308,7 @@ class ApplicationController extends BaseController {
             $email = Dic::valueBySlugs('options', 'email');
             $email = is_object($email) ? $email->name : 'dev@null.ru';
 
-            $emails = array();
+            $emails = [];
             if (strpos($email, ',')) {
                 $emails = explode(',', $email);
                 foreach ($emails as $e => $email)
@@ -307,9 +329,9 @@ class ApplicationController extends BaseController {
         $json_request['status'] = TRUE;
 
         #Helper::dd($result);
-        return Response::json($json_request, 200, array(
+        return Response::json($json_request, 200, [
             'Access-Control-Allow-Origin' => '*',
-        ));
+        ]);
     }
 
 
@@ -318,7 +340,7 @@ class ApplicationController extends BaseController {
         #if(Request::method() != 'POST')
         #    App::abort(404);
 
-        $json_request = array('status' => FALSE, 'responseText' => '');
+        $json_request = ['status' => FALSE, 'responseText' => ''];
 
         #Helper::d(Input::all());
         $q = Input::get('q');
@@ -350,9 +372,9 @@ class ApplicationController extends BaseController {
             Helper::tad($results);
 
         #Helper::dd($result);
-        return Response::json($json_request, 200, array(
+        return Response::json($json_request, 200, [
             'Access-Control-Allow-Origin' => '*',
-        ));
+        ]);
     }
 
 }
