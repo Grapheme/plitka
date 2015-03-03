@@ -278,8 +278,8 @@ class Dictionary extends BaseModel {
             }
         }
 
-        if ($dic_slug == 'options')
-            Helper::tad($data);
+        #if ($dic_slug == 'options')
+        #    Helper::tad($data);
 
         return is_object($data) ? $data : self::firstOrNew(['id' => 0]);
     }
