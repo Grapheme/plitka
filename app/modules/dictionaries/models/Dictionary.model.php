@@ -2,14 +2,14 @@
 
 class Dictionary extends BaseModel {
 
-	protected $guarded = array();
+	protected $guarded = [];
 
     public $table = 'dictionary';
     #public $timestamps = false;
 
 	public static $order_by = "name ASC";
 
-    protected $fillable = array(
+    protected $fillable = [
         'slug',
         'name',
         'entity',
@@ -23,11 +23,11 @@ class Dictionary extends BaseModel {
         'sort_order_reverse',
         'sortable',
         'order',
-    );
+    ];
 
-	public static $rules = array(
+	public static $rules = [
 		'name' => 'required',
-	);
+	];
 
 
     /**
@@ -130,7 +130,7 @@ class Dictionary extends BaseModel {
     public static function makeLists($collection, $listed_key = 'values', $value, $key = '') {
         #Helper::ta($collection);
         #$lists = new Collection;
-        $lists = array();
+        $lists = [];
         foreach ($collection as $c => $col) {
             if (!$listed_key) {
 
@@ -144,7 +144,7 @@ class Dictionary extends BaseModel {
 
             } else {
 
-                $list = array();
+                $list = [];
                 if (isset($col->$listed_key) && count($col->$listed_key))
                     #Helper::ta($col->$listed_key);
                     foreach ($col->$listed_key as $e => $el) {
@@ -235,7 +235,7 @@ class Dictionary extends BaseModel {
         $return = Dic::where('slug', $slug);
         #dd($conditions);
         if (is_callable($conditions))
-            $return = $return->with(array('values_no_conditions' => $conditions));
+            $return = $return->with(['values_no_conditions' => $conditions]);
         else
             $return = $return->with('values');
 
@@ -246,7 +246,7 @@ class Dictionary extends BaseModel {
         if (is_object($return))
             $return = isset($return->values_no_conditions) ? $return->values_no_conditions : $return->values;
         else
-            $return = Dic::firstOrNew(array('slug' => $slug, 'version_of' => NULL))->with('values')->first()->values;
+            $return = Dic::firstOrNew(['slug' => $slug, 'version_of' => NULL])->with('values')->first()->values;
         #return self::firstOrNew(array('slug' => $slug))->values;
         return $return;
     }
@@ -265,19 +265,23 @@ class Dictionary extends BaseModel {
 
         #Helper::d("$dic_slug, $val_slug");
 
-        $data = self::where('slug', $dic_slug)->with(array('value' => function($query) use ($val_slug){
+        $data = self::where('slug', $dic_slug)->with(['value' => function($query) use ($val_slug){
                 $query->where('version_of', NULL);
                 $query->where('slug', $val_slug);
                 $query->with('meta', 'fields', 'seo', 'related_dicvals');
-            }))->first()->value;
+            }])->first();
 
-        if ($extract) {
-            $data->extract(0);
+        if (is_object($data)) {
+            if ($extract) {
+                $data->extract(0);
+                $data = $data->value;
+            }
         }
 
-        #Helper::tad($data);
+        if ($dic_slug == 'options')
+            Helper::tad($data);
 
-        return is_object($data) ? $data : self::firstOrNew(array('id' => 0));
+        return is_object($data) ? $data : self::firstOrNew(['id' => 0]);
     }
 
 
@@ -292,11 +296,11 @@ class Dictionary extends BaseModel {
      */
     public static function valueBySlugAndId($dic_slug, $val_id, $extract = false) {
 
-        $data = self::where('slug', $dic_slug)->with(array('value' => function($query) use ($val_id){
+        $data = self::where('slug', $dic_slug)->with(['value' => function($query) use ($val_id){
             $query->where('version_of', NULL);
             $query->where('id', $val_id);
             $query->with('meta', 'fields', 'seo', 'related_dicvals');
-        }))
+        }])
             ->first()
             ->value
         ;
@@ -306,7 +310,7 @@ class Dictionary extends BaseModel {
             $data->extract(0);
         #Helper::tad($data);
 
-        return is_object($data) ? $data : self::firstOrNew(array('id' => 0));
+        return is_object($data) ? $data : self::firstOrNew(['id' => 0]);
     }
 
     /**
@@ -320,11 +324,11 @@ class Dictionary extends BaseModel {
      */
     public static function valuesBySlugAndIds($dic_slug, $val_ids, $extract = false) {
 
-        $data = self::where('slug', $dic_slug)->with(array('values_no_conditions' => function($query) use ($val_ids){
+        $data = self::where('slug', $dic_slug)->with(['values_no_conditions' => function($query) use ($val_ids){
                 $query->where('version_of', NULL);
                 $query->whereIn('id', $val_ids);
                 $query->with('meta', 'fields', 'seo', 'related_dicvals');
-            }))
+            }])
             ->first()
             ->values_no_conditions
         ;
@@ -335,7 +339,7 @@ class Dictionary extends BaseModel {
             $data = DicVal::extracts($data);
         #Helper::tad($data);
 
-        return is_object($data) ? $data : self::firstOrNew(array('id' => 0));
+        return is_object($data) ? $data : self::firstOrNew(['id' => 0]);
     }
 
 
@@ -346,7 +350,7 @@ class Dictionary extends BaseModel {
      * Устаревшие и не рекомендуемые к использованию методы
      */
     public static function whereSlugValues($slug) {
-        return self::firstOrNew(array('slug' => $slug))->values;
+        return self::firstOrNew(['slug' => $slug])->values;
     }
 
 
