@@ -274,8 +274,8 @@ class Dictionary extends BaseModel {
         if (is_object($data)) {
             if ($extract) {
                 $data->extract(0);
-                $data = $data->value;
             }
+            $data = $data->value;
         }
 
         #if ($dic_slug == 'options')

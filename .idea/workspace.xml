@@ -7463,21 +7463,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.controller.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="application.controller.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/modules/application/application.controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.54545456" vertical-offset="1870" max-vertical-offset="7140">
+            <state vertical-scroll-proportion="-11.769231" vertical-offset="1870" max-vertical-offset="7140">
               <caret line="128" column="33" selection-start-line="128" selection-start-column="33" selection-end-line="128" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Dictionary.model.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Dictionary.model.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/models/Dictionary.model.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.615385" vertical-offset="4293" max-vertical-offset="6664">
-              <caret line="281" column="9" selection-start-line="281" selection-start-column="9" selection-end-line="281" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.741533" vertical-offset="4293" max-vertical-offset="6664">
+              <caret line="277" column="12" selection-start-line="277" selection-start-column="12" selection-end-line="277" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -7588,8 +7588,8 @@
         <option value="$PROJECT_DIR$/app/modules/dictionaries/admin_dicvals.controller.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/.htaccess" />
-        <option value="$PROJECT_DIR$/app/modules/dictionaries/models/Dictionary.model.php" />
         <option value="$PROJECT_DIR$/app/modules/application/application.controller.php" />
+        <option value="$PROJECT_DIR$/app/modules/dictionaries/models/Dictionary.model.php" />
       </list>
     </option>
   </component>
@@ -7764,12 +7764,6 @@
       <created>1410442546809</created>
       <option name="number" value="Default" />
       <updated>1410442546809</updated>
-    </task>
-    <task id="LOCAL-00043" summary="textfields">
-      <created>1415620429820</created>
-      <option name="number" value="00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1415620429820</updated>
     </task>
     <task id="LOCAL-00044" summary="textfields">
       <created>1415622370005</created>
@@ -8059,7 +8053,13 @@
       <option name="project" value="LOCAL" />
       <updated>1425385508696</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="fix">
+      <created>1425385580812</created>
+      <option name="number" value="00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1425385580812</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -8518,18 +8518,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/models/Dictionary.model.php">
+    <entry file="file://$PROJECT_DIR$/app/modules/application/application.controller.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.615385" vertical-offset="4293" max-vertical-offset="6664">
-          <caret line="281" column="9" selection-start-line="281" selection-start-column="9" selection-end-line="281" selection-end-column="9" />
+        <state vertical-scroll-proportion="-11.769231" vertical-offset="1870" max-vertical-offset="7140">
+          <caret line="128" column="33" selection-start-line="128" selection-start-column="33" selection-end-line="128" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/application/application.controller.php">
+    <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/models/Dictionary.model.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.54545456" vertical-offset="1870" max-vertical-offset="7140">
-          <caret line="128" column="33" selection-start-line="128" selection-start-column="33" selection-end-line="128" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.741533" vertical-offset="4293" max-vertical-offset="6664">
+          <caret line="277" column="12" selection-start-line="277" selection-start-column="12" selection-end-line="277" selection-end-column="12" />
           <folding />
         </state>
       </provider>
