@@ -6,7 +6,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="265d8b9b-4054-4c55-88b5-a221c3c4a8f2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/application/application.controller.php" afterPath="$PROJECT_DIR$/app/modules/application/application.controller.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="plitka.iws" />
@@ -7430,11 +7429,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name=".htaccess" pinned="false" current-in-tab="false">
+      <file leaf-file-name=".htaccess" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.htaccess">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.6081772" vertical-offset="0" max-vertical-offset="927">
+              <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -7443,7 +7442,7 @@
       <file leaf-file-name=".htaccess" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/.htaccess">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="663" max-vertical-offset="9469">
+            <state vertical-scroll-proportion="0.0" vertical-offset="663" max-vertical-offset="10039">
               <caret line="39" column="53" selection-start-line="39" selection-start-column="53" selection-end-line="39" selection-end-column="53" />
               <folding>
                 <marker date="1422282251119" expanded="true" signature="1891:2162" placeholder="&lt;IfModule mod_setenvif.c&gt;" />
@@ -7464,10 +7463,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.controller.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="application.controller.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/modules/application/application.controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5133215" vertical-offset="2023" max-vertical-offset="6615">
+            <state vertical-scroll-proportion="-11.115385" vertical-offset="2023" max-vertical-offset="6613">
               <caret line="136" column="41" selection-start-line="136" selection-start-column="41" selection-end-line="136" selection-end-column="41" />
               <folding />
             </state>
@@ -7579,6 +7578,7 @@
         <option value="$PROJECT_DIR$/app/modules/dictionaries/admin_dicvals.controller.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/app/modules/application/application.controller.php" />
+        <option value="$PROJECT_DIR$/.htaccess" />
       </list>
     </option>
   </component>
@@ -7753,12 +7753,6 @@
       <created>1410442546809</created>
       <option name="number" value="Default" />
       <updated>1410442546809</updated>
-    </task>
-    <task id="LOCAL-00036" summary="fix">
-      <created>1415277686811</created>
-      <option name="number" value="00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1415277686811</updated>
     </task>
     <task id="LOCAL-00037" summary="fix">
       <created>1415278470073</created>
@@ -8048,13 +8042,20 @@
       <option name="project" value="LOCAL" />
       <updated>1425281627528</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="fix">
+      <created>1425384573095</created>
+      <option name="number" value="00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1425384573095</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3089431" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Regex Tester" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -8072,7 +8073,6 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -8442,36 +8442,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.htaccess">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="878">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/.htaccess">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="10041">
-          <caret line="39" column="53" selection-start-line="39" selection-start-column="53" selection-end-line="39" selection-end-column="53" />
-          <folding>
-            <marker date="1422282251119" expanded="true" signature="1891:2162" placeholder="&lt;IfModule mod_setenvif.c&gt;" />
-            <marker date="1422282251119" expanded="true" signature="2455:2614" placeholder="&lt;IfModule mod_headers.c&gt;" />
-            <marker date="1422282251119" expanded="true" signature="4422:4881" placeholder="&lt;IfModule mod_headers.c&gt;" />
-            <marker date="1422282251119" expanded="true" signature="6368:8549" placeholder="&lt;IfModule mod_mime.c&gt;" />
-            <marker date="1422282251119" expanded="true" signature="8933:9031" placeholder="&lt;IfModule mod_mime.c&gt;" />
-            <marker date="1422282251119" expanded="true" signature="10078:10215" placeholder="&lt;IfModule mod_rewrite.c&gt;" />
-            <marker date="1422282251119" expanded="true" signature="11118:11282" placeholder="&lt;IfModule mod_rewrite.c&gt;" />
-            <marker date="1422282251119" expanded="true" signature="13663:13722" placeholder="&lt;IfModule mod_autoindex.c&gt;" />
-            <marker date="1422282251119" expanded="true" signature="13935:14084" placeholder="&lt;IfModule mod_rewrite.c&gt;" />
-            <marker date="1422282251119" expanded="true" signature="14329:14477" placeholder="&lt;FilesMatch &quot;(^#.*#|\.(bak|config|dist|fla|inc|ini|log|psd|sh|sql|sw[op])|~)$&quot;&gt;" />
-            <marker date="1422282251119" expanded="true" signature="16745:18560" placeholder="&lt;IfModule mod_deflate.c&gt;" />
-            <marker date="1422282251119" expanded="true" signature="19488:19546" placeholder="&lt;IfModule mod_headers.c&gt;" />
-            <marker date="1422282251119" expanded="true" signature="20034:22230" placeholder="&lt;IfModule mod_expires.c&gt;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/config/dic/collections.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="3876" max-vertical-offset="3910">
@@ -8516,8 +8486,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/application/application.controller.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5133215" vertical-offset="2023" max-vertical-offset="6615">
+        <state vertical-scroll-proportion="-11.115385" vertical-offset="2023" max-vertical-offset="6613">
           <caret line="136" column="41" selection-start-line="136" selection-start-column="41" selection-end-line="136" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/.htaccess">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="10041">
+          <caret line="39" column="53" selection-start-line="39" selection-start-column="53" selection-end-line="39" selection-end-column="53" />
+          <folding>
+            <marker date="1422282251119" expanded="true" signature="1891:2162" placeholder="&lt;IfModule mod_setenvif.c&gt;" />
+            <marker date="1422282251119" expanded="true" signature="2455:2614" placeholder="&lt;IfModule mod_headers.c&gt;" />
+            <marker date="1422282251119" expanded="true" signature="4422:4881" placeholder="&lt;IfModule mod_headers.c&gt;" />
+            <marker date="1422282251119" expanded="true" signature="6368:8549" placeholder="&lt;IfModule mod_mime.c&gt;" />
+            <marker date="1422282251119" expanded="true" signature="8933:9031" placeholder="&lt;IfModule mod_mime.c&gt;" />
+            <marker date="1422282251119" expanded="true" signature="10078:10215" placeholder="&lt;IfModule mod_rewrite.c&gt;" />
+            <marker date="1422282251119" expanded="true" signature="11118:11282" placeholder="&lt;IfModule mod_rewrite.c&gt;" />
+            <marker date="1422282251119" expanded="true" signature="13663:13722" placeholder="&lt;IfModule mod_autoindex.c&gt;" />
+            <marker date="1422282251119" expanded="true" signature="13935:14084" placeholder="&lt;IfModule mod_rewrite.c&gt;" />
+            <marker date="1422282251119" expanded="true" signature="14329:14477" placeholder="&lt;FilesMatch &quot;(^#.*#|\.(bak|config|dist|fla|inc|ini|log|psd|sh|sql|sw[op])|~)$&quot;&gt;" />
+            <marker date="1422282251119" expanded="true" signature="16745:18560" placeholder="&lt;IfModule mod_deflate.c&gt;" />
+            <marker date="1422282251119" expanded="true" signature="19488:19546" placeholder="&lt;IfModule mod_headers.c&gt;" />
+            <marker date="1422282251119" expanded="true" signature="20034:22230" placeholder="&lt;IfModule mod_expires.c&gt;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.htaccess">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6081772" vertical-offset="0" max-vertical-offset="927">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding />
         </state>
       </provider>
