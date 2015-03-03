@@ -6,6 +6,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="265d8b9b-4054-4c55-88b5-a221c3c4a8f2" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/application/application.controller.php" afterPath="$PROJECT_DIR$/app/modules/application/application.controller.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="plitka.iws" />
@@ -7429,10 +7430,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name=".htaccess" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".htaccess" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.htaccess">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6081772" vertical-offset="0" max-vertical-offset="927">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="927">
               <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
               <folding />
             </state>
@@ -7463,11 +7464,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.controller.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="application.controller.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/modules/application/application.controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.115385" vertical-offset="2023" max-vertical-offset="6613">
-              <caret line="136" column="41" selection-start-line="136" selection-start-column="41" selection-end-line="136" selection-end-column="41" />
+            <state vertical-scroll-proportion="0.5151515" vertical-offset="2023" max-vertical-offset="6613">
+              <caret line="136" column="34" selection-start-line="136" selection-start-column="34" selection-end-line="136" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -7577,8 +7578,8 @@
         <option value="$PROJECT_DIR$/app/config/dic/products.php" />
         <option value="$PROJECT_DIR$/app/modules/dictionaries/admin_dicvals.controller.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/app/modules/application/application.controller.php" />
         <option value="$PROJECT_DIR$/.htaccess" />
+        <option value="$PROJECT_DIR$/app/modules/application/application.controller.php" />
       </list>
     </option>
   </component>
@@ -7753,12 +7754,6 @@
       <created>1410442546809</created>
       <option name="number" value="Default" />
       <updated>1410442546809</updated>
-    </task>
-    <task id="LOCAL-00037" summary="fix">
-      <created>1415278470073</created>
-      <option name="number" value="00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1415278470073</updated>
     </task>
     <task id="LOCAL-00038" summary="fix">
       <created>1415280360589</created>
@@ -8048,7 +8043,13 @@
       <option name="project" value="LOCAL" />
       <updated>1425384573095</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="fix">
+      <created>1425384866322</created>
+      <option name="number" value="00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1425384866322</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -8484,14 +8485,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/application/application.controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.115385" vertical-offset="2023" max-vertical-offset="6613">
-          <caret line="136" column="41" selection-start-line="136" selection-start-column="41" selection-end-line="136" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/.htaccess">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="10041">
@@ -8516,8 +8509,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.htaccess">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6081772" vertical-offset="0" max-vertical-offset="927">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="927">
           <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/application/application.controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5151515" vertical-offset="2023" max-vertical-offset="6613">
+          <caret line="136" column="34" selection-start-line="136" selection-start-column="34" selection-end-line="136" selection-end-column="34" />
           <folding />
         </state>
       </provider>

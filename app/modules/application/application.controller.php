@@ -134,7 +134,7 @@ class ApplicationController extends BaseController {
                 if (Input::get('dbg-min-collection-price')) {
 
                     if ($product->collection_id == Input::get('dbg-min-collection-price')) {
-                        var_dump($product);
+                        Helper::ta($product);
                     }
                 }
 
