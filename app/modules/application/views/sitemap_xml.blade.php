@@ -12,7 +12,7 @@
                 continue;
             ?>
             <url>
-                <loc>{{ URL::route('mainpage') }}#!/{{ $page['slug'] }}</loc>
+                <loc>{{ URL::route('mainpage') }}/#!/{{ $page['slug'] }}</loc>
                 <changefreq>weekly</changefreq>
                 <priority>0.6</priority>
             </url>
@@ -21,7 +21,7 @@
     @if (isset($data['collections']) && count($data['collections']))
         @foreach ($data['collections'] as $collection)
             <url>
-                <loc>{{ URL::route('mainpage') }}#!/collection/{{ $collection['slug'] }}</loc>
+                <loc>{{ URL::route('mainpage') }}/#!/collection/{{ $collection['slug'] }}</loc>
                 <changefreq>daily</changefreq>
                 <priority>0.8</priority>
             </url>
