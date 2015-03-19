@@ -15,6 +15,8 @@ class ApplicationController extends BaseController {
 
             Route::any('/ajax/feedback', ['as' => 'ajax.feedback', 'uses' => __CLASS__.'@postFeedback']);
             Route::any('/ajax/search', ['as' => 'ajax.search', 'uses' => __CLASS__.'@postSearch']);
+
+            Route::any('/sitemap.xml', ['as' => 'app.sitemap.xml', 'uses' => __CLASS__.'@getSitemapXml']);
         });
     }
 
@@ -22,6 +24,12 @@ class ApplicationController extends BaseController {
     /****************************************************************************/
 
 	public function __construct(){
+
+        $this->cache_key = 'application.data';
+        $this->cache_time = 1;
+
+        #$cache_key = 'application.data';
+        #$cache_time = 5;
 
         $this->module = [
             'name' => self::$name,
@@ -36,18 +44,28 @@ class ApplicationController extends BaseController {
         View::share('module', $this->module);
 	}
 
-    public function getApplicationData() {
+	public function getSitemapXml(){
 
-        $cache_key = 'application.data';
-        $cache_time = 5;
+        $data = Cache::get($this->cache_key);
+        $data = json_decode($data, 1);
+
+        if (Input::get('nojson') == 1)
+            Helper::tad($data);
+
+        return Response::json($data, 200, [
+            'Access-Control-Allow-Origin' => '*',
+        ]);
+ 	}
+
+    public function getApplicationData() {
 
         $debug = Config::get('app.debug');
         $nocache = Input::get('nocache');
 
-        if (Cache::has($cache_key) && !@$debug && !$nocache) {
+        if (Cache::has($this->cache_key) && !@$debug && !$nocache) {
             #Helper::dd('111');
 
-            $data = Cache::get($cache_key);
+            $data = Cache::get($this->cache_key);
             $data = json_decode($data, 1);
 
             if (Input::get('nojson') == 1)
@@ -271,10 +289,10 @@ class ApplicationController extends BaseController {
         $data['collections_scopes'] = $scope_ids;
         $data['collections_surfaces'] = $collections_surfaces;
 
-        if (Cache::has($cache_key)) {
-            Cache::put($cache_key, json_encode($data), $cache_time);
+        if (Cache::has($this->cache_key)) {
+            Cache::put($this->cache_key, json_encode($data), $this->cache_time);
         } else {
-            Cache::add($cache_key, json_encode($data), $cache_time);
+            Cache::add($this->cache_key, json_encode($data), $this->cache_time);
         }
 
         if (Input::get('nojson') == 1)
