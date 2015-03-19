@@ -31,7 +31,7 @@ return array(
 
             'description' => array(
                 'title' => 'Описание',
-                'type' => 'textarea',
+                'type' => 'textarea_redactor',
             ),
 
             'product_type_id' => array(
