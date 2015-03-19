@@ -46,8 +46,11 @@ class ApplicationController extends BaseController {
 
 	public function getSitemapXml(){
 
-        $data = Cache::get($this->cache_key);
-        $data = json_decode($data, 1);
+        $data = NULL;
+        if (Cache::has($this->cache_key)) {
+            $data = Cache::get($this->cache_key);
+            $data = json_decode($data, 1);
+        }
 
         if (Input::get('nojson') == 1)
             Helper::tad($data);
