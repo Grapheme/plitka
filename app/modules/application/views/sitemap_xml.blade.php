@@ -5,11 +5,13 @@
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
-    @foreach ($data['pages'] as $page)
-        <url>
-            <loc>{{ URL::route('page', $page['slug']) }}</loc>
-            <changefreq>weekly</changefreq>
-            <priority>0.8</priority>
-        </url>
-    @endforeach
+    @if (isset($data['pages']) && is_array($data['pages']) && count($data['pages']))
+        @foreach ($data['pages'] as $page)
+            <url>
+                <loc>{{ URL::route('mainpage') }}#!/{{ $page['slug'] }}</loc>
+                <changefreq>weekly</changefreq>
+                <priority>0.8</priority>
+            </url>
+        @endforeach
+    @endif
 </urlset>
