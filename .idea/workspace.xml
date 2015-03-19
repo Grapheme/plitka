@@ -6,7 +6,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="265d8b9b-4054-4c55-88b5-a221c3c4a8f2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/application/application.controller.php" afterPath="$PROJECT_DIR$/app/modules/application/application.controller.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="plitka.iws" />
@@ -7435,7 +7434,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="927">
               <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-              <folding />
+              <folding>
+                <marker date="1425384862836" expanded="true" signature="66:383" placeholder="&lt;IfModule mod_rewrite.c&gt;" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -7445,7 +7446,21 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="10039">
               <caret line="39" column="53" selection-start-line="39" selection-start-column="53" selection-end-line="39" selection-end-column="53" />
-              <folding />
+              <folding>
+                <marker date="1422282251119" expanded="true" signature="1891:2162" placeholder="&lt;IfModule mod_setenvif.c&gt;" />
+                <marker date="1422282251119" expanded="true" signature="2455:2614" placeholder="&lt;IfModule mod_headers.c&gt;" />
+                <marker date="1422282251119" expanded="true" signature="4422:4881" placeholder="&lt;IfModule mod_headers.c&gt;" />
+                <marker date="1422282251119" expanded="true" signature="6368:8549" placeholder="&lt;IfModule mod_mime.c&gt;" />
+                <marker date="1422282251119" expanded="true" signature="8933:9031" placeholder="&lt;IfModule mod_mime.c&gt;" />
+                <marker date="1422282251119" expanded="true" signature="10078:10215" placeholder="&lt;IfModule mod_rewrite.c&gt;" />
+                <marker date="1422282251119" expanded="true" signature="11118:11282" placeholder="&lt;IfModule mod_rewrite.c&gt;" />
+                <marker date="1422282251119" expanded="true" signature="13663:13722" placeholder="&lt;IfModule mod_autoindex.c&gt;" />
+                <marker date="1422282251119" expanded="true" signature="13935:14084" placeholder="&lt;IfModule mod_rewrite.c&gt;" />
+                <marker date="1422282251119" expanded="true" signature="14329:14477" placeholder="&lt;FilesMatch &quot;(^#.*#|\.(bak|config|dist|fla|inc|ini|log|psd|sh|sql|sw[op])|~)$&quot;&gt;" />
+                <marker date="1422282251119" expanded="true" signature="16745:18560" placeholder="&lt;IfModule mod_deflate.c&gt;" />
+                <marker date="1422282251119" expanded="true" signature="19488:19546" placeholder="&lt;IfModule mod_headers.c&gt;" />
+                <marker date="1422282251119" expanded="true" signature="20034:22230" placeholder="&lt;IfModule mod_expires.c&gt;" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -7454,7 +7469,7 @@
         <entry file="file://$PROJECT_DIR$/app/modules/application/application.controller.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.6060606" vertical-offset="595" max-vertical-offset="7531">
-              <caret line="55" column="36" selection-start-line="55" selection-start-column="36" selection-end-line="55" selection-end-column="36" />
+              <caret line="55" column="57" selection-start-line="55" selection-start-column="57" selection-end-line="55" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -7586,8 +7601,8 @@
         <option value="$PROJECT_DIR$/.htaccess" />
         <option value="$PROJECT_DIR$/app/modules/dictionaries/models/Dictionary.model.php" />
         <option value="$PROJECT_DIR$/app/config/dic/collections.php" />
-        <option value="$PROJECT_DIR$/app/modules/application/application.controller.php" />
         <option value="$PROJECT_DIR$/app/modules/application/views/sitemap_xml.blade.php" />
+        <option value="$PROJECT_DIR$/app/modules/application/application.controller.php" />
       </list>
     </option>
   </component>
@@ -7763,12 +7778,6 @@
       <created>1410442546809</created>
       <option name="number" value="Default" />
       <updated>1410442546809</updated>
-    </task>
-    <task id="LOCAL-00048" summary="colors">
-      <created>1415698320617</created>
-      <option name="number" value="00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1415698320617</updated>
     </task>
     <task id="LOCAL-00049" summary="fix">
       <created>1415701733208</created>
@@ -8058,7 +8067,13 @@
       <option name="project" value="LOCAL" />
       <updated>1426772369076</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="fix">
+      <created>1426772955522</created>
+      <option name="number" value="00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1426772955522</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -8066,7 +8081,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3089431" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30831975" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Regex Tester" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -8145,13 +8160,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../cms/app/modules/dictionaries/views/admin/dics/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6363636" vertical-offset="306" max-vertical-offset="2414">
-          <caret line="38" column="56" selection-start-line="38" selection-start-column="56" selection-end-line="38" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/dictionaries/models/DicValMeta.model.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5737122" vertical-offset="0" max-vertical-offset="629">
@@ -8486,7 +8494,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="927">
           <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1425384862836" expanded="true" signature="66:383" placeholder="&lt;IfModule mod_rewrite.c&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -8494,7 +8504,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="10041">
           <caret line="39" column="53" selection-start-line="39" selection-start-column="53" selection-end-line="39" selection-end-column="53" />
-          <folding />
+          <folding>
+            <marker date="1422282251119" expanded="true" signature="1891:2162" placeholder="&lt;IfModule mod_setenvif.c&gt;" />
+            <marker date="1422282251119" expanded="true" signature="2455:2614" placeholder="&lt;IfModule mod_headers.c&gt;" />
+            <marker date="1422282251119" expanded="true" signature="4422:4881" placeholder="&lt;IfModule mod_headers.c&gt;" />
+            <marker date="1422282251119" expanded="true" signature="6368:8549" placeholder="&lt;IfModule mod_mime.c&gt;" />
+            <marker date="1422282251119" expanded="true" signature="8933:9031" placeholder="&lt;IfModule mod_mime.c&gt;" />
+            <marker date="1422282251119" expanded="true" signature="10078:10215" placeholder="&lt;IfModule mod_rewrite.c&gt;" />
+            <marker date="1422282251119" expanded="true" signature="11118:11282" placeholder="&lt;IfModule mod_rewrite.c&gt;" />
+            <marker date="1422282251119" expanded="true" signature="13663:13722" placeholder="&lt;IfModule mod_autoindex.c&gt;" />
+            <marker date="1422282251119" expanded="true" signature="13935:14084" placeholder="&lt;IfModule mod_rewrite.c&gt;" />
+            <marker date="1422282251119" expanded="true" signature="14329:14477" placeholder="&lt;FilesMatch &quot;(^#.*#|\.(bak|config|dist|fla|inc|ini|log|psd|sh|sql|sw[op])|~)$&quot;&gt;" />
+            <marker date="1422282251119" expanded="true" signature="16745:18560" placeholder="&lt;IfModule mod_deflate.c&gt;" />
+            <marker date="1422282251119" expanded="true" signature="19488:19546" placeholder="&lt;IfModule mod_headers.c&gt;" />
+            <marker date="1422282251119" expanded="true" signature="20034:22230" placeholder="&lt;IfModule mod_expires.c&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -8514,10 +8538,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="145680">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/application/application.controller.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6060606" vertical-offset="595" max-vertical-offset="7531">
-          <caret line="55" column="36" selection-start-line="55" selection-start-column="36" selection-end-line="55" selection-end-column="36" />
+          <caret line="55" column="57" selection-start-line="55" selection-start-column="57" selection-end-line="55" selection-end-column="57" />
           <folding />
         </state>
       </provider>

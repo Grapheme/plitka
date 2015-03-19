@@ -53,7 +53,7 @@ class ApplicationController extends BaseController {
             Helper::tad($data);
 
         return Response::make(
-            View::make($this->module['gtpl'].'sitemap', compact('data')),
+            View::make($this->module['gtpl'].'sitemap_xml', compact('data')),
             200,
             [
                 'Content-Type' => 'application/xml',
