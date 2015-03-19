@@ -5,7 +5,7 @@
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
-    @if (isset($data['pages']) && is_array($data['pages']) && count($data['pages']))
+    @if (isset($data['pages']) && count($data['pages']))
         @foreach ($data['pages'] as $page)
             <url>
                 <loc>{{ URL::route('mainpage') }}#!/{{ $page['slug'] }}</loc>
