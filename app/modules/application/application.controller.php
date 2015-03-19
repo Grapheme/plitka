@@ -46,6 +46,9 @@ class ApplicationController extends BaseController {
 
 	public function getSitemapXml(){
 
+        if (!Cache::has($this->cache_key))
+            $this->getApplicationData();
+
         $data = NULL;
         if (Cache::has($this->cache_key)) {
             $data = Cache::get($this->cache_key);
