@@ -52,9 +52,13 @@ class ApplicationController extends BaseController {
         if (Input::get('nojson') == 1)
             Helper::tad($data);
 
-        return Response::json($data, 200, [
-            'Access-Control-Allow-Origin' => '*',
-        ]);
+        return Response::make(
+            View::make($this->module['gtpl'].'sitemap', compact('data')),
+            200,
+            [
+                'Content-Type' => 'application/xml',
+            ]
+        );
  	}
 
     public function getApplicationData() {
