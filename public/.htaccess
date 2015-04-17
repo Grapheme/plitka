@@ -3,7 +3,11 @@
     ## http://plitkamira.ru/?_escaped_fragment_=/collection/black-amp-white
     ##
     RewriteCond %{QUERY_STRING} _escaped_fragment_=(.*) [NC]
-    RewriteRule ^ http://%{HTTP_HOST}:9090/?%{QUERY_STRING} [L]
+    RewriteRule ^ http://%{HTTP_HOST}:9090/?%{QUERY_STRING} [P,L]
+
+    #<FilesMatch ".*_escaped_fragment_.*">
+    #    Header set Content-Type "text/html"
+    #</FilesMatch>
 
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
